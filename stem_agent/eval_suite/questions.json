@@ -1,0 +1,72 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is retrieval-augmented generation (RAG) and why was it introduced?",
+    "ground_truth": "RAG is a technique that augments language model generation by first retrieving relevant documents from an external corpus, then conditioning generation on those documents. It was introduced to reduce hallucination and extend the model's effective knowledge beyond its training data without full fine-tuning.",
+    "key_facts": ["retrieval before generation", "external corpus", "reduces hallucination", "no full retraining needed"]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "What caused the 2008 financial crisis?",
+    "ground_truth": "The 2008 crisis was triggered by the collapse of the US housing bubble, which had been inflated by subprime mortgage lending and securitization of those loans into mortgage-backed securities. When housing prices fell, defaults cascaded through the financial system, causing bank failures and a global credit freeze.",
+    "key_facts": ["housing bubble", "subprime mortgages", "mortgage-backed securities", "bank failures", "credit freeze"]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "How does mRNA vaccine technology work?",
+    "ground_truth": "mRNA vaccines deliver synthetic messenger RNA encoding a target antigen (such as a viral spike protein) into cells. The cells translate the mRNA into protein, which the immune system recognizes and builds a response against. No live virus or DNA is involved, and the mRNA degrades quickly.",
+    "key_facts": ["synthetic mRNA", "antigen encoding", "immune response", "no live virus", "mRNA degrades"]
+  },
+  {
+    "id": "q04",
+    "tier": "medium",
+    "question": "What are the main tradeoffs between transformer-based and state-space models for sequence modeling?",
+    "ground_truth": "Transformers have quadratic attention complexity with sequence length, enabling rich global context but at high compute cost. State-space models like Mamba achieve linear-time inference through selective state updates, but may trade off some expressivity on tasks requiring precise long-range interactions. The practical frontier is hybrid architectures combining both.",
+    "key_facts": ["quadratic vs linear complexity", "global context", "Mamba / selective state updates", "hybrid architectures"]
+  },
+  {
+    "id": "q05",
+    "tier": "medium",
+    "question": "Explain the history and current state of fusion energy research.",
+    "ground_truth": "Fusion research began in the 1950s with tokamak designs. Key milestones include ITER (under construction) and NIF's 2022 ignition achievement. Private companies like Commonwealth Fusion and Helion are pursuing compact reactor designs. Net energy gain remains the key commercial milestone not yet achieved at scale.",
+    "key_facts": ["tokamak", "ITER", "NIF ignition 2022", "private companies", "net energy gain"]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "What is the current scientific consensus on the microbiome's role in mental health?",
+    "ground_truth": "The gut-brain axis hypothesis proposes that gut microbiota influence brain function via vagus nerve signaling, metabolite production (including short-chain fatty acids and neurotransmitter precursors), and immune modulation. Evidence from animal studies is robust; human clinical evidence remains correlational and the field is still establishing causal mechanisms.",
+    "key_facts": ["gut-brain axis", "vagus nerve", "SCFAs", "animal vs human evidence", "causal mechanisms unestablished"]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "How did the Apollo Guidance Computer work, and why was it significant?",
+    "ground_truth": "The AGC was a 16-bit real-time computer with 4KB RAM and 72KB ROM, using integrated circuits at a time when they were unproven. It ran a priority-scheduled OS (Executive) and was significant for pioneering software reliability techniques and demonstrating that ICs could be trusted for mission-critical applications.",
+    "key_facts": ["16-bit", "4KB RAM", "integrated circuits", "real-time OS", "priority scheduling", "IC reliability"]
+  },
+  {
+    "id": "q08",
+    "tier": "hard",
+    "question": "What are the strongest arguments for and against the simulation hypothesis?",
+    "ground_truth": "Proponents cite the computational tractability of simulating reality and the Copernican principle (we are unlikely to be in base reality). Critics argue the hypothesis is unfalsifiable, relies on contestable assumptions about computational substrate, and does not escape the problem of explaining the origin of the simulating civilization.",
+    "key_facts": ["computational tractability", "Copernican principle", "unfalsifiability", "substrate assumptions", "regress problem"]
+  },
+  {
+    "id": "q09",
+    "tier": "hard",
+    "question": "Compare and critically evaluate the leading theories of consciousness (IIT, Global Workspace, Higher-Order).",
+    "ground_truth": "IIT quantifies consciousness as integrated information (phi) and is mathematically precise but predicts consciousness in simple systems and resists empirical falsification. Global Workspace Theory posits a 'broadcast' mechanism for access consciousness, supported by neuroimaging but criticized for explaining access rather than phenomenal consciousness. Higher-Order theories require a meta-representation, making them computationally plausible but philosophically contested.",
+    "key_facts": ["IIT / phi", "unfalsifiability of IIT", "GWT broadcast", "access vs phenomenal", "higher-order meta-representation"]
+  },
+  {
+    "id": "q10",
+    "tier": "hard",
+    "question": "What were the root causes of the collapse of the Soviet Union, and which factors do historians most dispute?",
+    "ground_truth": "Structural causes include economic stagnation, the arms race burden, and ethnic nationalism in constituent republics. Gorbachev's reforms (glasnost, perestroika) accelerated disintegration by loosening control before institutions could adapt. Historians dispute the relative weight of economic versus ideological versus contingent (Chernobyl, Afghanistan) factors.",
+    "key_facts": ["economic stagnation", "arms race", "nationalism", "glasnost/perestroika", "Chernobyl", "disputed weighting"]
+  }
+]
