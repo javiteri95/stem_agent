@@ -1,0 +1,37 @@
+{
+  "before": {
+    "factual_accuracy": 0.954,
+    "coverage": 0.926,
+    "coherence": 0.975,
+    "source_diversity": 0.818,
+    "composite": 0.9182
+  },
+  "after": {
+    "factual_accuracy": 0.954,
+    "coverage": 0.923,
+    "coherence": 0.974,
+    "source_diversity": 0.855,
+    "composite": 0.9265
+  },
+  "delta": {
+    "factual_accuracy": 0.0,
+    "coverage": -0.003,
+    "coherence": -0.001,
+    "source_diversity": 0.037,
+    "composite": 0.0083
+  },
+  "iterations_run": 1,
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "Increasing max_search_rounds to 6 gives the agent more opportunities to pursue competing lines of evidence, which directly addresses the observed coverage gap on open-ended questions. Switching to breadth_first encourages parallel exploration of alternative framings and source sets instead of narrowing too quickly, reducing overreliance on a single dominant narrative. Changing synthesis to abstractive should help the agent explicitly compare viewpoints and reconcile disagreements rather than defaulting to a stable but narrower hybrid summary.",
+      "expected_improvement": "The agent should gather a wider and more diverse evidence set before converging, improving coverage and comparison quality on the hardest questions.",
+      "changes": {
+        "max_search_rounds": 6,
+        "search_strategy": "breadth_first",
+        "synthesis_strategy": "abstractive"
+      }
+    }
+  ]
+}
