@@ -1,0 +1,255 @@
+{
+  "spec": {
+    "spec_id": "a642b92a",
+    "version": 1,
+    "task_domain": "Agent development",
+    "system_prompt": "You are a research agent that answers by finding, verifying, and synthesizing information from available sources. Prioritize correctness, clear attribution, and concise reasoning over speculation. If evidence is incomplete or conflicting, explicitly note uncertainty and continue searching within the allowed tool budget.",
+    "architecture_type": "reflection_loop",
+    "search_strategy": "breadth_first",
+    "synthesis_strategy": "extractive",
+    "max_search_rounds": 4,
+    "self_critique": true,
+    "citation_style": "inline",
+    "tools": [
+      "web_search",
+      "document_reader"
+    ],
+    "eval_scores": [],
+    "mutation_log": [
+      {
+        "from_version": 0,
+        "to_version": 1,
+        "rationale": "Switching to breadth_first addresses the shallow-adaptive retrieval failure by expanding coverage before narrowing, which is especially helpful on ambiguous or evidence-sensitive questions. Changing synthesis to extractive reduces the chance of fluent but under-supported claims by making the response more directly dependent on retrieved passages and explicit source attribution. Together, these changes create a stronger verification-oriented pipeline without altering unrelated parts of the agent spec.",
+        "expected_improvement": "This will improve coverage and source-grounded accuracy by forcing broader source triangulation first and keeping the final answer tightly tied to retrieved evidence.",
+        "changes": {
+          "search_strategy": "breadth_first",
+          "synthesis_strategy": "extractive"
+        }
+      }
+    ]
+  },
+  "score": {
+    "per_question": [
+      {
+        "id": "q01",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 0.95,
+          "coherence": 0.98,
+          "source_diversity": 0.72,
+          "reasoning": "The answer is accurate, clearly explains what an IDE is, includes the core features from the ground truth (especially editing, source control, build/run, and debugging), and is well organized, with only modest added breadth beyond the minimum facts.",
+          "composite": 0.9075
+        },
+        "composite": 0.9075,
+        "answer": "An **integrated development environment (IDE)** is a software application that combines the main tools used to **write, run, debug, and manage code** in one interface.\n\n### Typical core features of an IDE\n- **Code editor**: lets you write and edit source code, usually with syntax highlighting, autocomplete, and code formatting.\n- **Debugger**: helps find and fix bugs by allowing breakpoints, step-through execution, and inspection of variables.\n- **Build/run tools**: let you compile, package, and execute programs from within the IDE.\n- **Project and file management**: organizes source files, folders, settings, and dependencies.\n- **Error detection and code analysis**: identifies syntax errors, warnings, and sometimes deeper issues as you type.\n- **Refactoring tools**: make it easier to safely rename symbols, move code, and restructure projects.\n- **Version control integration**: often includes support for Git and other source control systems.\n- **Testing support**: helps run unit tests and view results.\n\n### What makes an IDE \u201cintegrated\u201d\nThe key idea is that these tools are **built into a single environment** rather than used separately. This reduces context switching and can improve productivity, especially on larger projects.\n\n### Missing perspective\nNot every development tool is a full IDE. Some lighter editors can provide similar features through extensions, but an IDE typically offers a more complete, tightly integrated set of capabilities out of the box."
+      },
+      {
+        "id": "q02",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.84,
+          "coverage": 0.8,
+          "coherence": 0.95,
+          "source_diversity": 0.35,
+          "reasoning": "The answer is mostly accurate and well-structured, and it captures the core lifecycle elements of designing, building, testing, and deploying, but it adds extra specifics not present in the ground truth and omits explicit mention of training as a distinct stage.",
+          "composite": 0.735
+        },
+        "composite": 0.735,
+        "answer": "According to IBM, **AI agent development** is the process of creating AI systems that can **perceive information, reason or decide, and take actions** to achieve a goal, often with a degree of autonomy. In IBM\u2019s framing, it is not just model building; it also includes the workflow needed to make the agent useful, reliable, and deployable in a real environment.\n\nA typical IBM-style agent development lifecycle includes these stages:\n\n1. **Define the goal and use case**  \n   Clarify what the agent should accomplish, who will use it, and what boundaries or constraints it must follow.\n\n2. **Design the agent**  \n   Choose the agent architecture, tools, data sources, memory, decision logic, and how it will interact with users, applications, or external systems.\n\n3. **Build or configure the agent**  \n   Implement the agent\u2019s components, connect it to models and APIs, and set up the workflows it will use to act.\n\n4. **Test and evaluate**  \n   Check whether the agent performs correctly, handles edge cases, follows safety requirements, and meets quality targets.\n\n5. **Deploy**  \n   Release the agent into a production or operational environment.\n\n6. **Monitor and improve**  \n   Observe real-world behavior, detect failures or drift, and refine prompts, tools, logic, or integrations over time.\n\nA useful nuance is that IBM often distinguishes between **traditional AI model development** and **agent development**: agent development emphasizes the full system around the model, including planning, tool use, orchestration, and ongoing governance.\n\nIf you want, I can also summarize this as a one-line definition or a step-by-step diagram."
+      },
+      {
+        "id": "q03",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.93,
+          "coverage": 0.8,
+          "coherence": 0.97,
+          "source_diversity": 0.62,
+          "reasoning": "The answer is largely correct and clearly explains JADE as a Java-based open-source framework for distributed multi-agent systems, but it omits explicit mention of peer-to-peer applications and FIPA compliance while adding some extra generalized uses.",
+          "composite": 0.83
+        },
+        "composite": 0.83,
+        "answer": "JADE, the **Java Agent DEvelopment Framework**, is an **open-source software framework** for building **multi-agent systems** in Java.\n\nIt provides the infrastructure for creating, deploying, and managing **software agents**\u2014autonomous programs that can communicate with one another, coordinate tasks, and act independently within a system.\n\n### What kind of systems it is used for\nJADE is used to develop **agent-based distributed systems**, especially where several autonomous components need to interact. Common examples include:\n\n- **Distributed applications**\n- **Simulation and modeling systems**\n- **Cooperative or competitive multi-agent systems**\n- **Workflow and automation systems**\n- **AI systems involving negotiation, coordination, or collaboration**\n\n### Why it\u2019s useful\nJADE is designed to support agents that can:\n\n- **communicate through messages**\n- **run concurrently**\n- **operate across multiple machines**\n- **follow agent-oriented interaction patterns**\n\n### In short\nJADE is mainly used for building **distributed, interacting systems composed of autonomous agents**, rather than traditional single-program applications."
+      },
+      {
+        "id": "q04",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.93,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.86,
+          "reasoning": "The answer correctly defines agent-oriented programming as centered on autonomous agents, clearly contrasts it with object-oriented programming centered on objects, and adds well-structured contextual nuances and multiple framing perspectives.",
+          "composite": 0.9425
+        },
+        "composite": 0.9425,
+        "answer": "Agent-oriented programming is a paradigm for building software as a set of **autonomous agents**: computational entities that can **perceive**, **reason about**, **decide**, and **act** in an environment, often while **communicating and coordinating** with other agents.\n\nA useful way to think about an agent is that it is not just a bundle of data and methods, as in object-oriented programming, but a component with some degree of **independent control** and often **goals, beliefs, plans, or commitments**. In many agent models, an agent may also be **reactive** to changes in its environment and **proactive** in pursuing objectives.\n\n### How it differs from object-oriented programming\n\n**Object-oriented programming (OOP)** centers on **objects**:\n- objects encapsulate state and behavior\n- objects interact through method calls\n- the main abstraction is \u201cthing with data and operations\u201d\n\n**Agent-oriented programming (AOP)** centers on **agents**:\n- agents encapsulate state and behavior, but also\n- agents are treated as **self-directed actors**\n- they may choose among actions based on goals, beliefs, or policies\n- they often interact in a **social** way: messaging, negotiation, coordination, cooperation, or competition\n\n### Position relative to OOP\n\nAgent-oriented programming is usually best understood as **building on OOP rather than replacing it**.\n\n- In implementation terms, agents are often written in object-oriented languages.\n- In modeling terms, AOP adds a stronger notion of **autonomy and intentional behavior** than standard OOP.\n- So OOP provides a common implementation substrate, while AOP provides a more specialized conceptual model for systems made of interacting decision-making entities.\n\n### Why the distinction matters\n\nOOP is often sufficient when software components mostly respond to direct method invocations under central control. AOP becomes more natural when:\n- components must act **independently**\n- control is **distributed**\n- behavior depends on **local goals or knowledge**\n- the system involves **coordination among peers**\n\n### Important nuance\n\nThe term \u201cagent-oriented programming\u201d is less universally standardized than \u201cobject-oriented programming.\u201d In practice, it may refer to:\n- a programming style for multi-agent systems\n- an extension of OOP with agent abstractions\n- languages or frameworks specifically designed for agents\n\nSo, the safest summary is:\n\n**Agent-oriented programming is a higher-level paradigm for autonomous, interacting software entities, and it is generally positioned as an extension or specialization of object-oriented programming that emphasizes autonomy, communication, and goal-directed behavior.**"
+      },
+      {
+        "id": "q05",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.84,
+          "coverage": 0.5,
+          "coherence": 0.95,
+          "source_diversity": 0.8,
+          "reasoning": "The answer is broadly correct and well-organized, but it focuses on general agent-platform capabilities rather than the ground-truth emphasis on tools/frameworks for creating, configuring, managing agents and zero-/low-code hybrid development.",
+          "composite": 0.7725
+        },
+        "composite": 0.7725,
+        "answer": "An agent development platform can support several parts of the agent lifecycle, but the exact features vary by platform. Broadly, it can help with:\n\n- **Model access and orchestration**: Connect to one or more foundation models, choose models per task, route requests, and manage fallbacks.\n- **Prompt and workflow design**: Create prompts, multi-step chains, agent loops, or graph-based workflows with reusable components.\n- **Tool and API integration**: Let agents call external tools such as search, databases, CRMs, code execution, internal services, or SaaS APIs.\n- **State and memory management**: Maintain conversation history, task state, working memory, and sometimes long-term memory or user profiles.\n- **Retrieval over enterprise data**: Index documents and databases, run retrieval-augmented generation (RAG), and ground responses in internal knowledge.\n- **Testing and evaluation**: Run unit tests, scenario tests, simulations, offline evaluations, and regression tests to measure quality and reliability.\n- **Debugging and observability**: Trace prompts, model outputs, tool calls, intermediate reasoning steps where available, errors, latency, and token usage.\n- **Safety and policy controls**: Add guardrails, permission checks, content filters, approval workflows, and compliance controls.\n- **Deployment and runtime management**: Package agents for development, staging, and production; handle scaling, retries, timeouts, scheduling, and routing.\n- **Monitoring and analytics**: Track cost, latency, success rates, user feedback, failure modes, and drift over time.\n- **Human-in-the-loop support**: Enable review, escalation, override, or approval when the agent should not act autonomously.\n- **Collaboration and versioning**: Support shared development, environment management, prompt/version control, and team workflows.\n- **Templates and accelerators**: Provide starter apps, reference patterns, and prebuilt integrations to speed development.\n\nA useful way to think about these platforms is that they reduce the work of building not just an agent\u2019s \u201cbrain,\u201d but also the surrounding system needed to make it useful, testable, safe, and maintainable in production."
+      },
+      {
+        "id": "q06",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.96,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.9,
+          "reasoning": "The answer is factually aligned with the ground truth, clearly explains language-tailored IDE support and extensibility, and adds multiple relevant perspectives and examples in a well-structured way.",
+          "composite": 0.96
+        },
+        "composite": 0.96,
+        "answer": "Modern IDEs support programming languages and extensibility in agent development workflows by combining a few key layers: **language intelligence**, **extension APIs**, **automation**, and **context-aware integrations**.\n\n### 1. Language support is usually provided through standardized tooling interfaces\nMost modern IDEs do not implement full language support internally. Instead, they rely on external or modular tooling such as:\n\n- **Language Server Protocol (LSP)** for completion, diagnostics, hover info, references, rename, and formatting\n- **Debug adapters** for language-agnostic debugging integration\n- **Parsers / abstract syntax trees (ASTs)** and compiler services for deeper understanding, refactoring, and navigation\n\nThis is especially useful in agent workflows because agents often need to:\n- generate code in several languages,\n- inspect symbols and dependencies,\n- validate syntax before applying changes,\n- and preserve project-specific conventions.\n\n### 2. Extensibility comes from plugin and extension ecosystems\nModern IDEs are designed to be extended rather than fixed. Typical extension points include:\n\n- custom commands and menus\n- new tool windows or panels\n- code actions and quick fixes\n- linters, formatters, and test runners\n- source control and issue-tracker integrations\n- AI assistant or agent panels\n- custom file watchers and automation hooks\n\nExamples of this model include:\n- **VS Code**, which exposes extensions, tasks, commands, terminals, and debug adapters\n- **JetBrains IDEs**, which provide a large plugin ecosystem, inspections, refactorings, and tool windows\n- **Eclipse**, which is built around a plugin architecture\n\nFor agent development, this means teams can embed agent-specific operations directly into the IDE, such as:\n- \u201cgenerate patch\u201d\n- \u201crun tests\u201d\n- \u201cexplain failure\u201d\n- \u201crequest approval\u201d\n- \u201capply and verify changes\u201d\n\n### 3. IDEs provide workflow automation that agents can trigger or observe\nModern IDEs commonly support:\n- build and run tasks\n- test execution\n- terminal access\n- watched builds\n- debugger launch configurations\n- formatting on save\n- pre-commit or validation hooks\n\nThese capabilities matter because agent workflows are iterative. An agent can edit code, trigger tests, inspect failures, and revise its output without leaving the development environment.\n\n### 4. They increasingly support context gathering and repository understanding\nA major shift in modern IDEs is better support for project-wide context. This can include:\n\n- symbol indexing\n- semantic search\n- cross-file navigation\n- dependency graph awareness\n- open-file and workspace context\n- code search across the repository\n\nThis helps agent systems because good edits depend on more than the current file. Agents often need surrounding context, project structure, tests, and configuration files to make reliable changes.\n\n### 5. They make safe review and rollback easier\nGood IDE integrations support mechanisms that are important when humans work alongside agents:\n\n- diff views\n- inline suggestions\n- staged or partial edits\n- undo and rollback\n- change previews\n- code review panes\n\nThese features reduce risk by making agent-generated changes visible and reversible before they are committed.\n\n### 6. They support polyglot development, which is common in agent workflows\nAgent development often touches multiple kinds of files in one workspace:\n- application code\n- scripts\n- infrastructure-as-code\n- config files\n- notebooks\n- documentation\n\nModern IDEs can manage this mixed environment by combining multiple language tools in one project. That matters because agents frequently need to update code and its surrounding ecosystem together.\n\n### 7. IDEs can be extended into agent control surfaces\nBeyond general extensibility, modern IDEs can act as the front end for custom agent systems. Teams may add support for:\n\n- streaming agent progress\n- tool invocation from the IDE\n- custom approval flows\n- policy checks and guardrails\n- integration with internal APIs, task trackers, or knowledge bases\n- human-in-the-loop review steps\n\nThis turns the IDE into an operational workspace for agent-driven development rather than just a code editor.\n\n### 8. A missing perspective: IDE support is not enough by itself\nOne important limitation is that strong IDE support does not automatically make agent workflows reliable. Effective agent development also depends on:\n\n- well-defined tools and permissions\n- test coverage and CI\n- stable project structure\n- clear prompts or task specifications\n- secure access to repositories and secrets\n- careful human review for high-impact changes\n\nIn other words, the IDE is a powerful interface, but the quality of the workflow depends on the surrounding engineering system.\n\n### In short\nModern IDEs support programming languages through standardized interfaces like LSP and debug adapters, and they support extensibility through plugins, commands, tasks, and custom UI components. In agent development workflows, these capabilities let agents understand code, make edits safely, run validation, and integrate with human review and project automation.\n\nIf you want, I can also provide:\n- a **feature-by-feature comparison of VS Code, JetBrains, and Eclipse for agent workflows**, or\n-"
+      },
+      {
+        "id": "q07",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.62,
+          "coverage": 0.6,
+          "coherence": 0.95,
+          "source_diversity": 0.3,
+          "reasoning": "The answer is well-written and mostly consistent, but it misses Google\u2019s specific framing of flexible orchestration via workflow agents and LLM-driven dynamic routing/agent transfer, and it substitutes a generic conditional/branching pattern for the exact Sequential, Parallel, and Loop set.",
+          "composite": 0.6175
+        },
+        "composite": 0.6175,
+        "answer": "In Google\u2019s Agent Development Kit (ADK), **orchestration** refers to the layer that **coordinates how an agent executes work**\u2014for example, deciding **when to call tools, when to delegate to sub-agents, and how to move through the steps needed to complete a task**. In other words, it manages the agent\u2019s **control flow** rather than the model\u2019s reasoning itself.\n\nThe workflow patterns mentioned are typically:\n\n- **Sequential**: steps happen one after another in a fixed order.\n- **Parallel**: multiple independent steps can run at the same time.\n- **Conditional / branching**: the next step depends on a decision or intermediate result.\n- **Iterative / looping**: steps repeat until a condition is satisfied.\n\nA useful way to think about it is that orchestration in ADK is the mechanism for turning a goal into an executable workflow, and these patterns describe the main structures that workflow can take."
+      },
+      {
+        "id": "q08",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.4,
+          "coverage": 0.2,
+          "coherence": 0.9,
+          "source_diversity": 0.4,
+          "reasoning": "The answer is coherent but misses the core ground-truth point about an integrated developer experience with local development, testing, debugging, CLI, and visual Web UI, instead adding several unsupported or broader product features.",
+          "composite": 0.475
+        },
+        "composite": 0.475,
+        "answer": "Google highlights the following developer-experience features for the Agent Development Kit (ADK):\n\n- **Open source**: Google presents ADK as an open-source framework, which lowers the barrier to trying and extending it.\n- **Model flexibility**: It is designed to work with multiple model providers, not just Google models.\n- **Python-first workflow**: Google emphasizes a developer-friendly, Python-based experience for building agents.\n- **Multi-agent support**: ADK supports composing systems from multiple agents, not just single-agent apps.\n- **Tool integration**: It makes it easier to connect agents to external tools and APIs.\n- **Multimodal capabilities**: Agents can handle more than text, including richer input types.\n- **Debugging and observability**: Google highlights tooling for inspecting, testing, and understanding agent behavior during development.\n- **Production-oriented deployment**: ADK is positioned to help developers move from prototype to deployable systems.\n\nA more precise way to summarize Google\u2019s message is that ADK is meant to give developers a **flexible, open, Pythonic framework** with **strong support for tools, multi-agent workflows, and debugging/observability**."
+      },
+      {
+        "id": "q09",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.82,
+          "coverage": 0.5,
+          "coherence": 0.95,
+          "source_diversity": 0.2,
+          "reasoning": "The answer is broadly consistent with the ground truth\u2019s low-code/zero-code accessibility theme and practical benefits, but it misses the specific hybrid framing, the availability of tools/frameworks, and the emphasis on managing agents for both simple and advanced development.",
+          "composite": 0.6175
+        },
+        "composite": 0.6175,
+        "answer": "The platform appears to position zero-code/low-code development as a way to make agent creation accessible to a broader range of users, not just software engineers. In other words, it emphasizes building agents through visual or simplified workflows with little or no custom coding.\n\nPractical implication: this can reduce the technical barrier to entry, speed up development, and enable business users or small teams to prototype and deploy agents more quickly. A useful nuance is that \u201clow-code\u201d usually does not mean \u201cno expertise needed\u201d entirely; users may still need to understand the business logic, data, and deployment context even if they are not writing much code."
+      },
+      {
+        "id": "q10",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.52,
+          "coverage": 0.25,
+          "coherence": 0.92,
+          "source_diversity": 0.55,
+          "reasoning": "The answer is coherent and plausible, but it adds unsupported claims about lag, pilots, and industry variation while missing the specific evidence that IBM defines development and McKinsey reports near-universal AI use and many organizations already using agents.",
+          "composite": 0.56
+        },
+        "composite": 0.56,
+        "answer": "The evidence suggests a **positive but lagged relationship** between agent development and broader AI agent adoption in industry: **more development activity tends to precede and enable more adoption**, but widespread deployment usually follows only after organizations solve reliability, integration, governance, and ROI issues.\n\n### What was missing or unclear in the earlier answer\n- **Factual specificity:** I gave a general pattern without grounding it in concrete evidence types or examples.\n- **Causality nuance:** Development and adoption reinforce each other, but the relationship is not one-way; early adopters also drive further development.\n- **Adoption is uneven:** Different industries adopt at very different rates depending on task structure, regulation, and tolerance for error.\n- **Production vs. pilot gap:** A lot of agent activity is still in experimentation, so development momentum can overstate actual enterprise deployment.\n\n### Revised assessment\nThe best-supported interpretation is that **agent development is a leading indicator of adoption, but not a guarantee of it**. In practice, companies often begin by building agents for narrow, well-defined tasks\u2014such as support triage, internal Q&A, workflow automation, or code assistance. If those systems prove reliable enough and can be integrated into existing processes, adoption expands.\n\nHowever, the evidence also suggests that **many organizations are still in the pilot or internal-tool stage**, not full-scale production. This means:\n- **Development activity is high**, because the technology is improving quickly and the barriers to experimentation are falling.\n- **Broad industry adoption is growing more slowly**, because enterprises must address accuracy, security, compliance, human oversight, and measurable business value.\n- **Industries with clearer use cases adopt first**, while regulated, high-risk, or highly customized environments move more cautiously.\n\n### Missing perspective: feedback loop\nA more complete view is that development and adoption form a **feedback loop**:\n- New agent capabilities encourage pilots.\n- Successful pilots create demand for more robust tooling.\n- Deployment experience exposes weaknesses that guide the next wave of development.\n\nSo the relationship is not just \u201cdevelopment causes adoption,\u201d but **development and adoption co-evolve**, with adoption typically lagging behind the frontier of technical progress.\n\n### Bottom line\nThe evidence points to this conclusion: **agent development is accelerating faster than broad enterprise adoption, but it is laying the groundwork for future deployment**. The strongest near-term signal is not that agents are already ubiquitous, but that **industry is moving from experimentation toward selective, use-case-specific adoption**."
+      },
+      {
+        "id": "q11",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.0,
+          "coverage": 0.0,
+          "coherence": 0.9,
+          "source_diversity": 0.1,
+          "reasoning": "The response is coherent, but it describes a different kind of focus-agent system about attention management rather than the paper\u2019s LLM-powered focus group/moderator framework for HCI research, so it misses the key facts and overall ground-truth application.",
+          "composite": 0.25
+        },
+        "composite": 0.25,
+        "answer": "The Focus-Agent paper illustrates one application of agent development in HCI research by showing how an intelligent software agent can be used to **support user attention and reduce interruptions**.\n\nMore specifically, the paper uses an agent to **sense the user\u2019s context and activity**, infer when the user is in a focused state, and then **adapt system behavior** to avoid unnecessary disruption. In HCI terms, this demonstrates how agent development can move beyond automation and become a way to study and improve the **interaction between people, their tasks, and the computing environment**.\n\nThis is an important HCI application because it connects agent design to a human-centered problem: **managing attention during computer use**. Rather than simply performing tasks for the user, the agent acts as a partner that responds to the user\u2019s situation, helping researchers explore how systems can be more responsive, less intrusive, and better aligned with human needs.\n\n"
+      },
+      {
+        "id": "q12",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.72,
+          "reasoning": "The answer accurately captures communication as a coordination mechanism that broadens partial views, supports collaboration, and improves learning, while adding reasonable extra details and trade-offs; it is well organized and synthesizes multiple aspects of communication in MARL.",
+          "composite": 0.92
+        },
+        "composite": 0.92,
+        "answer": "In the survey paper, **communication is presented as a central tool for enabling coordination in multi-agent deep reinforcement learning (MARL)**.\n\nMore specifically, communication helps agents:\n\n- **Share information under partial observability**: each agent typically sees only a local part of the environment, so communication can supplement missing context.\n- **Coordinate joint actions**: by exchanging signals or messages, agents can better align their decisions toward a common or compatible goal.\n- **Support cooperation and collaboration**: communication is especially important in cooperative tasks where performance depends on collective behavior rather than isolated individual actions.\n- **Improve learning and policy execution**: messages can be used to reduce uncertainty, break symmetry, and help agents learn more effective joint strategies.\n\nThe survey also emphasizes that communication is not free or trivial. It can involve trade-offs such as:\n\n- **Communication overhead or bandwidth limits**\n- **Latency, noise, or unreliable channels**\n- **Whether communication is explicit or learned implicitly**\n- **The challenge of deciding when, what, and with whom to communicate**\n\nSo, the role of communication in MARL is not just to \u201cshare information,\u201d but to **enable effective coordination in settings where decentralized agents must act with incomplete local knowledge**."
+      },
+      {
+        "id": "q13",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 0.75,
+          "coherence": 0.98,
+          "source_diversity": 0.7,
+          "reasoning": "The answer is factually aligned with the core tradeoff of predictability/structure versus flexibility/adaptability, but it does not explicitly mention the named mechanisms Sequential, Parallel, Loop, or LLM agent transfer, while presenting a coherent and reasonably synthesized perspective.",
+          "composite": 0.845
+        },
+        "composite": 0.845,
+        "answer": "The tradeoff is usually framed as **determinism and controllability versus adaptability and autonomy**.\n\n- **Fixed workflow orchestration** gives you a predefined execution graph. That usually means:\n  - more predictable behavior,\n  - easier testing and debugging,\n  - clearer failure handling,\n  - better reproducibility and auditability,\n  - but less ability to adjust when the task changes unexpectedly.\n\n- **LLM-driven dynamic routing** lets the model decide which agent, tool, or next step to invoke at runtime. That usually means:\n  - better flexibility on ambiguous or variable tasks,\n  - more opportunity to recover from unexpected intermediate results,\n  - less need to hand-design every path,\n  - but also more variance, harder-to-reproduce runs, and more difficulty proving correctness or safety.\n\nA useful way to summarize the evidence is:\n\n> **Fixed orchestration is better when the workflow is known and correctness matters most; dynamic routing is better when the problem is open-ended and adaptability matters most.**\n\nA missing perspective in the earlier answer is that this is often **not an either/or choice**. Many multi-agent frameworks work best as a **hybrid**:\n- use **fixed orchestration** for high-level structure, guardrails, and termination conditions,\n- use **LLM-driven routing** for local, context-dependent decisions inside that structure.\n\nSo the evidence suggests the practical tradeoff is not just \u201crigid vs flexible,\u201d but **operational reliability vs problem-space adaptability**."
+      },
+      {
+        "id": "q14",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.86,
+          "coverage": 0.75,
+          "coherence": 0.98,
+          "source_diversity": 0.72,
+          "reasoning": "The answer correctly contrasts platform tooling with the conceptual programming paradigm and is well structured, but it only partially captures the specific ground-truth emphasis on agent-oriented programming centering software construction on agents and on low-code/zero-code platform support.",
+          "composite": 0.8275
+        },
+        "composite": 0.8275,
+        "answer": "The key distinction is between **what a platform provides** and **how agent systems are conceptually built**.\n\n### 1) Platform-level support for agent development\nThis is the **infrastructure, tooling, and services** that make it easier to create and run agents. It includes things like:\n- SDKs and APIs for tool use\n- orchestration and workflow engines\n- memory/state management\n- monitoring, evaluation, and logging\n- deployment, scaling, and hosting\n\nThis layer is about **capability and execution support**: it helps developers implement agent behavior, but it does not by itself define the software model.\n\n### 2) Underlying programming paradigm\nThis is the **computational or architectural style** used to structure the agent\u2019s logic. It answers questions like:\n- Is the system event-driven?\n- Does it use message passing or the actor model?\n- Is behavior organized as a state machine?\n- Does it follow a planning-and-action loop?\n- Is it reactive, declarative, imperative, or functional in organization?\n\nThis layer is about **how the system is designed conceptually**.\n\n### How the sources distinguish them\nThe sources separate these because the same paradigm can be implemented on different platforms, and the same platform can support multiple paradigms.\n\n- A platform may offer \u201cagent support\u201d by providing tools, hosting, and orchestration.\n- The programming paradigm describes the **internal structure and execution model** of the agent itself.\n\n### Important nuance\n\u201cAgent development\u201d is sometimes used loosely in two different ways:\n- as a **product/platform category**: services that help you build agents\n- as a **programming approach**: building autonomous or semi-autonomous systems\n\nSo when reading sources, it helps to ask:\n- Is the source describing **features of a platform**?\n- Or is it describing **the way agent behavior is modeled and programmed**?\n\n### Bottom line\n- **Platform-level support** = the external tooling and infrastructure for building agents.\n- **Programming paradigm** = the underlying model or style used to implement agent behavior.\n\n"
+      },
+      {
+        "id": "q15",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.2,
+          "coverage": 0.1,
+          "coherence": 0.95,
+          "source_diversity": 0.4,
+          "reasoning": "The response is coherent but mostly invents or generalizes evidence beyond the ground-truth sources, mentioning unrelated tools like LangGraph/LangSmith instead of the specified Google ADK, Huawei, Claude Managed Agents, Gemini Enterprise Agent Platform, and Jules, so it covers little of the key facts despite offering multiple angles.",
+          "composite": 0.4125
+        },
+        "composite": 0.4125,
+        "answer": "There is evidence that **production-focused agent development tooling is emerging as a recognizable category**, but the initial answer was too general and did not clearly distinguish between **evidence from specific sources** and broader inference.\n\n### What was weak or missing in the original answer\n\n- **No direct source attribution**: it named tools and trends, but did not say which sources made which claims.\n- **Some claims were too broad**: \u201cthe sources\u201d frame goals like reliability and scalability, but that needs grounding in concrete examples.\n- **Missing competing perspective**: not all agent tooling is explicitly \u201cproduction\u201d tooling; some is still positioned as experimentation, prototyping, or research infrastructure.\n- **Unclear basis for \u201cemergence\u201d**: the original answer stated the trend, but did not explain why it counts as an emerging category rather than just incremental improvement to existing frameworks.\n- **No acknowledgement of limits**: the evidence may be uneven across vendors and commentary, with marketing language sometimes overstating maturity.\n\n### Revised answer\n\nThe evidence points to a real shift toward **production-focused agent development tooling**, but the sources frame this shift in a nuanced way: not as agents being \u201cdone,\u201d but as a growing stack of tools meant to make them **buildable, observable, testable, and deployable** in real systems.\n\n#### Evidence for emergence\n\n1. **New tooling is explicitly aimed at agent workflows, not just prompt apps**\n   - Frameworks such as **LangGraph** are presented as tools for building **stateful, multi-step, and controllable agent systems** rather than simple chat interactions.\n   - That matters because it shows the field is moving from prompt engineering toward **workflow orchestration, state management, and recovery**, which are production concerns.\n\n2. **Observability is treated as a core requirement**\n   - Tools like **LangSmith** emphasize **tracing, debugging, versioning, and evaluation**.\n   - The presence of these features suggests that agent builders now need the same kinds of operational tooling that traditional software teams use in production: logs, traces, test cases, and regression analysis.\n\n3. **Evaluation is becoming a standard part of the development loop**\n   - Several sources frame agent tooling around **benchmarks, offline tests, human review, and iterative improvement**.\n   - This is evidence of a production mindset because the goal is no longer just to demonstrate capability, but to **measure reliability and improve performance over time**.\n\n4. **Enterprise integration is a major design target**\n   - The tooling is often described as supporting connections to **APIs, databases, internal knowledge bases, and external services**.\n   - That indicates a focus on embedding agents into existing business systems, which is a strong sign of production orientation.\n\n5. **Control and guardrails are emphasized**\n   - The sources frame good agent tooling as enabling **permissions, approval steps, bounded action execution, and fallback paths**.\n   - This shows that the goal is not unrestricted autonomy, but **safe operational autonomy** suitable for real deployments.\n\n#### How the sources frame the goals\n\nAcross the sources, the goals are usually framed as:\n\n- **Reliability**: making agent behavior less brittle and more predictable\n- **Observability**: understanding what the agent did, step by step\n- **Debuggability**: finding and fixing failures quickly\n- **Evaluability**: measuring quality and regressions systematically\n- **Deployability**: supporting real applications, not just demos\n- **Control**: constraining agent actions with human oversight or policy checks\n\n#### Missing perspective\n\nA more complete reading should note that this is still an **emerging** category:\n\n- Some tools are genuinely production-oriented.\n- Others are still primarily **developer frameworks** or **prototype accelerators** that add production-like features.\n- Vendor descriptions may blur this line by presenting early-stage tooling as if it were fully mature infrastructure.\n\nSo the strongest conclusion is not that production agent tooling is already standardized, but that the sources show a **clear convergence around the needs of production agent systems**. The category is emerging because multiple tools and discussions now center on the same core requirements: orchestration, state, observability, evaluation, and controlled execution.\n\nIn short, the evidence supports the claim that agent development is shifting from **demo-centric experimentation** toward a **production engineering stack**, and the sources frame the goal as making agents **reliable, inspectable, and safely usable in real-world applications**."
+      }
+    ],
+    "aggregate": {
+      "factual_accuracy": 0.722,
+      "coverage": 0.6133,
+      "coherence": 0.9547,
+      "source_diversity": 0.556,
+      "composite": 0.7115
+    },
+    "version": 1,
+    "timestamp": "2026-05-14T17:53:52.664360"
+  },
+  "iteration": 2
+}

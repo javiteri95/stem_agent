@@ -1,0 +1,30 @@
+{
+  "domain": "Agent development",
+  "architecture": "reflection_loop",
+  "tiers": {
+    "easy": {
+      "factual_accuracy": 0.916,
+      "coverage": 0.84,
+      "coherence": 0.972,
+      "source_diversity": 0.682,
+      "composite": 0.8525,
+      "n": 5
+    },
+    "hard": {
+      "factual_accuracy": 0.88,
+      "coverage": 0.6667,
+      "coherence": 0.9633,
+      "source_diversity": 0.8067,
+      "composite": 0.8292,
+      "n": 3
+    },
+    "medium": {
+      "factual_accuracy": 0.7157,
+      "coverage": 0.6171,
+      "coherence": 0.9543,
+      "source_diversity": 0.58,
+      "composite": 0.7168,
+      "n": 7
+    }
+  }
+}

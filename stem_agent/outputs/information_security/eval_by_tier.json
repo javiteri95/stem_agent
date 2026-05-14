@@ -1,0 +1,30 @@
+{
+  "domain": "Information Security",
+  "architecture": "reflection_loop",
+  "tiers": {
+    "easy": {
+      "factual_accuracy": 0.976,
+      "coverage": 0.97,
+      "coherence": 0.982,
+      "source_diversity": 0.826,
+      "composite": 0.9385,
+      "n": 5
+    },
+    "hard": {
+      "factual_accuracy": 0.965,
+      "coverage": 0.9375,
+      "coherence": 0.98,
+      "source_diversity": 0.8775,
+      "composite": 0.94,
+      "n": 4
+    },
+    "medium": {
+      "factual_accuracy": 0.8667,
+      "coverage": 0.8833,
+      "coherence": 0.9783,
+      "source_diversity": 0.845,
+      "composite": 0.8933,
+      "n": 6
+    }
+  }
+}

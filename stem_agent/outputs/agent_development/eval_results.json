@@ -1,0 +1,38 @@
+{
+  "domain": "Agent development",
+  "before": {
+    "factual_accuracy": 0.7887,
+    "coverage": 0.67,
+    "coherence": 0.9633,
+    "source_diversity": 0.6427,
+    "composite": 0.7662
+  },
+  "after": {
+    "factual_accuracy": 0.8153,
+    "coverage": 0.7013,
+    "coherence": 0.962,
+    "source_diversity": 0.6593,
+    "composite": 0.7845
+  },
+  "delta": {
+    "factual_accuracy": 0.0266,
+    "coverage": 0.0313,
+    "coherence": -0.0013,
+    "source_diversity": 0.0166,
+    "composite": 0.0183
+  },
+  "iterations_run": 1,
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "The failure analysis points to exploration limits and weak evidence reconciliation, so increasing max_search_rounds to the top of the allowed range gives the agent more room to resolve ambiguous facts. Switching to breadth_first should diversify source discovery earlier instead of over-committing to a narrow trail, which should address the low diversity and coverage gaps. Using extractive synthesis should force the agent to ground answers more directly in retrieved evidence and make missing or conflicting support more explicit, reducing generic or partially correct conclusions.",
+      "expected_improvement": "This should improve coverage on harder questions by expanding retrieval breadth, running longer when evidence is sparse, and reducing overconfident synthesis from thin or conflicting sources.",
+      "changes": {
+        "max_search_rounds": 6,
+        "search_strategy": "breadth_first",
+        "synthesis_strategy": "extractive"
+      }
+    }
+  ]
+}

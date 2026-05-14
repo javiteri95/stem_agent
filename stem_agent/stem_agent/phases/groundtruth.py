@@ -54,6 +54,8 @@ from bs4 import BeautifulSoup
 
 from stem_agent.core.llm import call_llm
 from stem_agent.core.paths import PROJECT_ROOT
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.exceptions import OutputParserException
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -354,27 +356,14 @@ def _generate_questions(domain: str, context: str) -> list[dict]:
     """Call the LLM with gathered context and return 15 question dicts."""
     prompt = GENERATE_PROMPT.format(domain=domain, context=context[:12000])
     messages = [{"role": "user", "content": prompt}]
+    # Keep the raw text so we can pass it to the partial-object fallback if needed.
     # 16 000 tokens leaves ample room for 15 detailed question objects.
     raw = call_llm(messages, max_tokens=16000)
 
-    raw = raw.strip()
-
-    # Strip markdown code fences if present
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    # Strip stray trailing text after the closing bracket
-    last_bracket = raw.rfind("]")
-    if last_bracket != -1:
-        raw = raw[: last_bracket + 1]
-
-    # Primary parse — works when the response is complete
+    parser = JsonOutputParser()
     try:
-        questions = json.loads(raw)
-    except json.JSONDecodeError as exc:
+        questions = parser.parse(raw)
+    except OutputParserException as exc:
         # Secondary parse — salvage complete objects from a truncated array
         print(
             f"  [Phase 0] WARNING: JSON parse failed ({exc}); "

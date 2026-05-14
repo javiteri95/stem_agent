@@ -1,0 +1,326 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is an integrated development environment (IDE), and what core features does it typically provide?",
+    "ground_truth": "An integrated development environment is software that provides a relatively comprehensive set of features for software development. Its purpose is to improve productivity by combining tools in one consistent user experience rather than requiring separate tools. At a minimum, an IDE typically supports source-code editing, source control, build automation, and debugging.",
+    "key_facts": [
+      "IDE stands for integrated development environment",
+      "It provides a comprehensive set of software development features",
+      "It improves productivity via a consistent user experience",
+      "Typical minimum features include source-code editing, source control, build automation, and debugging"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agentic development environment",
+        "url": "https://en.wikipedia.org/wiki/Agentic_development_environment"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "What is AI agent development, and what stages are included in it according to IBM?",
+    "ground_truth": "AI agent development is the process of creating AI agents. IBM describes it as including designing, building, training, testing, and deploying agentic AI. In other words, it covers the full lifecycle from initial conception through deployment.",
+    "key_facts": [
+      "AI agent development is the process of creating AI agents",
+      "It includes designing",
+      "It includes building, training, testing, and deploying",
+      "It covers the full lifecycle of agentic AI"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "What Is AI Agent Development? | IBM",
+        "url": "https://www.ibm.com/think/topics/ai-agent-development"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "What is the Java Agent Development Framework (JADE), and what kind of systems is it used to develop?",
+    "ground_truth": "JADE is an open-source middleware platform implemented entirely in Java. It is used for developing distributed multi-agent systems and supports the creation of peer-to-peer agent-based applications. The source also says it complies with FIPA standards.",
+    "key_facts": [
+      "JADE is an open-source middleware platform",
+      "It is implemented entirely in Java",
+      "It is used for distributed multi-agent systems",
+      "It supports peer-to-peer agent-based applications",
+      "It complies with FIPA"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Java Agent Development Framework",
+        "url": "https://grokipedia.com/page/java_agent_development_framework"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "What is agent-oriented programming, and how is it positioned relative to object-oriented programming?",
+    "ground_truth": "Agent-oriented programming is a programming paradigm in which software construction is centered on the concept of software agents. It contrasts with object-oriented programming, which centers on objects that provide methods with variable parameters. The distinction is mainly about what concept is placed at the core of the design.",
+    "key_facts": [
+      "Agent-oriented programming is a programming paradigm",
+      "Its core concept is software agents",
+      "It contrasts with object-oriented programming",
+      "Object-oriented programming centers on objects"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent-oriented programming",
+        "url": "https://en.wikipedia.org/wiki/Agent-oriented_programming"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "What kinds of development support can an agent development platform provide?",
+    "ground_truth": "The agent development platform described in the evidence provides a complete set of tools and frameworks for creating, configuring, and managing agents. It also supports zero-code/low-code hybrid development. That means it is intended to help users build agent applications with less manual coding when desired.",
+    "key_facts": [
+      "It provides tools and frameworks for creating agents",
+      "It supports configuring and managing agents",
+      "It supports zero-code/low-code hybrid development",
+      "It is a platform for developing agent applications"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Platform Overview_Agent Development Platform...",
+        "url": "https://support.huaweicloud.com/intl/en-us/usermanual-pangulm/pangulm_04_0420.html"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "How do modern IDEs support programming languages and extensibility in agent development workflows?",
+    "ground_truth": "Many IDEs provide special support for one or more programming languages so they can offer language-tailored features. Some IDEs can also be extended to support additional languages. In practice, this means an IDE can be adapted to the languages used in an agent development workflow instead of being limited to a fixed set.",
+    "key_facts": [
+      "Many IDEs support one or more programming languages specially",
+      "They can provide language-tailored features",
+      "Some IDEs can be extended to support additional languages",
+      "This makes them adaptable to different development workflows"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agentic development environment",
+        "url": "https://en.wikipedia.org/wiki/Agentic_development_environment"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "What is the role of orchestration in Google\u2019s Agent Development Kit, and what workflow patterns are mentioned?",
+    "ground_truth": "Google describes flexible orchestration in the Agent Development Kit as allowing developers to define workflows using workflow agents. The workflow patterns mentioned are Sequential, Parallel, and Loop for predictable pipelines. The system also supports LLM-driven dynamic routing through LLM agent transfer for more adaptive behavior.",
+    "key_facts": [
+      "ADK supports flexible orchestration",
+      "Workflows can use workflow agents",
+      "Sequential, Parallel, and Loop are mentioned workflow patterns",
+      "LLM-driven dynamic routing is supported",
+      "LLM agent transfer is mentioned for adaptive behavior"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent Development Kit: Making it easy to build multi-agent applications - Google Developers Blog",
+        "url": "https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "What developer-experience features does Google highlight for the Agent Development Kit?",
+    "ground_truth": "Google says the Agent Development Kit offers an integrated developer experience. Developers can develop, test, and debug locally using a powerful CLI and a visual Web UI. This suggests the framework is designed to support the whole development loop, not just runtime execution.",
+    "key_facts": [
+      "ADK offers an integrated developer experience",
+      "Developers can develop locally",
+      "Developers can test locally",
+      "Developers can debug locally",
+      "It provides a powerful CLI and a visual Web UI"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent Development Kit: Making it easy to build multi-agent applications - Google Developers Blog",
+        "url": "https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "How does the agent development platform described in the evidence position zero-code/low-code development, and what is its practical implication?",
+    "ground_truth": "The platform is described as supporting a zero-code/low-code hybrid development approach. This means users can create and manage agents with limited custom code when appropriate, while still having tools and frameworks available for more advanced development. The practical implication is that the platform can serve both rapid prototyping and more complex agent construction.",
+    "key_facts": [
+      "The platform supports zero-code/low-code hybrid development",
+      "It includes tools and frameworks",
+      "It is used to create, configure, and manage agents",
+      "It can support both simpler and more advanced development styles"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Platform Overview_Agent Development Platform...",
+        "url": "https://support.huaweicloud.com/intl/en-us/usermanual-pangulm/pangulm_04_0420.html"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "What does the evidence suggest about the relationship between agent development and broader AI agent adoption in industry?",
+    "ground_truth": "IBM frames AI agent development as the process of creating, testing, and deploying agents, while McKinsey reports that almost all survey respondents say their organizations are using AI and many have begun to use AI agents. Together, these sources suggest that agent development is moving from a specialized activity toward broader organizational adoption. The evidence does not by itself explain all reasons for that adoption, but it does show strong industry interest.",
+    "key_facts": [
+      "IBM defines AI agent development as creating agents",
+      "McKinsey reports almost all respondents say their organizations are using AI",
+      "Many organizations have begun to use AI agents",
+      "The evidence suggests broad industrial adoption"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "What Is AI Agent Development? | IBM",
+        "url": "https://www.ibm.com/think/topics/ai-agent-development"
+      },
+      {
+        "type": "web",
+        "title": "The State of AI: Global Survey 2025 | McKinsey",
+        "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "How does the focus-agent paper illustrate one application of agent development in human-computer interaction research?",
+    "ground_truth": "The Focus Agent paper introduces an LLM-powered framework that simulates both a focus group and a moderator in a focus group setting. It is presented as a way to support Human-Computer Interaction research, where focus groups are useful but resource-intensive. This shows how agent development can be used to build interactive research tools rather than only operational software systems.",
+    "key_facts": [
+      "The paper is in Human-Computer Interaction",
+      "It introduces an LLM-powered framework",
+      "The framework simulates both the focus group and the moderator",
+      "It addresses the resource-intensive nature of traditional focus groups"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Focus Agent: LLM-Powered Virtual Focus Group",
+        "url": "http://arxiv.org/abs/2409.01907v1"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "medium",
+    "question": "What role does communication play in multi-agent deep reinforcement learning according to the survey paper?",
+    "ground_truth": "The survey states that communication is an effective mechanism for coordinating the behaviors of multiple agents. It can broaden agents\u2019 views of the environment and support collaboration. The paper also notes that agents can communicate different types of messages, which helps them improve learning performance and achieve their objectives.",
+    "key_facts": [
+      "Communication coordinates multiple agents",
+      "It broadens agents\u2019 views of the environment",
+      "It supports collaboration",
+      "It can improve overall learning performance and help agents achieve objectives"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "A Survey of Multi-Agent Deep Reinforcement Learning with Communication",
+        "url": "http://arxiv.org/abs/2203.08975v2"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "What tradeoff does the evidence suggest between fixed workflow orchestration and LLM-driven dynamic routing in multi-agent development frameworks?",
+    "ground_truth": "The evidence presents fixed workflow agents such as Sequential, Parallel, and Loop as tools for predictable pipelines. In contrast, LLM-driven dynamic routing via LLM agent transfer is described as enabling adaptive behavior. The tradeoff is therefore between predictability and structure on one side, and flexibility and responsiveness on the other.",
+    "key_facts": [
+      "Sequential, Parallel, and Loop workflows are used for predictable pipelines",
+      "LLM-driven dynamic routing is used for adaptive behavior",
+      "LLM agent transfer is the named mechanism",
+      "The tradeoff is predictability versus flexibility"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent Development Kit: Making it easy to build multi-agent applications - Google Developers Blog",
+        "url": "https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "How do the evidence sources distinguish between platform-level support for agent development and the underlying programming paradigm?",
+    "ground_truth": "The programming paradigm source describes agent-oriented programming as centering software construction on agents. By contrast, the platform sources describe tools and frameworks that help developers create, configure, manage, and deploy agents, often with low-code or integrated development support. So the paradigm is the conceptual design approach, while platforms and frameworks are concrete systems that help implement that approach.",
+    "key_facts": [
+      "Agent-oriented programming centers software construction on agents",
+      "Platforms provide tools and frameworks for creating and managing agents",
+      "Platforms may support zero-code/low-code development",
+      "The paradigm is conceptual while platforms are implementation-oriented"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent-oriented programming",
+        "url": "https://en.wikipedia.org/wiki/Agent-oriented_programming"
+      },
+      {
+        "type": "web",
+        "title": "Platform Overview_Agent Development Platform...",
+        "url": "https://support.huaweicloud.com/intl/en-us/usermanual-pangulm/pangulm_04_0420.html"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "What evidence is there for the emergence of production-focused agent development tooling, and how do the sources frame its goals?",
+    "ground_truth": "The evidence includes several production-oriented tools and platforms, such as Google\u2019s Agent Development Kit, Huawei\u2019s agent development platform, Claude Managed Agents, Gemini Enterprise Agent Platform, and Jules. These sources emphasize faster development, integrated debugging, production-grade agents, customization, and scaling from quick fixes to async multi-agent development. Taken together, they show a clear shift toward tooling intended not just for experimentation but for building deployable agent systems.",
+    "key_facts": [
+      "Google ADK emphasizes local development, testing, and debugging",
+      "Huawei\u2019s platform supports creating, configuring, and managing agents",
+      "Claude Managed Agents is described as accelerating development",
+      "Gemini Enterprise Agent Platform supports building and customizing sophisticated agents",
+      "Jules scales from quick fixes to async multi-agent development"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Agent Development Kit: Making it easy to build multi-agent applications - Google Developers Blog",
+        "url": "https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/"
+      },
+      {
+        "type": "web",
+        "title": "Agent Development Kit (ADK) - Agent Development Kit (ADK)",
+        "url": "https://adk.dev/"
+      },
+      {
+        "type": "web",
+        "title": "Platform Overview_Agent Development Platform...",
+        "url": "https://support.huaweicloud.com/intl/en-us/usermanual-pangulm/pangulm_04_0420.html"
+      },
+      {
+        "type": "web",
+        "title": "Claude Managed Agents: get to production 10x faster | Claude",
+        "url": "https://claude.com/blog/claude-managed-agents"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Enterprise Agent Platform (formerly Vertex AI) | Google Cloud",
+        "url": "https://cloud.google.com/products/gemini-enterprise-agent-platform"
+      },
+      {
+        "type": "web",
+        "title": "Jules - An Autonomous Coding Agent",
+        "url": "https://jules.google/"
+      }
+    ]
+  }
+]

@@ -7,7 +7,7 @@ Runs eval → introspects failures → proposes mutation → checkpoints improve
 
 import json
 from stem_agent.core.agent_spec import AgentSpec
-from stem_agent.core.llm import call_llm
+from stem_agent.core.llm import call_llm_json
 from stem_agent.core.checkpointer import save_checkpoint
 from stem_agent.eval.harness import run_eval
 
@@ -101,20 +101,7 @@ def _introspect(spec: AgentSpec, eval_result: dict) -> dict:
         worst_questions=_worst_questions(eval_result),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=2048)
-
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    last_brace = raw.rfind("}")
-    if last_brace != -1:
-        raw = raw[: last_brace + 1]
-
-    return json.loads(raw)
+    return call_llm_json(messages, max_tokens=2048)
 
 
 def _propose_mutation(spec: AgentSpec, failure_analysis: dict) -> AgentSpec:
@@ -124,20 +111,7 @@ def _propose_mutation(spec: AgentSpec, failure_analysis: dict) -> AgentSpec:
         failure_analysis_json=json.dumps(failure_analysis, indent=2),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=2048)
-
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    last_brace = raw.rfind("}")
-    if last_brace != -1:
-        raw = raw[: last_brace + 1]
-
-    mutation = json.loads(raw)
+    mutation = call_llm_json(messages, max_tokens=2048)
     changes = mutation.get("changes", {})
     rationale = mutation.get("rationale", "")
     expected = mutation.get("expected_improvement", "")

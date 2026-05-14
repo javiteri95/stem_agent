@@ -5,8 +5,7 @@ Calls the LLM once to produce a structured breakdown of how the given
 task domain is typically solved. Returns a `primitives` dict.
 """
 
-import json
-from stem_agent.core.llm import call_llm
+from stem_agent.core.llm import call_llm_json
 
 SENSE_PROMPT = """You are analyzing how the task domain '{domain}' is typically approached by expert systems and human researchers.
 
@@ -32,22 +31,7 @@ def sense(task_domain: str) -> dict:
     """
     prompt = SENSE_PROMPT.format(domain=task_domain)
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=2048)
-
-    # Strip markdown fences if present
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    # Strip stray trailing text after the closing brace
-    last_brace = raw.rfind("}")
-    if last_brace != -1:
-        raw = raw[: last_brace + 1]
-
-    primitives = json.loads(raw)
+    primitives = call_llm_json(messages, max_tokens=2048)
 
     required_keys = [
         "common_steps",

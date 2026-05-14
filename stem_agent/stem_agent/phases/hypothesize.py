@@ -7,7 +7,7 @@ an AgentSpec (version 0). Saves it as checkpoint 0.
 
 import json
 from stem_agent.core.agent_spec import AgentSpec
-from stem_agent.core.llm import call_llm
+from stem_agent.core.llm import call_llm_json
 from stem_agent.core.checkpointer import save_checkpoint
 
 HYPOTHESIZE_PROMPT = """You are designing the initial architecture for a {domain} agent.
@@ -50,22 +50,7 @@ def hypothesize(primitives: dict, task_domain: str = "Deep Research") -> AgentSp
         primitives_json=json.dumps(primitives, indent=2),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=2048)
-
-    # Strip markdown fences if present
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    # Strip stray trailing text after the closing brace
-    last_brace = raw.rfind("}")
-    if last_brace != -1:
-        raw = raw[: last_brace + 1]
-
-    data = json.loads(raw)
+    data = call_llm_json(messages, max_tokens=2048)
     rationale = data.pop("rationale", "")
 
     # Validate enum fields
