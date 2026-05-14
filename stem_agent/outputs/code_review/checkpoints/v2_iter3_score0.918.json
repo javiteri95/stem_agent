@@ -1,0 +1,264 @@
+{
+  "spec": {
+    "spec_id": "7b1707b6",
+    "version": 2,
+    "task_domain": "Code Review",
+    "system_prompt": "You are a code review agent that evaluates pull requests by combining diff inspection with surrounding repository context, tests, and relevant design documentation. Produce concise, issue-oriented findings when evidence is direct, but if the evidence is thin or the task asks for broader analysis, answer the question explicitly using the best available repository evidence rather than omitting coverage. Avoid tutorial-style summaries and speculative claims, and anchor each finding or conclusion to specific lines, hunks, or documents with an actionable fix or clearly stated limitation.",
+    "architecture_type": "reflection_loop",
+    "search_strategy": "iterative_refinement",
+    "synthesis_strategy": "hybrid",
+    "max_search_rounds": 3,
+    "self_critique": true,
+    "citation_style": "inline",
+    "tools": [
+      "document_reader",
+      "code_executor",
+      "web_search"
+    ],
+    "eval_scores": [],
+    "mutation_log": [
+      {
+        "from_version": 0,
+        "to_version": 1,
+        "rationale": "This change directly addresses the over-generalization root cause by constraining the model to issue-oriented, line-anchored output and explicitly forbidding tutorial-style or speculative responses. It also reinforces grounding in repository evidence, which should reduce generic best-practice language and improve precision on harder, nuanced review cases. By tightening the response contract without changing the overall workflow, it should improve alignment with true PR review behavior while preserving the existing search and reflection setup.",
+        "expected_improvement": "The agent will be more likely to produce tightly scoped, evidence-backed review findings instead of broad explanatory commentary.",
+        "changes": {
+          "system_prompt": "You are a code review agent that evaluates pull requests by combining diff inspection with surrounding repository context, tests, and relevant design documentation. Produce only concise, issue-oriented findings that are directly supported by evidence, and anchor each finding to specific lines or hunks with an actionable fix. Do not provide tutorial-style summaries, broad best-practice advice, or speculative concerns; if evidence is insufficient, omit the finding rather than generalizing."
+        }
+      },
+      {
+        "from_version": 1,
+        "to_version": 2,
+        "rationale": "This directly addresses the main failure mode by softening the over-restrictive 'omit rather than generalize' behavior that is causing under-answering on harder items. It still blocks generic tutorial prose and speculation, but now explicitly instructs the agent to provide the best supported answer when evidence is indirect, which should reduce low coverage without reintroducing broad, ungrounded commentary. Because the failure analysis identifies the prompt as the primary culprit, this single change is the highest-leverage mutation.",
+        "expected_improvement": "The agent should preserve concise, evidence-backed review comments while improving coverage on thinner or more analytical prompts instead of skipping them.",
+        "changes": {
+          "system_prompt": "You are a code review agent that evaluates pull requests by combining diff inspection with surrounding repository context, tests, and relevant design documentation. Produce concise, issue-oriented findings when evidence is direct, but if the evidence is thin or the task asks for broader analysis, answer the question explicitly using the best available repository evidence rather than omitting coverage. Avoid tutorial-style summaries and speculative claims, and anchor each finding or conclusion to specific lines, hunks, or documents with an actionable fix or clearly stated limitation."
+        }
+      }
+    ]
+  },
+  "score": {
+    "per_question": [
+      {
+        "id": "q01",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.9,
+          "coverage": 0.8,
+          "coherence": 1.0,
+          "source_diversity": 0.7,
+          "reasoning": "The answer is largely correct and well-written, capturing code review as examination of code changes by peers and maintainers, but it omits that it can happen during development and does not explicitly state that reviewers are called reviewers or that at least one reviewer must not be the author.",
+          "composite": 0.85
+        },
+        "composite": 0.85,
+        "answer": "Code review in software development is the process of examining code changes to catch bugs, improve code quality, and make sure the code follows project standards before it is merged or released.\n\nIt is usually performed by:\n- **Peer developers** on the same team\n- **Senior engineers or tech leads** for more complex changes\n- **Code owners or maintainers** in open source or larger projects\n\nIn some workflows, **automated tools** also participate by checking formatting, style, tests, and security issues, but they do not replace human reviewers.\n\nThe main goals of code review are to improve correctness, readability, maintainability, security, and team knowledge-sharing."
+      },
+      {
+        "id": "q02",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.9,
+          "reasoning": "The answer is factually correct, clearly distinguishes code review from all listed practices, covers all key ground-truth points, and presents a coherent synthesis from several angles.",
+          "composite": 0.965
+        },
+        "composite": 0.965,
+        "answer": "Code review is a **human evaluation of code changes** against a broader set of criteria than automated checks usually cover: correctness, design, maintainability, readability, consistency with team conventions, and whether the change fits the intended behavior.\n\nHere\u2019s how it differs from the other practices:\n\n- **Static analysis**: automated tools that inspect code without executing it. They are fast and consistent, and can catch style issues, certain bugs, and rule violations. But they are limited to patterns the tool knows how to detect; they don\u2019t understand business context, tradeoffs, or whether an implementation is a good design choice.\n\n- **Self-checks**: the author reviewing their own work before asking for feedback. This can catch typos, obvious bugs, and missing cases, but it is still biased by the author\u2019s assumptions and familiarity with the code. Code review adds a fresh perspective and is more likely to surface blind spots.\n\n- **Testing**: running code to confirm behavior. Tests answer \u201cdoes this work for the cases we covered?\u201d Code review answers additional questions like \u201cis this maintainable?\u201d, \u201cis this the simplest correct approach?\u201d, and \u201cdoes this change introduce hidden coupling or unclear abstractions?\u201d. Good testing and good review complement each other.\n\n- **Pair programming**: two developers work together while writing the code, usually in real time. This is a form of continuous review and collaboration during implementation. Code review is typically asynchronous and happens after the change is prepared. Pair programming can reduce defects earlier, while code review provides independent scrutiny and a record of the feedback and decisions.\n\nA few important nuances:\n\n- **Code review is not a substitute for testing or static analysis**; it works best alongside them.\n- **The goal is not just defect detection**. It also improves shared understanding, spreads knowledge across the team, and helps enforce consistent design and coding standards.\n- **The timing and workflow differ**: self-checks and pair programming happen during development, testing validates behavior by execution, static analysis runs automatically, and code review is usually an explicit peer gate before merging.\n\nSo, the main difference is that code review is a **human, judgment-based, peer assessment** of a change, while the others are more automated, self-directed, execution-based, or collaborative development practices that cover different parts of software quality."
+      },
+      {
+        "id": "q03",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 0.95,
+          "coherence": 0.98,
+          "source_diversity": 0.72,
+          "reasoning": "The answer is accurate, clearly states that code review inspects code before acceptance to find defects and improve quality, covers most key facts from the ground truth, and is well organized, with only moderate diversity in perspectives beyond the core purpose.",
+          "composite": 0.9075
+        },
+        "composite": 0.9075,
+        "answer": "The main purpose of code review in software engineering is to **systematically inspect code changes before they are accepted** in order to **improve software quality and reduce the risk of defects or design problems reaching production**.\n\nIt is not only about finding bugs. Code review also helps:\n- verify that the change matches the intended requirements\n- improve readability and maintainability\n- enforce team standards and consistency\n- share knowledge among developers\n- identify security, performance, and architectural issues early\n\nIn short, code review serves as a **quality control and risk management step** that also supports team learning and consistency."
+      },
+      {
+        "id": "q04",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.96,
+          "coverage": 0.75,
+          "coherence": 0.98,
+          "source_diversity": 0.72,
+          "reasoning": "The answer is factually sound and well organized, and it captures the main idea that automation improves efficiency and consistency, but it only partially reflects the ground-truth emphasis on manual review being time-consuming and subjective/dependent on reviewer skill.",
+          "composite": 0.8525
+        },
+        "composite": 0.8525,
+        "answer": "Automated assistance for code review is desirable because it makes the review process faster, more consistent, and more scalable while freeing human reviewers to focus on higher-level concerns.\n\nIn particular, it can:\n- **Provide immediate feedback** on obvious issues such as style violations, missing tests, simple bugs, and some security risks.\n- **Improve consistency** by applying the same rules every time, reducing variation between reviewers.\n- **Reduce reviewer workload** by handling repetitive checks, so humans can spend more time on correctness, design, and maintainability.\n- **Scale with team and codebase growth**, helping review throughput keep pace as the amount of code increases.\n- **Enforce project standards** such as formatting, linting, and policy checks more reliably than manual review alone.\n\nA useful way to think about it is that automation complements human judgment: tools are strong at repetitive, rule-based checks, while people are better at understanding intent, architecture, and tradeoffs."
+      },
+      {
+        "id": "q05",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 1.0,
+          "coverage": 1.0,
+          "coherence": 1.0,
+          "source_diversity": 0.9,
+          "reasoning": "The answer is factually correct, clearly states that code review occurs before merge/integration, and covers the ground-truth roles of improving quality and security while presenting a well-structured multi-angle synthesis.",
+          "composite": 0.975
+        },
+        "composite": 0.975,
+        "answer": "Code review is a quality-control and collaboration step in the software development lifecycle, usually performed after a developer implements a change and before that change is merged into the main codebase.\n\nIts role is to:\n\n- **Catch defects early**: Reviewers can spot logic errors, edge cases, missing tests, and other issues before release.\n- **Improve maintainability**: It helps ensure code is readable, consistent, and aligned with the project\u2019s style and architecture.\n- **Share knowledge**: Reviewing code spreads context across the team, making the system easier to work on and reducing dependence on any one person.\n- **Support security and reliability**: Review can catch insecure patterns, risky changes, and design choices that may cause operational problems.\n- **Strengthen team alignment**: It creates a shared understanding of requirements, implementation decisions, and coding standards.\n- **Complement automated checks**: Code review works alongside tests, linters, and CI rather than replacing them; automation catches many mechanical issues, while humans catch intent, design, and edge cases.\n\nIn the lifecycle, code review typically comes after implementation and automated validation, and before merge, integration, and deployment."
+      },
+      {
+        "id": "q06",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.97,
+          "source_diversity": 0.7,
+          "reasoning": "The answer correctly states that code review occurs after implementation but before integration/acceptance and requires at least one non-author reviewer, while clearly distinguishing it from pair programming and self-check-like activity; it is well organized and readable, with some additional related practices discussed beyond the core ground truth.",
+          "composite": 0.9125
+        },
+        "composite": 0.9125,
+        "answer": "Code review is usually distinguished by two core requirements:\n\n- **Timing:** it happens **after code is written but before it is merged, deployed, or otherwise accepted into the main codebase**. It is a pre-integration checkpoint, not a coding-time collaboration activity.\n- **Participation:** it involves **at least one reviewer other than the original author**. The value comes from independent scrutiny by a peer, maintainer, or other qualified reviewer.\n\nThat distinguishes it from related practices:\n\n- **Pair programming / mob programming:** review-like feedback may occur, but it happens **during implementation** and the participants are co-producing the code, not reviewing a finished change.\n- **Design review:** focuses on the **planned approach before implementation**, rather than the actual code.\n- **Testing / QA:** checks behavior of the software, but does not require human inspection of the code itself.\n- **Postmortems / retrospectives:** happen **after** an event or release and are aimed at learning, not approval of a specific code change.\n\nA concise way to say it is: **code review is independent human inspection of a code change, performed before the change is accepted into the codebase**."
+      },
+      {
+        "id": "q07",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.92,
+          "reasoning": "The answer is factually correct, clearly covers all key points from the ground truth, is well organized and readable, and synthesizes multiple relevant perspectives on why code review adds value beyond automated analysis and testing.",
+          "composite": 0.97
+        },
+        "composite": 0.97,
+        "answer": "Software teams prefer code review over relying only on static analysis or testing because it adds a layer of **human judgment** that automated checks cannot replace.\n\nCompared with static analysis and tests, code review can:\n\n- **Evaluate intent and correctness in context**: A change may pass tests and linters but still implement the wrong behavior or violate a business rule. Reviewers can catch that mismatch.\n- **Catch design and maintainability issues**: Humans can assess whether the code fits the architecture, is easy to understand, and will be easy to change later.\n- **Use project/domain knowledge**: Reviewers can apply conventions, invariants, and product-specific constraints that tools may not know.\n- **Find issues not covered by tests**: Tests only check the cases someone thought to write down; review can question missing edge cases and untested assumptions.\n- **Improve team knowledge sharing**: Reviews spread understanding across the team and reduce dependence on any one developer.\n- **Provide a quality gate for code that is technically valid**: Static analysis mainly checks patterns and rules, and tests only confirm behavior for exercised inputs. Review can still reject code that is correct mechanically but poor in style, risk, or long-term impact.\n\nThat said, code review is not a replacement for static analysis or testing. The strongest process usually combines all three: automated tools catch routine errors quickly, tests verify behavior, and review focuses on judgment, context, and long-term quality."
+      },
+      {
+        "id": "q08",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.8,
+          "reasoning": "The answer is factually aligned with the ground truth, fully covers the main limitations of manual review, is well organized and clear, and synthesizes multiple plausible angles on why automation is needed.",
+          "composite": 0.9325
+        },
+        "composite": 0.9325,
+        "answer": "Manual code review has several limitations that have motivated research into automation:\n\n- **Does not scale well**: as codebases and pull requests grow, human reviewers can become a bottleneck.\n- **Limited consistency**: different reviewers may apply different standards, and the same reviewer may be less consistent over time or under workload.\n- **Reviewer fatigue and attention limits**: long or repetitive reviews increase the chance of missing defects.\n- **Incomplete coverage**: humans are less effective at systematically checking every change for patterns like API misuse, style violations, dependency issues, or recurring bug patterns.\n- **Slow and costly**: expert review takes time and labor, which can delay integration and increase development cost.\n- **Subjective judgments**: code quality often involves opinions, so reviews can vary based on team norms and individual preferences.\n- **Hard to catch subtle defects reliably**: security vulnerabilities, logic errors, and edge cases may be missed, especially in complex diffs.\n\nA key motivation for automation is not to replace humans entirely, but to **augment review with fast, repeatable, and scalable checks** that handle routine detection well and leave higher-level design judgment to people."
+      },
+      {
+        "id": "q09",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.88,
+          "coverage": 0.67,
+          "coherence": 0.95,
+          "source_diversity": 0.72,
+          "reasoning": "The answer is broadly accurate and well-structured, and it captures early pre-commit review, contextual analysis, and hybrid human/tool framing, but it only partially addresses the specific ground-truth points about tight latency, limited context windows, SAST noise, missed immature/context-dependent vulnerabilities, and standalone LLM limitations.",
+          "composite": 0.805
+        },
+        "composite": 0.805,
+        "answer": "Modern AI and LLM-based methods for secure code review at the **pre-commit stage** are typically framed as **assistive, shift-left security tools** that inspect a developer\u2019s staged changes before code is committed, with the goal of catching security issues early and reducing review burden.\n\n### How they are usually positioned\n\n- **Pre-commit gate, not a replacement for review**\n  - They are usually described as a first-line security check that runs in the developer workflow.\n  - Human review and conventional security tools still remain necessary.\n\n- **Diff- and context-aware analysis**\n  - The main idea is to analyze the patch being committed, plus nearby code and relevant project context.\n  - This makes them useful for catching issues that depend on local flow, surrounding APIs, or insecure patterns introduced by a small change.\n\n- **Security-focused triage**\n  - LLMs are often framed as helping identify whether a change is plausibly unsafe, prioritize risky diffs, and explain why a change matters in security terms.\n  - They are especially attractive for reviewing code where the security issue is semantic rather than syntactic.\n\n- **Developer-facing guidance**\n  - Instead of only emitting a binary \u201csafe/unsafe\u201d result, these systems often generate explanations and suggested remediations.\n  - This is meant to make security feedback actionable before the commit is finalized.\n\n### What modern systems are trying to add beyond classic tools\n\n- **Better reasoning over intent**\n  - Traditional SAST and linters are strong at pattern matching but weaker at understanding whether a change introduces a real vulnerability in context.\n  - LLMs are framed as helping infer intent and spot mismatches between intended behavior and secure behavior.\n\n- **Natural-language policy enforcement**\n  - Some approaches use LLMs to interpret secure coding guidelines, internal policies, or vulnerability taxonomies and apply them to a specific diff.\n  - This can make org-specific security rules easier to surface to developers.\n\n- **Noise reduction**\n  - A common promise is reducing alert fatigue by filtering low-value findings and focusing on the most security-relevant changes.\n  - In practice, this is often discussed as ranking or summarizing issues rather than replacing deterministic scanners.\n\n### Common deployment patterns\n\n- **IDE or local pre-commit hooks**\n  - The review runs before code is pushed or committed, often on the local machine or in a developer IDE.\n  - This is attractive for speed and for catching issues at the earliest possible moment.\n\n- **Self-hosted or private models**\n  - Because source code can be sensitive, many deployments emphasize on-premises or private inference.\n  - This is often framed as a privacy and compliance requirement, not just a performance choice.\n\n- **Hybrid pipelines**\n  - The strongest framing is usually hybrid: LLMs plus static analysis, secret scanning, dependency checks, and tests.\n  - The LLM handles contextual judgment; traditional tools provide deterministic coverage.\n\n### Important caveats that are usually part of a serious framing\n\n- **False negatives are the main concern**\n  - LLMs can miss subtle or uncommon vulnerabilities, especially when the issue depends on broader application behavior.\n  - So they are not considered sufficient as a standalone security control.\n\n- **False positives can still be costly**\n  - If the system is too noisy, developers will ignore it.\n  - Most practical discussions emphasize careful tuning and limited-scope alerts.\n\n- **Auditability and reproducibility are weaker than rule-based tools**\n  - Compared with deterministic scanners, LLM outputs can vary across runs or model versions.\n  - That makes them better suited to advisory review than sole enforcement.\n\n- **Prompt injection and untrusted context are real risks**\n  - If the tool ingests comments, documentation, generated code, or external text, those inputs can potentially influence the model in unsafe ways.\n  - Secure deployment therefore requires careful context filtering and prompt design.\n\n### Missing perspective to keep in mind\n\nA more complete framing is that pre-commit AI review is not just about \u201cfinding vulnerabilities,\u201d but about **changing developer behavior earlier in the workflow**. The value proposition is:\n\n- catch issues before they leave the workstation,\n- explain them in developer-friendly language,\n- reduce the cost of remediation,\n- and supplement, rather than replace, traditional security controls.\n\nSo the most accurate short framing is:\n\n> Modern AI and LLM-based methods at the pre-commit stage are being framed as context-aware, human-in-the-loop security assistants that review staged changes early, explain likely risks in plain language, and work alongside deterministic scanners and human reviewers rather than replacing them."
+      },
+      {
+        "id": "q10",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 0.9,
+          "coherence": 0.98,
+          "source_diversity": 0.88,
+          "reasoning": "The answer is highly accurate and aligns with the ground truth by noting code review\u2019s importance, ML/DL-based automation, and variability in evaluation, while adding plausible synthesis and multiple perspectives in a clear, well-structured way.",
+          "composite": 0.9275
+        },
+        "composite": 0.9275,
+        "answer": "Recent studies generally portray **automating modern code review as a mature but still incomplete research area**: there has been steady progress on specific subproblems, but no approach reliably automates code review end to end in realistic settings.\n\nWhat the literature tends to say:\n\n- **Narrow automation works better than full automation.**  \n  Research has made more headway on tasks like reviewer recommendation, review comment prediction, defect detection from diffs, duplicate/low-value comment filtering, and patch prioritization. These tools can reduce workload, but they do not replace human review.\n\n- **Context remains the main bottleneck.**  \n  Studies consistently note that effective review depends on architectural knowledge, intent, project conventions, and risk assessment. That broader context is hard to infer from the patch alone, so automated systems often miss issues that humans catch.\n\n- **Machine learning helps, but generalization is weak.**  \n  Recent work increasingly uses learning-based and NLP methods on diffs, comments, and developer histories. However, many papers report limited transfer across projects, languages, or organizations because review behavior is highly project-specific and labels are noisy.\n\n- **Evaluation is still a challenge.**  \n  A recurring criticism is the lack of standardized benchmarks and ground truth for \u201cgood review automation.\u201d Many studies rely on retrospective datasets or proxy metrics, which makes it hard to compare methods or claim real-world effectiveness.\n\n- **Human review remains central.**  \n  A common conclusion is that automation is best used as decision support: surfacing suspicious changes, ranking likely-important files, suggesting reviewers, or summarizing review discussions. The research consensus does not support fully replacing human reviewers.\n\nMissing perspectives worth noting:\n\n- **Socio-technical factors matter.**  \n  Review is not just a technical classification problem; it is shaped by team norms, communication style, trust, and organizational workflow. Studies increasingly acknowledge that these factors limit how far automation can go.\n\n- **There is a gap between offline results and deployment.**  \n  Even when models perform well on historical data, practical adoption can be hindered by false positives, low interpretability, and the cost of interrupting reviewers with irrelevant suggestions.\n\n- **The field is broadening beyond prediction.**  \n  More recent research also explores summarization, explanation, and workflow assistance, reflecting a shift from \u201ccan we automate review?\u201d to \u201chow can we assist reviewers effectively?\u201d\n\nOverall, the state of research is best summarized as: **promising for targeted assistance, but still far from autonomous code review, mainly because code review is deeply contextual, social, and project-dependent.**"
+      },
+      {
+        "id": "q11",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.7,
+          "reasoning": "The answer is accurate and captures all key ground-truth ideas\u2014inline line-specific comments, more granular review, and tighter connection to code\u2014while adding a few correct workflow details; it is well organized and synthesizes the comparison from several angles.",
+          "composite": 0.915
+        },
+        "composite": 0.915,
+        "answer": "Code review tools change the process in a few key ways compared with plain text discussion:\n\n- **Feedback is attached to specific code changes.** Reviewers can comment on exact lines, hunks, or files instead of describing code verbally, which reduces ambiguity.\n- **The relevant context is visible.** Diff views, surrounding code, and revision history are shown alongside the discussion, making it easier to evaluate the change without extra back-and-forth.\n- **Review is tracked as a workflow, not just a conversation.** Tools often support approvals, requested changes, status checks, and merge blocking, so review becomes part of the development process rather than an informal thread.\n- **Responses stay organized by change.** Authors can reply inline, resolve comments, and iterate on the same patch, which keeps discussion tied to the code version being reviewed.\n- **It becomes easier to compare iterations.** Reviewers can see what changed after feedback and whether earlier concerns were addressed.\n- **Accountability and traceability improve.** Decisions, comments, and approvals are recorded against the specific revision, which helps with later auditing or handoff.\n\nA plain text discussion can still be useful for broad design debates or early brainstorming, but code review tools are better when the goal is to evaluate concrete changes precisely and efficiently."
+      },
+      {
+        "id": "q12",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.92,
+          "reasoning": "The answer correctly captures the main challenge of varying task definitions, datasets, and evaluation settings making comparison difficult, while also adding several plausible related research challenges in a clear, well-organized way.",
+          "composite": 0.9625
+        },
+        "composite": 0.9625,
+        "answer": "Open research challenges in automating code review across datasets and evaluation settings include:\n\n1. **Unclear task definitions across benchmarks**\n   - \u201cCode review\u201d is used to mean different things: issue detection, review comment generation, patch suggestion, acceptance prediction, or severity ranking.\n   - This makes results hard to compare because a strong model on one dataset may be solving a different subproblem than a model on another.\n   - **Research need:** standardize task taxonomies or report results separately for each subtask.\n\n2. **Dataset shift and weak cross-dataset transfer**\n   - Models often degrade when moved from one dataset to another because of changes in language, repository size, coding style, review norms, and annotation policy.\n   - Some benchmarks are especially narrow and encourage learning dataset-specific shortcuts rather than general review behavior.\n   - **Research need:** evaluate systematically under cross-project, cross-language, and cross-benchmark settings.\n\n3. **Annotation noise and incomplete supervision**\n   - Review datasets typically capture only a small subset of valid human feedback.\n   - Many commits have multiple plausible review comments, but only one may be recorded; some issues are never commented on at all.\n   - This creates apparent false positives and false negatives during evaluation.\n   - **Research need:** use evaluation methods that allow multiple correct outputs, partial credit, or human judgment.\n\n4. **Metric mismatch with real reviewer value**\n   - Automatic metrics such as BLEU, ROUGE, or exact match often fail to capture usefulness, correctness, and actionability.\n   - A comment can be semantically correct but phrased differently, or fluent but technically wrong.\n   - **Research need:** develop metrics that better reflect reviewer utility, groundedness, and fix validity.\n\n5. **Limited realism in evaluation settings**\n   - Many datasets present only the changed lines or a small local context, while real reviews rely on surrounding files, project conventions, prior commits, tests, and discussion history.\n   - Models that look good in constrained settings may not work when asked to reason over larger repositories or longer context.\n   - **Research need:** create evaluation protocols that more closely match the information available to human reviewers.\n\n6. **Lack of standardized splits and contamination control**\n   - Different papers use different train/test splits, preprocessing rules, and repository filters, which makes comparisons unreliable.\n   - There is also risk of leakage through duplicated code, near-duplicate reviews, temporal overlap, or pretraining contamination.\n   - **Research need:** adopt temporal and project-level splits, plus stronger contamination auditing.\n\n7. **Difficulty measuring faithfulness**\n   - A generated review comment may sound plausible but not be anchored in the code change.\n   - Likewise, a suggested fix may not actually address the stated issue.\n   - **Research need:** evaluate whether the model\u2019s outputs are supported by the code and whether proposed fixes are executable and correct.\n\n8. **Imbalanced issue distributions**\n   - Real reviews contain a long tail of rare but important issues.\n   - Benchmarks often overrepresent common patterns such as naming, style, null checks, or simple API misuse.\n   - This can make performance look better than it would on harder, rarer defects.\n   - **Research need:** design datasets that better reflect the long tail of review-relevant issues.\n\n9. **Cross-language and ecosystem differences**\n   - Review behavior differs substantially across languages, frameworks, and hosting platforms.\n   - Comments in one ecosystem may follow conventions that do not transfer to another.\n   - **Research need:** test methods across diverse languages and ecosystems rather than assuming transfer from a single dominant setting.\n\n10. **Human evaluation remains underspecified**\n    - For many tasks, the best way to judge outputs is still human review, but studies often vary in rater expertise, rubric design, and agreement reporting.\n    - That makes human-evaluation results hard to reproduce or compare.\n    - **Research need:** establish clearer human-evaluation protocols and report inter-rater reliability consistently.\n\n11. **Tradeoffs between precision, recall, and reviewer burden**\n    - In practical review workflows, too many low-quality suggestions can overwhelm developers, while missing important defects can be costly.\n    - Benchmarks often report aggregate scores without modeling reviewer time or acceptance behavior.\n    - **Research need:** evaluate systems under workload-aware settings that reflect downstream cost and benefit.\n\n12. **Benchmark saturation and shortcut learning**\n    - Some datasets may be small, repetitive, or template-heavy, allowing systems to exploit surface patterns instead of learning review reasoning.\n    - Apparent improvements may not translate to new projects or unseen issue types.\n    - **Research need:** build harder, more diverse benchmarks with stronger novelty and better adversarial coverage.\n\nA broader missing perspective is that automation should not only be judged by task accuracy but also by **workflow integration**: whether the system helps reviewers triage changes faster, reduces missed defects, and preserves trust over time. This is harder to measure but important for determining real-world value."
+      },
+      {
+        "id": "q13",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.94,
+          "coverage": 0.8,
+          "coherence": 0.98,
+          "source_diversity": 0.93,
+          "reasoning": "The answer is accurate and well-structured, correctly emphasizing that agentic AI combines LLM reasoning with autonomous tool use to reduce static-analysis noise and standalone LLM hallucinations, though it does not explicitly mention the pre-commit stage or immature vulnerabilities.",
+          "composite": 0.9125
+        },
+        "composite": 0.9125,
+        "answer": "Agentic AI can address the weaknesses of both traditional static analysis and standalone LLMs by turning secure code review into a **tool-using, iterative, evidence-checked process** rather than a one-shot judgment.\n\n### Why static analysis alone is insufficient\nStatic analysis is useful for:\n- catching known patterns,\n- enforcing rules consistently,\n- scaling across large codebases.\n\nBut it often struggles with:\n- **context**: it may not understand the feature\u2019s intended behavior or the surrounding architecture,\n- **dataflow across boundaries**: especially through multiple functions, files, or services,\n- **business-logic bugs**: things that are correct syntactically but wrong semantically,\n- **false positives**: pattern matches that are not actually exploitable.\n\n### Why standalone LLM review is also insufficient\nLLMs can reason about:\n- intent,\n- code semantics,\n- likely attack paths,\n- natural-language documentation and comments.\n\nBut by themselves they can be unreliable because they may:\n- **hallucinate** issues that are not present,\n- miss precise details in long code paths,\n- overgeneralize from insecure-looking patterns,\n- lack persistent verification against the actual repository state.\n\n### What agentic AI adds\nAn agentic system can combine these approaches by using a loop like:\n\n1. **Decompose the review task**\n   - Identify specific security questions:\n     - Does untrusted input reach a sink?\n     - Is authorization checked before sensitive actions?\n     - Has a trust boundary changed in this diff?\n   - This avoids vague \u201creview everything\u201d behavior.\n\n2. **Gather evidence from the repository**\n   - Search related code, trace call chains, inspect tests, and read docs.\n   - Run or consult static analysis tools to surface candidate findings.\n   - This grounds the review in repository evidence instead of model intuition alone.\n\n3. **Reason over candidates**\n   - The LLM can interpret whether a static warning is actually dangerous in context.\n   - It can also flag suspicious patterns that static tools may not recognize, such as inconsistent auth logic or broken invariants.\n\n4. **Verify or reject hypotheses**\n   - The agent can check whether a suspected vulnerability is mitigated by validation, authorization, escaping, feature flags, or surrounding controls.\n   - If it cannot verify a claim, it should say so explicitly rather than present it as fact.\n\n5. **Cross-check with multiple signals**\n   - Static analysis provides breadth.\n   - LLM reasoning provides flexibility.\n   - Tests, docs, and source code provide grounding.\n   - Agreement among these signals increases confidence; disagreement triggers deeper inspection.\n\n### Missing perspective: agentic AI is not just \u201cbetter reasoning\u201d\nThe main advantage is not that the model \u201cthinks harder,\u201d but that it can **act like a reviewer that gathers proof**:\n- follow references,\n- inspect adjacent code,\n- compare with existing patterns,\n- confirm whether a reported issue is reachable and exploitable.\n\nThat makes it more effective at:\n- reducing false positives from static analysis,\n- reducing hallucinations from standalone LLMs,\n- finding issues that require context or multi-step reasoning.\n\n### Important limitation\nAgentic AI still depends on the quality of its tools, prompts, and repository access. It can improve coverage and confidence, but it does **not eliminate the need for human review**, especially for high-impact findings or cases where exploitability depends on runtime behavior not visible in source alone.\n\nIn short, agentic AI can make secure code review more effective by combining:\n- **static analysis for breadth**,\n- **LLM reasoning for context**,\n- **tool-driven verification for grounding**,\n- and **iterative hypothesis testing** to separate real vulnerabilities from plausible-looking noise."
+      },
+      {
+        "id": "q14",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.95,
+          "reasoning": "The answer accurately captures the main efficiency-versus-human-judgment tradeoff, includes all key facts from the ground truth, is well organized and clear, and presents multiple complementary perspectives on the use of automation in code review.",
+          "composite": 0.9775
+        },
+        "composite": 0.9775,
+        "answer": "Using automation to assist code review, rather than relying on human reviewers alone, usually trades **breadth and speed** for **depth and judgment**.\n\nKey tradeoffs:\n\n- **Faster feedback vs. richer understanding**: Automation can catch common issues quickly\u2014style violations, lint errors, simple bugs, dependency risks, or missing tests. But it generally lacks the project context needed to judge design intent, product impact, or whether a change is the \u201cright\u201d one, not just a technically valid one.\n\n- **Consistency vs. adaptability**: Automated checks apply the same rules every time, which reduces reviewer variability and helps enforce team standards. Human reviewers can adapt to exceptions, evolving norms, and nuanced cases that don\u2019t fit a fixed rule set.\n\n- **Scalability vs. comprehensiveness**: Automation scales well across large codebases and many pull requests, making it practical to review more changes with less manual effort. But if teams lean on it too heavily, subtle logic errors, regressions, or maintainability problems may slip through because those often require human reasoning.\n\n- **Lower reviewer load vs. risk of false signals**: Automation can remove a lot of repetitive work from humans, but it can also create noise through false positives, brittle rules, or over-enforcement of style at the expense of substance. That can waste time if the checks are not tuned well.\n\n- **Objective checks vs. social/process value**: Human review is not only about catching defects; it also supports mentoring, knowledge transfer, cross-team alignment, and shared ownership. Automation does not replace that interaction, so teams may lose some communication and learning benefits if they over-automate.\n\n- **Detection of known patterns vs. discovery of novel issues**: Automation is strongest when the problem can be encoded in advance. Human reviewers are better at spotting unusual interactions, emergent design issues, and \u201cthis looks wrong\u201d concerns that no rule has been written for yet.\n\nSo the main implication is that automation is best used as a **front line and force multiplier**, not a full substitute for human review. It improves efficiency and coverage, but human reviewers remain essential for context, judgment, and collaboration."
+      },
+      {
+        "id": "q15",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 0.83,
+          "coherence": 0.98,
+          "source_diversity": 0.86,
+          "reasoning": "The answer is factually strong and captures most key points about early vulnerability detection and the limits of manual and automated review, though it does not explicitly mention pre-commit/integration timing, SAST noisiness in the ground-truth framing, or standalone LLM context-window/tool-use limits.",
+          "composite": 0.905
+        },
+        "composite": 0.905,
+        "answer": "Code review is especially important for secure coding because it is often the last human checkpoint before insecure code is merged and deployed. Many security problems are not caught by tests alone: a function can work correctly and still be unsafe if it uses the wrong API, omits authorization checks, mishandles secrets, trusts unvalidated input, or creates exploitable edge cases. Review also helps spread security knowledge across the team and enforce security-minded coding norms, so it serves both as a bug-finding step and as a preventive practice.\n\nThe main reason further research is needed is that current review approaches have clear limits:\n\n- **Manual review does not scale well.** Human reviewers are effective but time-consuming, especially in large codebases or fast-moving teams.\n- **Security issues are often subtle and context-dependent.** A vulnerability may only be visible when combining information across files, execution paths, or system assumptions.\n- **Automated support is incomplete.** Static analyzers and linters catch certain patterns, but they typically miss deeper semantic flaws and can produce many false positives or false negatives.\n- **Reviewer expertise varies.** Code review quality depends heavily on the security knowledge of the reviewer, so results are inconsistent across teams.\n- **Current tools can be noisy or narrow.** Many focus on known signatures or style-like checks rather than reasoning about whether code is actually secure in its application context.\n- **Workflow integration is still imperfect.** If tools are hard to use or overwhelm reviewers with alerts, they are less likely to be adopted effectively.\n\nA more precise conclusion is that code review is important not because it reliably catches every vulnerability, but because it combines human judgment, project context, and team learning in a way that automation alone does not. Research is motivated by the need to make that process more scalable, less error-prone, and better supported by tools without flooding reviewers with noise."
+      }
+    ],
+    "aggregate": {
+      "factual_accuracy": 0.9573,
+      "coverage": 0.9133,
+      "coherence": 0.98,
+      "source_diversity": 0.8213,
+      "composite": 0.918
+    },
+    "version": 2,
+    "timestamp": "2026-05-14T15:28:02.076484"
+  },
+  "iteration": 3
+}

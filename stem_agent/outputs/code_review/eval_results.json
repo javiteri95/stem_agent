@@ -1,50 +1,35 @@
 {
-  "domain": "Open-domain Question Answering",
+  "domain": "Code Review",
   "before": {
-    "factual_accuracy": 0.939,
-    "coverage": 0.901,
-    "coherence": 0.971,
-    "source_diversity": 0.825,
-    "composite": 0.909
+    "factual_accuracy": 0.9407,
+    "coverage": 0.872,
+    "coherence": 0.9747,
+    "source_diversity": 0.8293,
+    "composite": 0.9042
   },
   "after": {
-    "factual_accuracy": 0.94,
-    "coverage": 0.911,
-    "coherence": 0.976,
-    "source_diversity": 0.843,
-    "composite": 0.9175
+    "factual_accuracy": 0.9627,
+    "coverage": 0.9133,
+    "coherence": 0.9807,
+    "source_diversity": 0.844,
+    "composite": 0.9252
   },
   "delta": {
-    "factual_accuracy": 0.001,
-    "coverage": 0.01,
-    "coherence": 0.005,
-    "source_diversity": 0.018,
-    "composite": 0.0085
+    "factual_accuracy": 0.022,
+    "coverage": 0.0413,
+    "coherence": 0.006,
+    "source_diversity": 0.0147,
+    "composite": 0.021
   },
-  "iterations_run": 2,
+  "iterations_run": 1,
   "mutation_log": [
     {
       "from_version": 0,
       "to_version": 1,
-      "rationale": "The benchmark failures indicate a domain mismatch: the current spec is tuned for code review, but the evaluated tasks require general knowledge synthesis and evidence-backed explanation. Changing the task domain better matches the expected behavior, and adding web_search gives the agent the retrieval and verification capability it currently lacks, which should reduce hallucination and improve performance on harder questions. Keeping document_reader preserves the ability to inspect retrieved sources in detail once they are found.",
-      "expected_improvement": "Aligning the agent with open-domain factual questions and adding external retrieval should improve coverage, source grounding, and answer quality on broad explanatory prompts.",
+      "rationale": "This change directly addresses the over-generalization root cause by constraining the model to issue-oriented, line-anchored output and explicitly forbidding tutorial-style or speculative responses. It also reinforces grounding in repository evidence, which should reduce generic best-practice language and improve precision on harder, nuanced review cases. By tightening the response contract without changing the overall workflow, it should improve alignment with true PR review behavior while preserving the existing search and reflection setup.",
+      "expected_improvement": "The agent will be more likely to produce tightly scoped, evidence-backed review findings instead of broad explanatory commentary.",
       "changes": {
-        "task_domain": "Open-domain Question Answering",
-        "tools": [
-          "web_search",
-          "document_reader"
-        ]
-      }
-    },
-    {
-      "from_version": 1,
-      "to_version": 2,
-      "rationale": "The current prompt still frames the agent like a code-review assistant, which can bias it away from open-domain synthesis and toward narrow, diff-style reasoning; rewriting it to emphasize direct, evidence-backed research should correct that mismatch. Switching to breadth_first encourages exploring multiple independent evidence paths instead of overcommitting to the first plausible source, and increasing search rounds gives the agent more opportunity to triangulate answers on low-coverage questions. Together, these changes directly address the observed weak coverage and diversity without altering unrelated parts of the spec.",
-      "expected_improvement": "This should improve evidence coverage and source diversity by encouraging broader retrieval before synthesis, which is especially important for harder multi-fact questions.",
-      "changes": {
-        "system_prompt": "You are a deep research agent that answers open-domain questions with evidence-backed synthesis from retrieved sources. Prioritize broad coverage, independent verification, and clear direct answers over narrow task-specific analysis. Use sources to triangulate claims, note uncertainty when evidence is incomplete, and avoid assuming a code-review or repository context unless explicitly given.",
-        "search_strategy": "breadth_first",
-        "max_search_rounds": 5
+        "system_prompt": "You are a code review agent that evaluates pull requests by combining diff inspection with surrounding repository context, tests, and relevant design documentation. Produce only concise, issue-oriented findings that are directly supported by evidence, and anchor each finding to specific lines or hunks with an actionable fix. Do not provide tutorial-style summaries, broad best-practice advice, or speculative concerns; if evidence is insufficient, omit the finding rather than generalizing."
       }
     }
   ]
