@@ -101,7 +101,7 @@ def _introspect(spec: AgentSpec, eval_result: dict) -> dict:
         worst_questions=_worst_questions(eval_result),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=512)
+    raw = call_llm(messages, max_tokens=2048)
 
     raw = raw.strip()
     if raw.startswith("```"):
@@ -109,6 +109,10 @@ def _introspect(spec: AgentSpec, eval_result: dict) -> dict:
         if raw.startswith("json"):
             raw = raw[4:]
         raw = raw.strip()
+
+    last_brace = raw.rfind("}")
+    if last_brace != -1:
+        raw = raw[: last_brace + 1]
 
     return json.loads(raw)
 
@@ -120,7 +124,7 @@ def _propose_mutation(spec: AgentSpec, failure_analysis: dict) -> AgentSpec:
         failure_analysis_json=json.dumps(failure_analysis, indent=2),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=512)
+    raw = call_llm(messages, max_tokens=2048)
 
     raw = raw.strip()
     if raw.startswith("```"):
@@ -128,6 +132,10 @@ def _propose_mutation(spec: AgentSpec, failure_analysis: dict) -> AgentSpec:
         if raw.startswith("json"):
             raw = raw[4:]
         raw = raw.strip()
+
+    last_brace = raw.rfind("}")
+    if last_brace != -1:
+        raw = raw[: last_brace + 1]
 
     mutation = json.loads(raw)
     changes = mutation.get("changes", {})

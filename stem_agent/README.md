@@ -1,6 +1,17 @@
 # Stem Agent
 
-A self-differentiating agent that researches how Deep Research tasks are solved, designs its own architecture, tests it, and iteratively improves until it converges on a specialized research agent.
+A self-differentiating agent that grows into a specialist for any task domain.
+Given a domain name it automatically builds an evaluation question set, designs its own architecture, tests it against those questions, and iteratively improves until it converges on a specialised agent.
+
+## Phases
+
+| # | Name | What it does |
+|---|---|---|
+| 0 | **Ground Truth** | Gathers evidence from DuckDuckGo, arXiv, Semantic Scholar, and Wikipedia, then asks the LLM to generate 15 graded eval questions (`easy / medium / hard`). Result is cached in `eval_suite/<domain_slug>.json`. |
+| 1 | **Sense** | Analyses the domain and extracts six architectural primitives (reasoning style, search strategy, synthesis approach, etc.). |
+| 2 | **Hypothesize** | Designs an initial `AgentSpec` (v0) from the primitives. |
+| 3 | **Differentiate** | Runs up to 8 iteration cycles: introspect → mutate → evaluate → checkpoint/rollback. Converges when improvement plateaus. |
+| 4 | **Crystallize** | Writes the final artefacts: `final_agent.json`, `eval_results.json`, and `eval_by_tier.json`. |
 
 ## Setup
 
@@ -13,66 +24,65 @@ A self-differentiating agent that researches how Deep Research tasks are solved,
 
 3. **Install dependencies:**
    ```bash
+   cd stem_agent
    uv sync
    ```
-   For Tavily web search support (optional):
+   For Tavily live web search (optional, used in `multi_step_search` architecture):
    ```bash
    uv sync --extra search
    ```
 
-4. **Set your LLM API key.** The agent uses [LiteLLM](https://docs.litellm.ai/), so any supported provider works.
+4. **Configure environment variables** — copy `.env.example` to `.env` and fill in the values you need:
 
-   For Claude (default):
-   ```bash
-   export ANTHROPIC_API_KEY=your_key_here
    ```
-   For OpenAI:
-   ```bash
-   export OPENAI_API_KEY=your_key_here
-   export STEM_AGENT_MODEL=gpt-4o
-   ```
-   For any other LiteLLM model, set `STEM_AGENT_MODEL` to the appropriate model string.
+   # LLM (pick one provider)
+   OPENAI_API_KEY=...        # or use OPENAI_KEY as an alias
+   ANTHROPIC_API_KEY=...
 
-5. **(Optional) Tavily web search:**
-   ```bash
-   export TAVILY_API_KEY=your_key_here
+   # Model override (optional — defaults to claude-3-5-sonnet-20241022)
+   STEM_AGENT_MODEL=gpt-4o   # any LiteLLM model string
+   MODEL=gpt-4o              # alternative alias
+
+   # Optional integrations
+   TAVILY_API_KEY=...
+   SEMANTIC_SCHOLAR_API_KEY=...  # raises Phase 0 rate limits
    ```
 
-6. **Run:**
+5. **Run from any directory:**
    ```bash
-   # default domain (Deep Research)
-   uv run python -m stem_agent.main
-
-   # custom domain
+   # Phase 0 auto-generates questions, then runs all phases
    uv run python -m stem_agent.main --domain "Code Review"
 
-   # custom domain + custom questions file
+   # Supply your own question file (skips Phase 0)
    uv run python -m stem_agent.main --domain "Code Review" --questions path/to/questions.json
 
-   # resume an existing run (skips Phases 1 & 2, continues from best checkpoint)
-   uv run python -m stem_agent.main --domain "Deep Research" --resume
+   # Resume from the best checkpoint (skips Phases 1 & 2)
+   uv run python -m stem_agent.main --domain "Code Review" --resume
    ```
+   All output files are always written inside the `stem_agent/` project directory regardless of where the command is run from.
 
 ## Arguments
 
 | Argument | Default | Description |
 |---|---|---|
 | `--domain` | `"Deep Research"` | Task domain to specialise for. Outputs are isolated under `outputs/<domain_slug>/`. |
-| `--questions` | `eval_suite/questions.json` | Path to a JSON evaluation questions file. |
-| `--resume` | off | Skip Phases 1 & 2, load the best existing checkpoint for the domain, then continue the differentiation loop and update `final_agent.json`. |
+| `--questions` | _(auto)_ | Path to a JSON evaluation questions file. When omitted, Phase 0 runs to auto-generate or reuse a cached set for the domain. |
+| `--resume` | off | Skip Phases 1 & 2, load the best existing checkpoint, then continue the differentiation loop and update `final_agent.json`. |
 
 ## What to expect
 
-Full run takes roughly 15–25 minutes (up to 8 iterations × 10 questions × ~4 API calls per question).
-Outputs land in `outputs/`. Progress logs to stdout.
+- **Phase 0** — 1–3 minutes (network fetches + one LLM call).
+- **Phases 1–4** — 15–25 minutes (up to 8 iterations × number of questions × ~4 LLM calls each).
+
+Progress is logged to stdout. A `[Phase 0] WARNING` is printed if any network source fails; the run continues with whatever evidence was gathered.
 
 ## Cost estimate
 
-~$2–5 USD depending on which architecture the agent selects and how many iterations run.
+~$2–6 USD depending on provider, model, architecture selected, and number of iterations.
 
 ## Model selection
 
-Set `STEM_AGENT_MODEL` to any [LiteLLM-supported model string](https://docs.litellm.ai/docs/providers):
+Set `STEM_AGENT_MODEL` (or `MODEL`) to any [LiteLLM-supported model string](https://docs.litellm.ai/docs/providers):
 
 | Provider | Example value |
 |---|---|
@@ -83,12 +93,12 @@ Set `STEM_AGENT_MODEL` to any [LiteLLM-supported model string](https://docs.lite
 
 ## Output files
 
-Outputs are scoped per domain under `outputs/<domain_slug>/`:
+Everything lands inside the `stem_agent/` project directory:
 
-| File | Description |
+| Path | Description |
 |---|---|
-| `outputs/<domain>/final_agent.json` | The crystallized `AgentSpec` the stem agent converged on (overwritten on re-runs) |
-| `outputs/<domain>/eval_results.json` | Before/after score comparison across all four eval dimensions |
-| `outputs/<domain>/eval_by_tier.json` | Per-tier (easy / medium / hard) score breakdown for the final agent |
-| `outputs/<domain>/checkpoints/` | One JSON per checkpoint (including rolled-back regressions) |
-| `writeup/writeup.md` | Write-up to be completed after a full run |
+| `eval_suite/<domain_slug>.json` | 15 auto-generated eval questions for the domain (Phase 0 output; reused on subsequent runs) |
+| `outputs/<domain_slug>/final_agent.json` | The crystallised `AgentSpec` the stem agent converged on |
+| `outputs/<domain_slug>/eval_results.json` | Before/after score comparison across all four eval dimensions |
+| `outputs/<domain_slug>/eval_by_tier.json` | Per-tier (easy / medium / hard) score breakdown for the final agent |
+| `outputs/<domain_slug>/checkpoints/` | One JSON per checkpoint, including rolled-back regressions |

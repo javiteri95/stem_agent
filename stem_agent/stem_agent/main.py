@@ -9,7 +9,11 @@ Usage:
 Arguments:
     --domain    Task domain to specialise for (default: "Deep Research").
                 Outputs are isolated under outputs/<domain_slug>/.
-    --questions Path to a JSON questions file (default: eval_suite/questions.json).
+    --questions Path to a JSON questions file.  When omitted, Phase 0 runs first:
+                if eval_suite/<domain_slug>.json already exists it is reused;
+                otherwise the ground-truth builder fetches web/arXiv/Wikipedia
+                evidence and generates 25 questions via the LLM, then writes
+                eval_suite/<domain_slug>.json before continuing.
     --resume    If a checkpoint already exists for this domain, skip Phases 1-2 and
                 continue the differentiation loop from the best saved checkpoint.
 
@@ -38,6 +42,7 @@ from stem_agent.phases.crystallize import crystallize
 from stem_agent.eval.harness import run_eval
 from stem_agent.core.checkpointer import save_checkpoint, load_best_checkpoint
 from stem_agent.core.llm import _get_model
+from stem_agent.core.paths import PROJECT_ROOT
 
 
 def _domain_slug(domain: str) -> str:
@@ -61,9 +66,13 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--questions",
-        default="eval_suite/questions.json",
+        default=None,
         metavar="PATH",
-        help="Path to a JSON file with evaluation questions (default: eval_suite/questions.json).",
+        help=(
+            "Path to a JSON file with evaluation questions. "
+            "When omitted, Phase 0 auto-generates questions for the domain "
+            "(or reuses eval_suite/<domain_slug>.json if it already exists)."
+        ),
     )
     parser.add_argument(
         "--resume",
@@ -80,12 +89,24 @@ def _parse_args() -> argparse.Namespace:
 def main() -> None:
     args = _parse_args()
     domain: str = args.domain
-    questions_path: str = args.questions
     resume: bool = args.resume
 
-    questions = json.loads(Path(questions_path).read_text())
-    output_dir = os.path.join("outputs", _domain_slug(domain))
-    os.makedirs(output_dir, exist_ok=True)
+    # ------------------------------------------------------------------
+    # Phase 0: resolve question set
+    # ------------------------------------------------------------------
+    domain_slug = _domain_slug(domain)
+    if args.questions:
+        # Explicit path provided — use it directly (honour absolute and relative to cwd).
+        questions_path = Path(args.questions)
+        print(f"Questions: {questions_path} (user-supplied)")
+        questions = json.loads(questions_path.read_text())
+    else:
+        # Auto-resolve: reuse cache or run the ground-truth builder.
+        from stem_agent.phases.groundtruth import load_or_build
+        questions = load_or_build(domain, domain_slug)
+
+    output_dir = PROJECT_ROOT / "outputs" / domain_slug
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     print("=== STEM AGENT ===")
     print(f"Domain:  {domain}")
@@ -94,7 +115,7 @@ def main() -> None:
     print(f"Resume:  {resume}\n")
 
     if resume:
-        result = load_best_checkpoint(output_dir)
+        result = load_best_checkpoint(str(output_dir))
         if result is None:
             print("No checkpoints found for this domain — starting fresh.\n")
             resume = False
@@ -122,15 +143,15 @@ def main() -> None:
         # Print per-tier breakdown of baseline
         _print_tier_summary(initial_score["per_question"])
 
-        save_checkpoint(initial_spec, initial_score, iteration=0, output_dir=output_dir)
+        save_checkpoint(initial_spec, initial_score, iteration=0, output_dir=str(output_dir))
 
     # Phase 3
     print("\nPhase 3: Differentiate")
-    best_spec, best_score = differentiate(initial_spec, initial_score, questions, output_dir=output_dir)
+    best_spec, best_score = differentiate(initial_spec, initial_score, questions, output_dir=str(output_dir))
 
     # Phase 4
     print("\nPhase 4: Crystallize")
-    crystallize(best_spec, best_score, initial_score, output_dir=output_dir)
+    crystallize(best_spec, best_score, initial_score, output_dir=str(output_dir))
 
 
 def _print_tier_summary(per_question: list[dict]) -> None:

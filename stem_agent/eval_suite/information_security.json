@@ -1,0 +1,286 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is information security, and what is its primary focus?",
+    "ground_truth": "Information security, also called data security or infosec, is the practice of protecting information by mitigating information risks. Its primary focus is the balanced protection of confidentiality, integrity, and availability, often called the CIA triad, while also maintaining efficient policy implementation without unnecessarily hampering productivity.",
+    "key_facts": [
+      "Information security is the practice of protecting information by mitigating information risks",
+      "It is also called data security or infosec",
+      "Its primary focus is the CIA triad: confidentiality, integrity, and availability",
+      "It aims to maintain efficient policy implementation without hampering productivity"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "What kinds of information can be protected by information security?",
+    "ground_truth": "Information security applies to many forms of information, not just digital data. Protected information may be electronic, physical, tangible such as paperwork, or intangible such as knowledge.",
+    "key_facts": [
+      "Protected information may be electronic",
+      "Protected information may be physical",
+      "Protected information may be tangible, such as paperwork",
+      "Protected information may be intangible, such as knowledge"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "Which types of unauthorized events does information security try to prevent or reduce?",
+    "ground_truth": "Information security tries to prevent or reduce the probability of unauthorized or inappropriate access to data, as well as unlawful use, disclosure, disruption, deletion, corruption, modification, inspection, recording, or devaluation of information. It also includes actions intended to reduce the adverse impacts of such incidents.",
+    "key_facts": [
+      "It aims to prevent or reduce unauthorized or inappropriate access",
+      "It addresses unlawful use, disclosure, disruption, deletion, corruption, modification, inspection, recording, and devaluation",
+      "It also includes reducing adverse impacts of incidents"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "How is information security related to information risk management?",
+    "ground_truth": "Information security is part of information risk management. In practice, it focuses on protecting information by mitigating information risks rather than eliminating every possible risk.",
+    "key_facts": [
+      "Information security is part of information risk management",
+      "It focuses on mitigating information risks",
+      "It is concerned with protection rather than absolute elimination of risk"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "What is the CIA triad in information security?",
+    "ground_truth": "The CIA triad refers to confidentiality, integrity, and availability. These three principles describe the main security goals used to protect information systems and data.",
+    "key_facts": [
+      "CIA stands for confidentiality, integrity, and availability",
+      "It is the central security model in information security",
+      "It describes the main goals for protecting data and systems"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "What structured process is commonly used to achieve information security, and why is it important?",
+    "ground_truth": "Information security is largely achieved through a structured risk management process. This matters because organizations must balance protection goals with efficient policy implementation, so security measures reduce risk without unnecessarily disrupting productivity.",
+    "key_facts": [
+      "Information security is largely achieved through a structured risk management process",
+      "Security must be balanced with efficient policy implementation",
+      "Security should not hamper organization productivity"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "How do laws and regulations influence information security practices?",
+    "ground_truth": "Information security practices are standardized and shaped by laws and regulations that govern how data is accessed, processed, stored, transferred, and destroyed. As a result, organizations often adopt guidance, policies, and industry standards to remain compliant while protecting information.",
+    "key_facts": [
+      "Laws and regulations affect how data is accessed, processed, stored, transferred, and destroyed",
+      "Information security is standardized through guidance, policies, and industry standards",
+      "Compliance influences security practice"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "What roles and activities are described as specialist areas within information security?",
+    "ground_truth": "The field includes many specialist roles such as securing networks and allied infrastructure, securing applications and databases, security testing, information systems auditing, business continuity planning, electronic record discovery, and digital forensics. These roles show that information security covers both preventive controls and investigative or recovery work.",
+    "key_facts": [
+      "Specialist roles include network and infrastructure security",
+      "Specialist roles include application and database security",
+      "Specialist roles include security testing, auditing, business continuity planning, e-discovery, and digital forensics",
+      "Information security includes preventive and investigative/recovery functions"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "How does information technology security relate to information security in enterprise settings?",
+    "ground_truth": "Information security is applied to technology by information technology security specialists, usually in the form of computer systems. In major enterprises, these specialists are commonly present because of the nature and value of the data involved, and they are responsible for securing company technology from malicious attacks that seek critical private information or control of internal systems.",
+    "key_facts": [
+      "Information technology security specialists apply information security to technology",
+      "This is most often done for computer systems",
+      "Such specialists are commonly found in major enterprises because of data value and volume",
+      "They defend against attacks seeking private information or control of internal systems"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "What kinds of security controls and practices are commonly used to standardize information security?",
+    "ground_truth": "Academics and professionals collaborate to provide guidance, policies, and industry standards for information security. Common examples include passwords, antivirus software, firewalls, encryption software, legal liability, and security awareness and training.",
+    "key_facts": [
+      "Academics and professionals collaborate on information security guidance",
+      "Policies and industry standards help standardize the discipline",
+      "Examples include passwords, antivirus software, firewalls, and encryption software",
+      "Security awareness and training are also part of standard practice"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "Why is information security important in organizations that still rely on paper-based business operations?",
+    "ground_truth": "Paper-based business operations remain prevalent, and they require their own set of information security practices. Information security therefore applies not only to digital systems but also to physical records and other non-digital forms of information.",
+    "key_facts": [
+      "Paper-based business operations are still prevalent",
+      "They require their own information security practices",
+      "Information security applies to physical records as well as digital systems"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "hard",
+    "question": "How should information security teams balance confidentiality, integrity, and availability when designing policies for productive organizations?",
+    "ground_truth": "The evidence presents information security as a balancing act rather than a single-objective problem. Organizations must protect confidentiality, integrity, and availability while also implementing policies efficiently and avoiding unnecessary harm to productivity; this makes risk management and tradeoff analysis central to security design.",
+    "key_facts": [
+      "Security must balance confidentiality, integrity, and availability",
+      "Efficient policy implementation is also a goal",
+      "Security should avoid hampering productivity",
+      "Risk management and tradeoff analysis are central"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "What tensions arise between standardizing information security and adapting it to different legal and operational contexts?",
+    "ground_truth": "Information security is standardized through shared guidance, policies, and industry standards, but it is also shaped by laws and regulations that govern data handling. This creates a tension between consistency across organizations and the need to adapt controls to different rules for access, processing, storage, transfer, and destruction of data.",
+    "key_facts": [
+      "Information security is standardized through guidance, policies, and industry standards",
+      "It is shaped by laws and regulations",
+      "Rules affect access, processing, storage, transfer, and destruction of data",
+      "There is a tension between consistency and adaptation"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "How do the specialist roles in information security reflect the difference between prevention, detection, recovery, and investigation?",
+    "ground_truth": "The listed specialist roles span several phases of security work. Network, application, and database security as well as security testing are primarily preventive or protective, while business continuity planning, electronic record discovery, and digital forensics support recovery, investigation, and response after incidents.",
+    "key_facts": [
+      "Network, application, and database security are protective roles",
+      "Security testing supports detection or validation",
+      "Business continuity planning supports recovery",
+      "Electronic record discovery and digital forensics support investigation and response"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "What broad set of information security concerns must be addressed beyond purely technical threats such as hacking?",
+    "ground_truth": "Information security is broader than defending against technical attacks. It also covers unlawful use, disclosure, disruption, deletion, corruption, modification, inspection, recording, and devaluation of information, and it includes mitigating harms from human error, negligence, or lack of awareness that can expose sensitive data.",
+    "key_facts": [
+      "Information security covers more than technical attacks",
+      "It includes unlawful use, disclosure, disruption, deletion, corruption, modification, inspection, recording, and devaluation",
+      "Human error, negligence, and lack of awareness can expose sensitive data",
+      "Security includes reducing adverse impacts of incidents"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Information security",
+        "url": "https://en.wikipedia.org/wiki/Information_security"
+      },
+      {
+        "type": "web",
+        "title": "The Importance of Information Security in Business",
+        "url": "https://www.linkedin.com/pulse/importance-information-security-business-austin-gould-wh6vc"
+      }
+    ]
+  }
+]

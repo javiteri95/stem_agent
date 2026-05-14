@@ -32,7 +32,7 @@ def sense(task_domain: str) -> dict:
     """
     prompt = SENSE_PROMPT.format(domain=task_domain)
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=1024)
+    raw = call_llm(messages, max_tokens=2048)
 
     # Strip markdown fences if present
     raw = raw.strip()
@@ -41,6 +41,11 @@ def sense(task_domain: str) -> dict:
         if raw.startswith("json"):
             raw = raw[4:]
         raw = raw.strip()
+
+    # Strip stray trailing text after the closing brace
+    last_brace = raw.rfind("}")
+    if last_brace != -1:
+        raw = raw[: last_brace + 1]
 
     primitives = json.loads(raw)
 

@@ -1,0 +1,340 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is code review in software development, and who performs it?",
+    "ground_truth": "Code review is a software quality assurance activity in which one or more people examine the source code of a computer program. It can happen after implementation or during the development process. The people doing the checking are called reviewers, and at least one reviewer must not be the author of the code.",
+    "key_facts": [
+      "Code review is a software quality assurance activity",
+      "It involves examining source code",
+      "It can occur after implementation or during development",
+      "The checking people are called reviewers",
+      "At least one reviewer must not be the code's author"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "How does code review differ from static analysis, self-checks, testing, and pair programming?",
+    "ground_truth": "Code review differs from static analysis because static analysis relies primarily on automated tools. It differs from self-checks because self-checks involve only the author, and from testing because testing requires code execution. It also differs from pair programming because pair programming happens continuously during development rather than as a separate step.",
+    "key_facts": [
+      "Static analysis relies primarily on automated tools",
+      "Self-checks involve only the author",
+      "Testing requires code execution",
+      "Pair programming is performed continuously during development",
+      "Code review is a separate quality assurance step"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "What is the main purpose of code review in software engineering?",
+    "ground_truth": "Code review is commonly used to identify programming defects. It is a software quality assurance practice meant to improve the quality of source code by having others inspect it. The practice is also associated with maintaining software quality before code is integrated.",
+    "key_facts": [
+      "Code review is commonly used for identifying programming defects",
+      "It is a software quality assurance practice",
+      "It involves inspection of source code by others",
+      "It is typically done before integration"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      },
+      {
+        "type": "web",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "Why is automated assistance for code review considered desirable?",
+    "ground_truth": "Manual code review has shortcomings: it is time consuming and its outcomes are subjective and depend on the skills of reviewers. Because of these limitations, automated approaches for assisting code review are considered highly desirable. The goal is to help identify defects more efficiently and consistently.",
+    "key_facts": [
+      "Manual code review is time consuming",
+      "Manual review outcomes are subjective",
+      "Manual review depends on reviewer skill",
+      "Automated assistance is highly desirable"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "What role does code review play in the software development lifecycle?",
+    "ground_truth": "Code reviews play a fundamental role in the software development lifecycle. They are used to promote high-quality and secure coding. In practice, they help teams examine code before it is integrated and used further in development.",
+    "key_facts": [
+      "Code reviews play a fundamental role in the software development lifecycle",
+      "They promote high-quality coding",
+      "They promote secure coding",
+      "They are used before integration"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Essential Code Review Best Practices | Wiz",
+        "url": "https://www.wiz.io/academy/application-security/code-review-best-practices"
+      },
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "What are the timing and participation requirements that distinguish code review from related development practices?",
+    "ground_truth": "Code review is typically performed after implementation but before integration into the next stage of development. Unlike pair programming, it is not a continuous collaborative activity during coding. It also requires at least one reviewer who is not the author, making it distinct from self-checking.",
+    "key_facts": [
+      "Code review is typically after implementation",
+      "It occurs before integration",
+      "At least one reviewer must not be the author",
+      "It differs from pair programming because it is not continuous during development",
+      "It differs from self-checks because reviewers are not only the author"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "Why might software teams prefer code review over relying only on static analysis or testing?",
+    "ground_truth": "Code review can catch issues through human inspection that automated tools or execution-based tests may miss. Static analysis depends mainly on automated tools, while testing only finds problems exposed by running the code. Code review adds human judgment and can be used before integration, which makes it valuable as a complement to other quality assurance methods.",
+    "key_facts": [
+      "Static analysis relies primarily on automated tools",
+      "Testing requires code execution",
+      "Code review adds human judgment",
+      "Code review can be done before integration",
+      "Code review complements other quality assurance techniques"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      },
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "What specific limitations of manual code review have motivated research into automation?",
+    "ground_truth": "Manual code review is time consuming, and its outcomes can be subjective. The quality of manual review also depends on the skills of reviewers, which can lead to variability. These limitations have motivated automated approaches that can assist reviewers and reduce the burden of finding defects.",
+    "key_facts": [
+      "Manual code review is time consuming",
+      "Manual review outcomes are subjective",
+      "Manual review depends on reviewer skill",
+      "Automation is being explored to assist review",
+      "The goal is to reduce burden in identifying defects"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      },
+      {
+        "type": "arxiv",
+        "title": "Previously on... Automating Code Review",
+        "url": "http://arxiv.org/abs/2508.18003v1"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "How are modern AI and LLM-based methods being framed for secure code review at the pre-commit stage?",
+    "ground_truth": "Secure code review is described as critical at the pre-commit stage because vulnerabilities need to be caught early under tight latency and limited-context constraints. Existing SAST-based checks are noisy and can miss immature, context-dependent vulnerabilities, while standalone LLMs are limited by context windows and lack explicit tool use. This motivates agentic AI approaches that combine LLMs with autonomous tools.",
+    "key_facts": [
+      "Secure code review is critical at the pre-commit stage",
+      "Vulnerabilities must be caught early",
+      "There are tight latency and limited-context constraints",
+      "SAST-based checks are noisy",
+      "SAST-based checks may miss immature, context-dependent vulnerabilities",
+      "Standalone LLMs have context-window and tool-use limitations"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "AgenticSCR: An Autonomous Agentic Secure Code Review for Immature Vulnerabilities Detection",
+        "url": "http://arxiv.org/abs/2601.19138v1"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "What have recent studies said about the state of research on automating modern code review?",
+    "ground_truth": "Modern code review is a standard practice in software engineering, but it demands substantial time and resource investment. Recent research has increasingly explored automating core review tasks using machine learning and deep learning. However, there is substantial variability in task definitions, datasets, and evaluation procedures.",
+    "key_facts": [
+      "Modern code review is a standard practice in software engineering",
+      "It demands substantial time and resources",
+      "Research has explored automation with machine learning",
+      "Research has explored automation with deep learning",
+      "There is substantial variability in task definitions, datasets, and evaluation procedures"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Previously on... Automating Code Review",
+        "url": "http://arxiv.org/abs/2508.18003v1"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "How do code review tools change the review process compared with plain text discussion?",
+    "ground_truth": "Modern code review tools can support direct comments on specific lines of code and allow reviewers to approve or deny changes on a line-by-line basis. These features make the review more granular and more tightly connected to the code itself. That kind of tooling helps structure feedback during the review process.",
+    "key_facts": [
+      "Tools can allow comments directly on specific lines of code",
+      "Tools can support approval or denial of changes line by line",
+      "This makes the review more granular",
+      "The review becomes more tightly connected to the code"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Advancements in Code Review: A Scientific Approach to Designing",
+        "url": "https://www.gitkraken.com/blog/scientific-approach-to-software-design"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "hard",
+    "question": "What open research challenges remain in automating code review tasks across different datasets and evaluation settings?",
+    "ground_truth": "A key challenge is that research on automating code review has used varying task definitions, datasets, and evaluation procedures, which makes comparison across studies difficult. This variability suggests that the field still lacks a unified experimental standard. Another challenge is balancing the benefits of automation with the need to preserve review quality and relevance to real development workflows.",
+    "key_facts": [
+      "There is substantial variability in task definitions",
+      "There is substantial variability in datasets",
+      "There is substantial variability in evaluation procedures",
+      "This makes cross-study comparison difficult",
+      "[disputed] The field lacks a unified experimental standard"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Previously on... Automating Code Review",
+        "url": "http://arxiv.org/abs/2508.18003v1"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "How might agentic AI address the weaknesses of both traditional static analysis and standalone LLMs in secure code review?",
+    "ground_truth": "Agentic AI is proposed as a way to combine large language models with autonomous tool use. This is intended to address the noisiness of SAST-based checks and the context-window limitations of standalone LLMs. By operating at the pre-commit stage, such systems aim to catch immature vulnerabilities early while working within limited context.",
+    "key_facts": [
+      "Agentic AI combines LLMs with autonomous tools",
+      "SAST-based checks can be noisy",
+      "Standalone LLMs are limited by context windows",
+      "Secure code review is important at the pre-commit stage",
+      "The goal is early detection of immature vulnerabilities"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "AgenticSCR: An Autonomous Agentic Secure Code Review for Immature Vulnerabilities Detection",
+        "url": "http://arxiv.org/abs/2601.19138v1"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "What tradeoffs are implied by using automation to assist code review rather than relying on human reviewers alone?",
+    "ground_truth": "Automation can reduce the time and resource burden of manual review and may help identify defects more consistently. However, manual review provides human judgment, while automated methods can be constrained by noisy outputs, limited context, or incomplete task definitions. The main tradeoff is therefore between efficiency and the nuanced reasoning that human reviewers contribute.",
+    "key_facts": [
+      "Automation can reduce time and resource burden",
+      "Automation may help identify defects more consistently",
+      "Manual review provides human judgment",
+      "Automated methods can be noisy or context-limited",
+      "The tradeoff is efficiency versus nuanced reasoning"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      },
+      {
+        "type": "arxiv",
+        "title": "Previously on... Automating Code Review",
+        "url": "http://arxiv.org/abs/2508.18003v1"
+      },
+      {
+        "type": "arxiv",
+        "title": "AgenticSCR: An Autonomous Agentic Secure Code Review for Immature Vulnerabilities Detection",
+        "url": "http://arxiv.org/abs/2601.19138v1"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "Why is code review considered especially important for secure coding, and what limitations of current approaches motivate further research?",
+    "ground_truth": "Code review is considered important for secure coding because it helps catch vulnerabilities before code is integrated or committed. This is especially relevant when vulnerabilities must be found early, under time pressure and limited context. Current approaches still face problems: human review is time consuming and subjective, SAST can be noisy, and standalone LLMs have context and tool-use limits.",
+    "key_facts": [
+      "Code review supports secure coding",
+      "It helps catch vulnerabilities early",
+      "It can be important before integration or pre-commit",
+      "Manual review is time consuming and subjective",
+      "SAST-based checks can be noisy",
+      "Standalone LLMs have context-window and tool-use limitations"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Essential Code Review Best Practices | Wiz",
+        "url": "https://www.wiz.io/academy/application-security/code-review-best-practices"
+      },
+      {
+        "type": "arxiv",
+        "title": "Using StackOverflow content to assist in code review",
+        "url": "http://arxiv.org/abs/1803.05689v1"
+      },
+      {
+        "type": "arxiv",
+        "title": "AgenticSCR: An Autonomous Agentic Secure Code Review for Immature Vulnerabilities Detection",
+        "url": "http://arxiv.org/abs/2601.19138v1"
+      }
+    ]
+  }
+]

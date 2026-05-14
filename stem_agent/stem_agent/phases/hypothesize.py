@@ -50,7 +50,7 @@ def hypothesize(primitives: dict, task_domain: str = "Deep Research") -> AgentSp
         primitives_json=json.dumps(primitives, indent=2),
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=1024)
+    raw = call_llm(messages, max_tokens=2048)
 
     # Strip markdown fences if present
     raw = raw.strip()
@@ -59,6 +59,11 @@ def hypothesize(primitives: dict, task_domain: str = "Deep Research") -> AgentSp
         if raw.startswith("json"):
             raw = raw[4:]
         raw = raw.strip()
+
+    # Strip stray trailing text after the closing brace
+    last_brace = raw.rfind("}")
+    if last_brace != -1:
+        raw = raw[: last_brace + 1]
 
     data = json.loads(raw)
     rationale = data.pop("rationale", "")
