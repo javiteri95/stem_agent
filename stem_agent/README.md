@@ -40,8 +40,26 @@ A self-differentiating agent that researches how Deep Research tasks are solved,
 
 6. **Run:**
    ```bash
+   # default domain (Deep Research)
    uv run python -m stem_agent.main
+
+   # custom domain
+   uv run python -m stem_agent.main --domain "Code Review"
+
+   # custom domain + custom questions file
+   uv run python -m stem_agent.main --domain "Code Review" --questions path/to/questions.json
+
+   # resume an existing run (skips Phases 1 & 2, continues from best checkpoint)
+   uv run python -m stem_agent.main --domain "Deep Research" --resume
    ```
+
+## Arguments
+
+| Argument | Default | Description |
+|---|---|---|
+| `--domain` | `"Deep Research"` | Task domain to specialise for. Outputs are isolated under `outputs/<domain_slug>/`. |
+| `--questions` | `eval_suite/questions.json` | Path to a JSON evaluation questions file. |
+| `--resume` | off | Skip Phases 1 & 2, load the best existing checkpoint for the domain, then continue the differentiation loop and update `final_agent.json`. |
 
 ## What to expect
 
@@ -65,9 +83,12 @@ Set `STEM_AGENT_MODEL` to any [LiteLLM-supported model string](https://docs.lite
 
 ## Output files
 
+Outputs are scoped per domain under `outputs/<domain_slug>/`:
+
 | File | Description |
 |---|---|
-| `outputs/final_agent.json` | The crystallized `AgentSpec` the stem agent converged on |
-| `outputs/eval_results.json` | Before/after score comparison across all four eval dimensions |
-| `outputs/checkpoints/` | One JSON per checkpoint (including rolled-back regressions) |
+| `outputs/<domain>/final_agent.json` | The crystallized `AgentSpec` the stem agent converged on (overwritten on re-runs) |
+| `outputs/<domain>/eval_results.json` | Before/after score comparison across all four eval dimensions |
+| `outputs/<domain>/eval_by_tier.json` | Per-tier (easy / medium / hard) score breakdown for the final agent |
+| `outputs/<domain>/checkpoints/` | One JSON per checkpoint (including rolled-back regressions) |
 | `writeup/writeup.md` | Write-up to be completed after a full run |

@@ -1,0 +1,30 @@
+{
+  "domain": "Open-domain Question Answering",
+  "architecture": "reflection_loop",
+  "tiers": {
+    "easy": {
+      "factual_accuracy": 0.9767,
+      "coverage": 1.0,
+      "coherence": 0.9833,
+      "source_diversity": 0.8167,
+      "composite": 0.9442,
+      "n": 3
+    },
+    "hard": {
+      "factual_accuracy": 0.9133,
+      "coverage": 0.8433,
+      "coherence": 0.9633,
+      "source_diversity": 0.86,
+      "composite": 0.895,
+      "n": 3
+    },
+    "medium": {
+      "factual_accuracy": 0.9325,
+      "coverage": 0.895,
+      "coherence": 0.98,
+      "source_diversity": 0.85,
+      "composite": 0.9144,
+      "n": 4
+    }
+  }
+}

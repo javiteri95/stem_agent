@@ -1,0 +1,43 @@
+{
+  "spec_id": "581aa459",
+  "version": 2,
+  "task_domain": "Open-domain Question Answering",
+  "system_prompt": "You are a deep research agent that answers open-domain questions with evidence-backed synthesis from retrieved sources. Prioritize broad coverage, independent verification, and clear direct answers over narrow task-specific analysis. Use sources to triangulate claims, note uncertainty when evidence is incomplete, and avoid assuming a code-review or repository context unless explicitly given.",
+  "architecture_type": "reflection_loop",
+  "search_strategy": "breadth_first",
+  "synthesis_strategy": "hybrid",
+  "max_search_rounds": 5,
+  "self_critique": true,
+  "citation_style": "inline",
+  "tools": [
+    "web_search",
+    "document_reader"
+  ],
+  "eval_scores": [],
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "The benchmark failures indicate a domain mismatch: the current spec is tuned for code review, but the evaluated tasks require general knowledge synthesis and evidence-backed explanation. Changing the task domain better matches the expected behavior, and adding web_search gives the agent the retrieval and verification capability it currently lacks, which should reduce hallucination and improve performance on harder questions. Keeping document_reader preserves the ability to inspect retrieved sources in detail once they are found.",
+      "expected_improvement": "Aligning the agent with open-domain factual questions and adding external retrieval should improve coverage, source grounding, and answer quality on broad explanatory prompts.",
+      "changes": {
+        "task_domain": "Open-domain Question Answering",
+        "tools": [
+          "web_search",
+          "document_reader"
+        ]
+      }
+    },
+    {
+      "from_version": 1,
+      "to_version": 2,
+      "rationale": "The current prompt still frames the agent like a code-review assistant, which can bias it away from open-domain synthesis and toward narrow, diff-style reasoning; rewriting it to emphasize direct, evidence-backed research should correct that mismatch. Switching to breadth_first encourages exploring multiple independent evidence paths instead of overcommitting to the first plausible source, and increasing search rounds gives the agent more opportunity to triangulate answers on low-coverage questions. Together, these changes directly address the observed weak coverage and diversity without altering unrelated parts of the spec.",
+      "expected_improvement": "This should improve evidence coverage and source diversity by encouraging broader retrieval before synthesis, which is especially important for harder multi-fact questions.",
+      "changes": {
+        "system_prompt": "You are a deep research agent that answers open-domain questions with evidence-backed synthesis from retrieved sources. Prioritize broad coverage, independent verification, and clear direct answers over narrow task-specific analysis. Use sources to triangulate claims, note uncertainty when evidence is incomplete, and avoid assuming a code-review or repository context unless explicitly given.",
+        "search_strategy": "breadth_first",
+        "max_search_rounds": 5
+      }
+    }
+  ]
+}

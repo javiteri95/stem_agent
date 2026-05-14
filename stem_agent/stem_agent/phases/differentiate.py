@@ -168,6 +168,7 @@ def differentiate(
     initial_spec: AgentSpec,
     initial_score: dict,
     questions: list[dict],
+    output_dir: str = "outputs",
 ) -> tuple[AgentSpec, dict]:
     """
     Phase 3: Run the differentiation loop.
@@ -176,7 +177,7 @@ def differentiate(
     """
     best_spec = initial_spec
     best_score = initial_score
-    save_checkpoint(best_spec, best_score, iteration=0)
+    save_checkpoint(best_spec, best_score, iteration=0, output_dir=output_dir)
     consecutive_small_improvements = 0
 
     for iteration in range(1, MAX_ITERATIONS + 1):
@@ -209,7 +210,7 @@ def differentiate(
         if delta >= 0:
             best_spec = candidate_spec
             best_score = candidate_score
-            save_checkpoint(best_spec, best_score, iteration)
+            save_checkpoint(best_spec, best_score, iteration, output_dir=output_dir)
             print("  ✓ Improvement accepted")
             if delta < CONVERGENCE_DELTA:
                 consecutive_small_improvements += 1
@@ -217,7 +218,7 @@ def differentiate(
                 consecutive_small_improvements = 0
         else:
             # Save rollback checkpoint so we can observe it later
-            save_checkpoint(candidate_spec, candidate_score, iteration)
+            save_checkpoint(candidate_spec, candidate_score, iteration, output_dir=output_dir)
             print("  ✗ Regression — rolling back")
 
         # Step 5: Convergence check

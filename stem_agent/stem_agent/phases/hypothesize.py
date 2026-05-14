@@ -10,7 +10,7 @@ from stem_agent.core.agent_spec import AgentSpec
 from stem_agent.core.llm import call_llm
 from stem_agent.core.checkpointer import save_checkpoint
 
-HYPOTHESIZE_PROMPT = """You are designing the initial architecture for a Deep Research agent.
+HYPOTHESIZE_PROMPT = """You are designing the initial architecture for a {domain} agent.
 
 Based on this analysis of how the domain is typically approached:
 {primitives_json}
@@ -40,12 +40,15 @@ VALID_VALUES = {
 }
 
 
-def hypothesize(primitives: dict) -> AgentSpec:
+def hypothesize(primitives: dict, task_domain: str = "Deep Research") -> AgentSpec:
     """
     Phase 2: produce AgentSpec version 0 from domain primitives.
-    Saves checkpoint 0 (score placeholder — no eval yet at this stage).
+    Stamps task_domain onto the spec.
     """
-    prompt = HYPOTHESIZE_PROMPT.format(primitives_json=json.dumps(primitives, indent=2))
+    prompt = HYPOTHESIZE_PROMPT.format(
+        domain=task_domain,
+        primitives_json=json.dumps(primitives, indent=2),
+    )
     messages = [{"role": "user", "content": prompt}]
     raw = call_llm(messages, max_tokens=1024)
 
@@ -74,7 +77,10 @@ def hypothesize(primitives: dict) -> AgentSpec:
         self_critique = self_critique.lower() == "true"
     data["self_critique"] = self_critique
 
-    spec = AgentSpec(**{k: v for k, v in data.items() if k in AgentSpec.__dataclass_fields__})
+    spec = AgentSpec(
+        task_domain=task_domain,
+        **{k: v for k, v in data.items() if k in AgentSpec.__dataclass_fields__ and k != "task_domain"},
+    )
     spec.version = 0
 
     print(f"Initial architecture: {spec.architecture_type}")
