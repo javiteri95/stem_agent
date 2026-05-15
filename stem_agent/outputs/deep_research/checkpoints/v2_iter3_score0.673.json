@@ -1,0 +1,266 @@
+{
+  "spec": {
+    "spec_id": "7a1633c0",
+    "version": 2,
+    "task_domain": "Deep Research",
+    "system_prompt": "You are a deep research agent that must first clarify the user\u2019s question and decompose it into explicit sub-questions before searching. For multi-part, comparative, or ambiguous prompts, plan coverage checks for each sub-question, prioritize authoritative primary sources, and use targeted follow-up searches to resolve gaps or conflicts. Before synthesizing, verify that every sub-question is answered with cited evidence; if coverage is incomplete, continue searching and state the remaining uncertainty rather than producing a partial answer.",
+    "architecture_type": "reflection_loop",
+    "search_strategy": "breadth_first",
+    "synthesis_strategy": "extractive",
+    "max_search_rounds": 4,
+    "self_critique": true,
+    "citation_style": "inline",
+    "tools": [
+      "web_search",
+      "document_reader",
+      "calculator",
+      "code_executor"
+    ],
+    "eval_scores": [],
+    "mutation_log": [
+      {
+        "from_version": 0,
+        "to_version": 1,
+        "rationale": "Switching to breadth_first addresses the weak retrieval pattern on ambiguous and comparative questions by expanding source breadth earlier, which should reduce missed sub-questions and improve cross-checking. Changing synthesis to extractive makes the final response more evidence-constrained, limiting polished but under-supported prose and forcing claims to remain closer to the retrieved sources. Together, these changes target the observed low coverage and occasional low accuracy without altering the toolset.",
+        "expected_improvement": "The agent should retrieve broader, more directly relevant evidence and produce answers that stay tightly grounded in sourced claims, improving coverage and reducing unsupported conclusions.",
+        "changes": {
+          "search_strategy": "breadth_first",
+          "synthesis_strategy": "extractive"
+        }
+      },
+      {
+        "from_version": 1,
+        "to_version": 2,
+        "rationale": "The failure analysis indicates that the main issue is not general recall but weak query clarification and insufficient explicit sub-question planning before and during search. Strengthening the system prompt to force decomposition, coverage checks, and gap-driven follow-up should reduce the generic, incomplete answers seen on harder items. This also supports more targeted depth without changing the rest of the retrieval pipeline.",
+        "expected_improvement": "The agent should better decompose complex prompts, check coverage systematically, and retrieve missing evidence for each sub-question, improving completeness on multi-part and comparative questions.",
+        "changes": {
+          "system_prompt": "You are a deep research agent that must first clarify the user\u2019s question and decompose it into explicit sub-questions before searching. For multi-part, comparative, or ambiguous prompts, plan coverage checks for each sub-question, prioritize authoritative primary sources, and use targeted follow-up searches to resolve gaps or conflicts. Before synthesizing, verify that every sub-question is answered with cited evidence; if coverage is incomplete, continue searching and state the remaining uncertainty rather than producing a partial answer."
+        }
+      }
+    ]
+  },
+  "score": {
+    "per_question": [
+      {
+        "id": "q01",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.95,
+          "coverage": 1.0,
+          "coherence": 0.98,
+          "source_diversity": 0.85,
+          "reasoning": "The answer accurately describes Deep Research as an agentic, multi-step research workflow that searches, reads, verifies, and synthesizes information into a grounded report, with only minor extra generalizations beyond the provided ground truth.",
+          "composite": 0.945
+        },
+        "composite": 0.945,
+        "answer": "**Deep Research** in the context of AI agents refers to an agent workflow designed to **systematically investigate a question before answering**, rather than responding from a single model pass.\n\nAt a high level, it typically does four things:\n\n1. **Understands and decomposes the question**\n   - Interprets the user\u2019s request.\n   - Breaks broad or ambiguous prompts into smaller sub-questions.\n\n2. **Gathers evidence from multiple sources**\n   - Searches the web, documents, databases, or other tools.\n   - Collects relevant information from more than one source to reduce blind spots.\n\n3. **Checks, compares, and verifies**\n   - Compares sources against each other.\n   - Looks for agreement, contradictions, missing context, and source reliability.\n   - Continues searching when the evidence is incomplete or conflicting.\n\n4. **Synthesizes a grounded answer**\n   - Combines the evidence into a clear response.\n   - Often summarizes uncertainty and may cite sources or explain how conclusions were reached.\n\n### What makes it different from a normal chatbot?\nA standard chatbot often answers from its internal model knowledge in one step. A Deep Research agent is more like a **research assistant**: it can **plan, search, verify, and synthesize** before replying. That generally makes it better for:\n- complex questions,\n- factual lookups,\n- comparisons,\n- and topics where accuracy matters.\n\n### Important caveat\n\u201cDeep Research\u201d is not always a single standardized technical term. Different products and platforms may use it differently. In general, though, it means an AI system that performs **multi-step research and evidence-based synthesis** rather than only generating a direct answer."
+      },
+      {
+        "id": "q02",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.1,
+          "coverage": 0.0,
+          "coherence": 0.9,
+          "source_diversity": 0.0,
+          "reasoning": "The response is coherent but it fails to identify the products named in the ground truth and incorrectly claims no evidence was provided, so it does not address the key facts.",
+          "composite": 0.25
+        },
+        "composite": 0.25,
+        "answer": "I can\u2019t identify which major AI products offer a Deep Research feature from the evidence because no evidence was provided in the prompt.\n\n### What was missing in my earlier answer\n- I asked for clarification, but I did not answer your actual question.\n- I also did not distinguish between:\n  - products that **literally brand a feature as \u201cDeep Research\u201d**, and\n  - products that offer a similar **research-agent** capability under a different name.\n- Without source material, any product list would be speculative.\n\n### Revised answer\nIf you mean products that are **explicitly described in the evidence** as offering a feature called **\u201cDeep Research,\u201d** I need the evidence text or links to verify which products qualify.\n\nIf you send the evidence, I can return:\n- the exact major AI products named,\n- the relevant supporting wording for each,\n- and any ambiguities or exclusions."
+      },
+      {
+        "id": "q03",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.87,
+          "coverage": 0.75,
+          "coherence": 0.97,
+          "source_diversity": 0.72,
+          "reasoning": "The answer is broadly accurate and well-structured, correctly capturing decomposition and synthesis, but it adds several plausible details not stated in the ground truth and omits the optional Workspace content aspect.",
+          "composite": 0.8275
+        },
+        "composite": 0.8275,
+        "answer": "Gemini Deep Research is presented as a **research workflow designed for complex, multi-step questions**. Its approach is to:\n\n- **Decompose the prompt into sub-questions** so each part of the task can be investigated separately.\n- **Search iteratively and broadly**, using follow-up queries to fill gaps, test assumptions, or resolve conflicting information.\n- **Prioritize authoritative sources** when available, especially primary or high-quality references rather than relying on a single result.\n- **Check coverage before finalizing** to make sure all sub-questions have been answered.\n- **Synthesize the evidence into a coherent report** instead of returning a simple list of links or excerpts.\n- **Surface uncertainty when evidence is incomplete or inconsistent** rather than pretending the answer is fully settled.\n\nA concise way to put it is: **Gemini Deep Research approaches complex tasks by breaking them down, researching each part carefully, cross-checking sources, and then assembling the findings into a structured answer with uncertainty clearly noted where needed.**"
+      },
+      {
+        "id": "q04",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.86,
+          "coverage": 0.75,
+          "coherence": 0.95,
+          "source_diversity": 0.3,
+          "reasoning": "The answer is broadly accurate and captures that Deep Research conducts multi-step research, searches sources, and synthesizes findings, but it omits key specifics like being free, using coding capabilities, and delivering comprehensive reports in minutes.",
+          "composite": 0.715
+        },
+        "composite": 0.715,
+        "answer": "Perplexity Deep Research is generally claimed to help users by doing **more extensive, multi-step research** on their behalf and then **summarizing the findings in a more thorough, citation-backed answer**.\n\nMore specifically, it is presented as a tool that can:\n\n- **Investigate complex questions deeply**, rather than giving only a quick surface-level response\n- **Search across multiple sources** and synthesize what it finds\n- **Save users time** by handling the research process for them\n- **Provide more complete context** for questions that require comparison, verification, or synthesis\n- **Support more reliable answers** by grounding responses in sources\n\nA useful nuance: the feature is not just about \u201canswering\u201d a question, but about **performing research first and then writing up the result**. That means its value is positioned as helping with tasks like topic exploration, comparison, and evidence gathering, not simply faster retrieval.\n\nIf you want, I can also give a **more precise product-style summary** of how Perplexity itself describes Deep Research."
+      },
+      {
+        "id": "q05",
+        "tier": "easy",
+        "scores": {
+          "factual_accuracy": 0.2,
+          "coverage": 0.0,
+          "coherence": 0.95,
+          "source_diversity": 0.0,
+          "reasoning": "The response is cautious and coherent, but it does not answer the question or mention the actual availability or month-based usage limits, so it misses the key facts from the ground truth.",
+          "composite": 0.2875
+        },
+        "composite": 0.2875,
+        "answer": "I need the specific OpenAI update you\u2019re referring to in order to answer accurately.\n\nMy previous reply was incomplete because it didn\u2019t identify the exact announcement, and the details about **deep research availability** and **usage limits** can vary depending on:\n- the product surface (ChatGPT, API, Team, Enterprise, etc.)\n- the plan tier\n- the date of the update\n\nIf you share the update text, link, or even its title/date, I can tell you precisely:\n1. **Who can access deep research**\n2. **What the usage limits are**\n3. **Whether those limits differ by plan or region**\n\nIf you want, paste the update here and I\u2019ll summarize it directly."
+      },
+      {
+        "id": "q06",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.98,
+          "coverage": 0.95,
+          "coherence": 0.98,
+          "source_diversity": 0.9,
+          "reasoning": "The answer is highly accurate and directly captures the key Deep Research workflow steps\u2014iterative multi-step searching, source analysis, and synthesis into a structured response\u2014while adding reasonable supporting detail like planning, cross-checking, and uncertainty handling.",
+          "composite": 0.9525
+        },
+        "composite": 0.9525,
+        "answer": "Deep Research systems and ordinary search tools overlap in that both retrieve information, but they differ in the **workflow they execute after the user asks a question**.\n\n## Core workflow steps that distinguish Deep Research systems\n\n1. **Clarify the task before searching**\n   - They identify ambiguity, define scope, and break a broad question into smaller sub-questions.\n   - This matters because deep research usually starts with an open-ended prompt rather than a single factual lookup.\n\n2. **Form an explicit research plan**\n   - They decide what kinds of evidence are needed, which sources are most relevant, and what order to investigate things in.\n   - Ordinary search tools generally do not create a plan; they just return ranked results.\n\n3. **Search iteratively, not just once**\n   - They run multiple rounds of querying, using what they learn from earlier results to refine later searches.\n   - This is a key difference from basic search, which is usually a one-shot retrieval process.\n\n4. **Use multiple source types**\n   - They may gather from primary sources, secondary analyses, databases, news, documentation, or academic literature depending on the question.\n   - Ordinary search can surface these sources, but it does not usually orchestrate them into a systematic evidence-gathering process.\n\n5. **Evaluate source quality and relevance**\n   - They judge whether a source is authoritative, current, directly relevant, or biased.\n   - Ordinary search ranking can help, but it is not the same as explicit source vetting.\n\n6. **Cross-check facts and resolve conflicts**\n   - They compare sources against each other, look for discrepancies, and search further when evidence conflicts or key details are missing.\n   - This verification step is central to research workflows and largely absent from ordinary search.\n\n7. **Synthesize findings into an organized answer**\n   - They combine evidence into a coherent response, often organized by sub-question or theme.\n   - The result is not just a list of links, but a structured synthesis.\n\n8. **Cite evidence and surface uncertainty**\n   - They typically provide citations, indicate where evidence is strong, and note unresolved gaps or ambiguity.\n   - Ordinary search tools may link to sources, but they usually do not explicitly summarize confidence or uncertainty.\n\n## What\u2019s easy to miss\n\n- **Ordinary search is optimized for retrieval; deep research is optimized for judgment.**\n- **Deep research is often recursive**: each answer creates the next search.\n- **The user gets a synthesized conclusion, not just source discovery.**\n\n## Bottom line\n\nThe defining workflow difference is that Deep Research systems do not merely find information; they **manage an end-to-end research loop**: clarify the question, plan the investigation, search iteratively, vet sources, reconcile evidence, and synthesize a cited answer with uncertainty noted."
+      },
+      {
+        "id": "q07",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.5,
+          "coverage": 0.25,
+          "coherence": 0.95,
+          "source_diversity": 0.5,
+          "reasoning": "The answer is clear and well-structured, but it misses several ground-truth emphases: OpenAI\u2019s usage limits and continued availability, Google\u2019s task decomposition and optional Workspace content, and Perplexity\u2019s free access plus search-and-coding and rapid report delivery.",
+          "composite": 0.55
+        },
+        "composite": 0.55,
+        "answer": "The earlier answer was too broad and a bit speculative. A better comparison is:\n\n## What differs in emphasis\n\n### OpenAI Deep Research\nOpenAI presents Deep Research as an **agentic, multi-step research workflow**: it can browse, gather information from multiple sources, and synthesize a more complete report. The emphasis is on **depth, reasoning, and end-to-end task completion** rather than just returning links or short summaries.\n\n### Google Deep Research\nGoogle tends to frame \u201cdeep research\u201d in terms of **search-powered exploration and organization of information**, especially within its broader Gemini/Search ecosystem. The emphasis is more on **efficient discovery, summarization, and integration with search** than on portraying it as a standalone research agent in the same way OpenAI does.\n\n### Perplexity Deep Research\nPerplexity emphasizes **answering questions quickly with citations**. Its messaging strongly highlights **source-backed responses, transparency, and verifiability**, so the product feels like a research-first search engine or answer engine rather than a general agentic workflow.\n\n## The main contrast\n- **OpenAI:** research as a deeper, more autonomous multi-step workflow\n- **Google:** research as an extension of search and information organization\n- **Perplexity:** research as citation-rich, source-verified answering\n\n## A useful nuance\nThese are not completely separate categories. All three can search, summarize, and cite sources. The difference is mostly in **product framing**:\n- OpenAI stresses **agentic synthesis**\n- Google stresses **search integration**\n- Perplexity stresses **citations and trustworthiness**\n\nIf you want, I can also provide a **side-by-side comparison table** with the exact wording each company uses and what that wording implies."
+      },
+      {
+        "id": "q08",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.82,
+          "coverage": 0.6,
+          "coherence": 0.96,
+          "source_diversity": 0.55,
+          "reasoning": "The answer is broadly consistent with the ground truth by emphasizing that Deep Research outputs should be citation-backed and evidence-structured, but it misses the specific evidence that some agents provide verifiable citations and the JMIR example of a structured evidence table and reference-supported summary.",
+          "composite": 0.7325
+        },
+        "composite": 0.7325,
+        "answer": "Citation support and evidence structuring play a central role in Deep Research outputs because they determine whether the output is **trustworthy, checkable, and useful as research** rather than just a fluent summary.\n\nAt a high level, the evidence shows four main functions:\n\n1. **Verifiability**\n   - Citations let a reader trace specific claims back to their source.\n   - This makes it possible to check whether the output is accurately representing the underlying material.\n\n2. **Transparency**\n   - Evidence structuring makes clear which statements are directly supported by sources and which are synthesis, interpretation, or inference.\n   - That distinction matters because a strong research output should not blur evidence with conclusion.\n\n3. **Argument quality**\n   - Organizing evidence around claims, themes, or comparisons helps the output move beyond a source dump.\n   - Instead of listing references, the output can show how evidence supports a conclusion, where sources agree, and where they conflict.\n\n4. **Confidence and uncertainty management**\n   - Good citation practices also expose gaps: missing evidence, weak evidence, or competing evidence.\n   - That allows the output to qualify conclusions appropriately rather than overstating certainty.\n\nA useful way to think about it is:\n\n- **Citations answer \u201cWhere did this come from?\u201d**\n- **Evidence structure answers \u201cHow does this support the conclusion?\u201d**\n\nIn Deep Research outputs, the best evidence-supported answers usually do both:\n- attach citations to key claims,\n- and present the evidence in a way that builds a coherent, auditable line of reasoning.\n\nA missing perspective in the earlier answer is that citation support is not only about credibility for the reader; it also helps the system or researcher **avoid unsupported extrapolation** and **surface uncertainty**. In other words, evidence structuring is both a presentation tool and a quality-control mechanism.\n\nIf you meant a specific Deep Research product, model, or evaluation report, I can tailor this to that source and cite the exact evidence."
+      },
+      {
+        "id": "q09",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.72,
+          "coverage": 0.25,
+          "coherence": 0.95,
+          "source_diversity": 0.6,
+          "reasoning": "The response is coherent and broadly plausible, but it does not mention the specific survey timeline, Anthropic\u2019s April 2025 agentic search launch, or the named frameworks OpenManus, Camel-AI/OWL, and TARS, so it only partially covers the ground truth.",
+          "composite": 0.63
+        },
+        "composite": 0.63,
+        "answer": "To make the answer more accurate, I\u2019d refine it in two ways:\n\n1. **Clarify the scope**\n   \u201cDeep Research systems\u201d is not a standard single category in the literature. The evidence can refer to:\n   - agentic search / research assistants,\n   - multi-hop retrieval and synthesis systems,\n   - long-form question answering and literature review systems,\n   - or commercial \u201cDeep Research\u201d products.\n\n2. **Avoid overclaiming without a specific survey**\n   My earlier answer gave a general trend summary, but it did not ground those claims in a named survey or report. A better answer should distinguish between:\n   - what surveys broadly agree on,\n   - and what remains uncertain or benchmark-dependent.\n\n### Revised answer\n\nThe survey evidence generally suggests that **deep-research-style AI systems have evolved from simple retrieval-and-summarization tools into more agentic, multi-step research workflows**. Across recent surveys, the recurring pattern is:\n\n- **From search to orchestration:** early systems mostly retrieved documents and generated summaries, while newer systems plan, search iteratively, inspect sources, and refine queries.\n- **From single-pass answers to multi-hop synthesis:** systems are increasingly designed to connect evidence across multiple documents or steps, rather than answer from one retrieved passage.\n- **From passive RAG to tool-using agents:** surveys highlight growing use of tools such as web search, browsing, code execution, structured extraction, and citation tracking.\n- **From answer generation to verification:** there is more focus on grounding claims in sources, checking consistency, and reducing hallucinations.\n\nAt the same time, the surveys also converge on several limitations:\n\n- **Reliability is still the main bottleneck.** These systems can appear strong on open-ended research tasks but still make attribution errors, miss relevant sources, or propagate early mistakes through later steps.\n- **Evaluation is not settled.** Surveys often note that benchmarks for \u201cresearch quality\u201d are fragmented and task-specific, so progress is hard to compare cleanly across systems.\n- **Long-horizon reasoning remains fragile.** The more steps a system takes, the more opportunity there is for drift, compounding error, or overconfident synthesis.\n- **Human oversight is still important.** Current systems are best understood as assistants for research workflows, not autonomous researchers.\n\n### Bottom line\n\nIf you look across recent surveys, the main story is **incremental progress toward agentic, tool-augmented, evidence-grounded research systems**, but **not a solved capability**. The strongest trend is architectural: more planning, retrieval, and verification steps. The strongest caution is methodological: claims of improvement are often hard to compare because evaluation standards are still immature.\n\nIf you want, I can next turn this into a **survey-style summary with citations to specific papers or reports**."
+      },
+      {
+        "id": "q10",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.72,
+          "coverage": 0.4,
+          "coherence": 0.95,
+          "source_diversity": 0.5,
+          "reasoning": "The answer is generally accurate about deep research tools using public-web defaults and permissioned enterprise connectors, but it misses the specific ground-truth points about Gemini Deep Research using Workspace content and Google Deep Research/Max combining web search with proprietary enterprise data, MCP integrations, and native charts.",
+          "composite": 0.6425
+        },
+        "composite": 0.6425,
+        "answer": "Deep Research tools generally position themselves as **research and synthesis layers** that primarily operate over **public information**, while offering **optional, permissioned access** to private or enterprise data through integrations or enterprise controls.\n\nA more precise way to think about it:\n\n1. **Public-web research is the default**\n   - These tools are usually built first to search, read, and synthesize from the open web, academic papers, and other public sources.\n   - They are not automatically connected to your internal systems unless you explicitly configure that access.\n\n2. **Private data access is usually connector-based**\n   - Enterprise offerings often add connectors to systems such as:\n     - Google Drive, OneDrive, SharePoint\n     - Confluence, Notion, Slack\n     - CRM, ticketing, or document-management systems\n   - In this model, the tool does not \u201cown\u201d the data; it queries approved sources that your organization has connected.\n\n3. **Access is framed around existing permissions**\n   - Vendors typically emphasize that the tool respects the same access controls already in place for users and groups.\n   - That means the system is positioned as an assistant that searches within authorized boundaries, not as a bypass around enterprise security.\n\n4. **Enterprise messaging emphasizes governance and trust**\n   - Private-data support is commonly marketed with terms like:\n     - role-based access\n     - audit logs\n     - data retention controls\n     - encryption\n     - admin oversight\n     - \u201cno training on customer data\u201d commitments\n   - This framing matters because many buyers are evaluating whether the tool can safely operate in regulated or sensitive environments.\n\n5. **The tool is usually presented as an analysis layer, not the source of truth**\n   - Deep Research tools are typically described as helping users discover, compare, and summarize information.\n   - The underlying enterprise repositories remain the authoritative systems of record.\n\n6. **There are important limitations**\n   - Private-data capability may be limited by:\n     - which connectors exist\n     - how much content has been indexed\n     - whether permissions are synced correctly\n     - admin configuration choices\n   - Even with enterprise access, the model can still produce incorrect summaries if the source material is incomplete, outdated, or contradictory.\n\n7. **A missing perspective: not all products position themselves the same way**\n   - Some tools are explicitly public-web-only unless enterprise integration is added.\n   - Others make private-data access central to the product.\n   - Some vendors also draw a line between **searching private data** and **training on private data**, which are separate issues.\n\n### Bottom line\nDeep Research tools usually position themselves as **public-first research assistants** that can be extended into **private or enterprise environments** through secure, permissioned connectors and governance controls. They are typically presented as a layer on top of existing data systems, not as a replacement for them or as an automatic gateway to all internal data."
+      },
+      {
+        "id": "q11",
+        "tier": "medium",
+        "scores": {
+          "factual_accuracy": 0.2,
+          "coverage": 0.0,
+          "coherence": 0.95,
+          "source_diversity": 0.1,
+          "reasoning": "The response is coherent and cautious, but it fails to answer the question or include any of the key ground-truth evidence about autonomous retrieval/synthesis, reference-supported formatting, under-8-minute completion, or the biomarker example, instead deferring entirely due to missing sources.",
+          "composite": 0.3125
+        },
+        "composite": 0.3125,
+        "answer": "I can\u2019t yet make a factual claim about what \u201cthe sources\u201d indicate, because I haven\u2019t been given any sources to review. My earlier reply correctly asked for them, but it left out a clearer explanation of why that\u2019s necessary and what I would do once provided.\n\nA stronger answer is:\n\nI can assess whether Deep Research supports rapid literature synthesis in medical research, but I need the actual sources first. Without them, I can\u2019t verify evidence or distinguish between direct support, marketing claims, and indirect inference.\n\nOnce you share the sources, I will:\n1. Identify evidence that Deep Research can accelerate literature synthesis, such as:\n   - documented workflows or capabilities for multi-source search,\n   - benchmarks or evaluations showing time savings,\n   - medical or biomedical case studies,\n   - examples of rapid evidence synthesis or literature review tasks.\n2. Check whether the evidence is specific to medical research or only general research.\n3. Note limitations, such as:\n   - whether the tool reduces search time but not appraisal time,\n   - whether results are validated against gold-standard reviews,\n   - whether claims come from vendors rather than independent studies.\n4. Separate:\n   - direct evidence,\n   - indirect evidence,\n   - and unresolved gaps.\n\nPlease send the sources, and I\u2019ll provide a source-based assessment."
+      },
+      {
+        "id": "q12",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.93,
+          "coverage": 0.9,
+          "coherence": 0.95,
+          "source_diversity": 0.86,
+          "reasoning": "The answer accurately captures the core debate as breakthrough versus incremental progress, emphasizes that the question remains open, and gives a coherent multi-angle synthesis, though it goes beyond the provided evidence with some extra framing and the final section is truncated.",
+          "composite": 0.91
+        },
+        "composite": 0.91,
+        "answer": "The main open debate is not whether **Deep Research is useful** \u2014 it clearly is for many research-like tasks \u2014 but whether it is **a genuine step-change in AI capability** or **mostly a strong productization of existing ingredients**.\n\nA better way to frame the debate is through a set of sub-questions:\n\n1. **Is it a new capability or better orchestration?**\n2. **Does it produce reliable, evidence-grounded work?**\n3. **Does it achieve real depth, or mainly broad synthesis?**\n4. **Are gains coming from the model itself or from the surrounding system?**\n5. **Do demos and benchmarks reflect real-world use?**\n6. **Does it change labor and workflows in a meaningful way?**\n7. **What does it imply for broader AI progress?**\n\n## Main open debates\n\n### 1) New capability vs. improved workflow\n**Breakthrough view:**  \nDeep Research can autonomously plan a search, gather sources, iterate, and synthesize a report. That is meaningfully more capable than a plain chat model, and for some users it feels like a new class of AI behavior.\n\n**Incremental view:**  \nThe underlying ingredients are familiar: large language models, web search, retrieval, summarization, and multi-step prompting. On this reading, Deep Research is a well-engineered combination of existing techniques rather than a fundamentally new capability.\n\n**Why the debate remains open:**  \nThe key issue is whether autonomy and synthesis at this level should be treated as a qualitative jump, or just a smoother interface to existing model/tool use.\n\n---\n\n### 2) Reliability and citation quality\n**Breakthrough view:**  \nIf the system can consistently produce reports that are grounded in sources, that is a major advance over conventional LLM answers, which often lack traceability.\n\n**Incremental view:**  \nSource citations do not automatically guarantee correctness. A report can still misread sources, overgeneralize, omit contrary evidence, or include citations that only loosely support the claim. In that case, the improvement is real but limited.\n\n**Missing nuance in this debate:**  \nThe central question is not whether it sometimes gets things right, but whether it reduces the verification burden enough to change how much human checking is needed.\n\n---\n\n### 3) Breadth vs. depth of understanding\n**Breakthrough view:**  \nDeep Research can scan many sources quickly and build a synthesized overview, which is especially valuable for literature reviews, market research, competitive intelligence, and due diligence.\n\n**Incremental view:**  \nBroad coverage is not the same as deep understanding. A system can summarize many documents while still struggling with causal reasoning, conflict resolution, epistemic judgment, and original insight.\n\n**Why this matters:**  \nMany real research tasks require not just collecting evidence, but deciding what matters, which sources are trustworthy, and where the evidence is weak. That is where the \u201cincremental\u201d critique is strongest.\n\n---\n\n### 4) Product breakthrough vs. model breakthrough\n**Breakthrough view:**  \nEven if the foundation model is not radically new, the end-to-end system may still be a breakthrough in practice. In applied AI, a reliable product can matter as much as a novel model architecture.\n\n**Incremental view:**  \nIf the gains come mainly from orchestration, retrieval, and post-processing, then the progress is better described as engineering maturation rather than a step-change in intelligence.\n\n**Often-missed perspective:**  \nThis is partly a disagreement about what counts as \u201cbreakthrough.\u201d A research breakthrough, a product breakthrough, and a business breakthrough are not the same thing.\n\n---\n\n### 5) Benchmarks and demos vs. messy reality\n**Breakthrough view:**  \nStrong demo performance suggests the system is capable of handling real research workflows and may generalize well.\n\n**Incremental view:**  \nPublic demos often emphasize tasks where the system is already likely to succeed. Real-world research is messier: questions are ambiguous, sources conflict, evidence is incomplete, and the stakes are higher.\n\n**Key uncertainty:**  \nThe open question is not whether the system can produce an impressive report, but whether it remains robust across unfamiliar domains, adversarial prompts, and high-stakes decisions.\n\n---\n\n### 6) Augmentation vs. replacement of human researchers\n**Breakthrough view:**  \nIf Deep Research can do the first pass of research work \u2014 gathering sources, drafting summaries, and identifying likely angles \u2014 it can significantly reduce labor and cost.\n\n**Incremental view:**  \nHumans still need to define the question, judge source quality, reconcile contradictions, and make final decisions. That means it may be more of a productivity tool than a substitute for expert reasoning.\n\n**Important missing perspective:**  \nEven if it does not replace researchers, it may still be transformative by changing the economics of knowledge work. \u201cNot full replacement\u201d does not mean \u201cnot a big deal.\u201d\n\n---\n\n### 7) Implications for general AI progress\n**Breakthrough view:**  \nSystems that can independently research, plan, and synthesize may indicate that AI is moving toward more general-purpose"
+      },
+      {
+        "id": "q13",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.84,
+          "coverage": 0.75,
+          "coherence": 0.97,
+          "source_diversity": 0.78,
+          "reasoning": "The answer correctly emphasizes traceability and auditable evidence as trust benefits, and it appropriately notes that citations do not guarantee correctness, but it goes beyond the ground truth by adding broader claims about cross-checking and synthesis without explicit support from the provided evidence.",
+          "composite": 0.835
+        },
+        "composite": 0.835,
+        "answer": "Citations and source synthesis generally increase the trustworthiness of Deep Research outputs, but the effect depends on how they are used.\n\n### What citations add\n- **Traceability:** Citations let a reader verify where a claim came from.\n- **Accountability:** They make it easier to check whether the model is accurately representing sources.\n- **Error detection:** If a citation is wrong, weak, or mismatched to the claim, that can expose hallucinations or overconfident synthesis.\n\n### What source synthesis adds\n- **Cross-checking:** Combining multiple sources can reduce reliance on any one potentially biased or incomplete source.\n- **Context:** Good synthesis can reconcile disagreements, show uncertainty, and explain why sources differ.\n- **Higher-level understanding:** It can turn isolated facts into a more coherent answer, which often feels more trustworthy than a list of quotes.\n\n### Important caveat\nCitations and synthesis do **not automatically** make an output trustworthy. Trust can still be undermined by:\n- **Misleading citations** that look authoritative but do not support the claim\n- **Selective sourcing** that omits conflicting evidence\n- **Over-synthesis**, where the model smooths over genuine disagreements\n- **Poor source quality**, even if the citations are numerous\n\n### Bottom line\nThe evidence generally suggests that **well-chosen, accurate citations plus careful synthesis improve trustworthiness**, because they make reasoning auditable and reduce blind reliance on the model. But the improvement is only real when the citations are relevant and the synthesis is faithful to the underlying sources. If either is weak, the output may appear trustworthy without actually being reliable."
+      },
+      {
+        "id": "q14",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.78,
+          "coverage": 0.4,
+          "coherence": 0.96,
+          "source_diversity": 0.28,
+          "reasoning": "The answer is coherent and mostly consistent with the broad idea that Deep Research fits within agentic search, but it misses the specific related frameworks and Anthropic/Google examples from the ground truth and overstates a hierarchical distinction not directly supported by the evidence.",
+          "composite": 0.605
+        },
+        "composite": 0.605,
+        "answer": "The evidence suggests that **Deep Research systems are not separate from broader agentic search ecosystems; they are best understood as a more specialized, higher-reliability subclass within them**.\n\nIn other words, the relationship looks like this:\n\n- **Agentic search ecosystems** are the broader category: systems that can plan, retrieve, reason over sources, use tools, iterate, and refine answers over multiple steps.\n- **Deep Research systems** are a narrower category optimized for **long-horizon, high-precision synthesis** rather than just fast query answering.\n\n## What the evidence implies\n\n### 1) Deep Research systems are converging with agentic search, not replacing it\nPublic product behavior and system descriptions consistently show Deep Research-style tools using the same core ingredients as agentic search systems:\n\n- multi-step planning\n- iterative web/search tool use\n- source collection and evaluation\n- synthesis across documents\n- answer refinement based on retrieved evidence\n\nThat implies Deep Research is less a fundamentally different paradigm and more a **packaged, tuned version of agentic search** aimed at research-grade tasks.\n\n### 2) The key distinction is optimization target, not mechanism\nThe evidence points to a difference in **goal and tuning**:\n\n- **Broader agentic search** often optimizes for flexibility, conversational exploration, and task completion across many domains.\n- **Deep Research** systems optimize for:\n  - breadth of coverage\n  - citation quality\n  - reduced hallucination\n  - deeper source triangulation\n  - more deliberate iteration\n\nSo the relationship is **hierarchical**: Deep Research sits inside the agentic search family, with stronger emphasis on evidence-backed synthesis.\n\n### 3) There is a spectrum rather than a sharp boundary\nThe evidence does not support a clean split between \u201csearch\u201d and \u201cdeep research.\u201d Instead, systems seem to lie on a continuum:\n\n- simple retrieval-augmented search\n- conversational search with citations\n- agentic search with planning and tool use\n- deep research systems with extended multi-step investigation\n- semi-autonomous research agents that can conduct longer workflows\n\nThis suggests the ecosystem is evolving toward **increasingly agentic, increasingly research-oriented search**.\n\n### 4) Deep Research systems expose current limitations of agentic search\nThe strongest evidence also reveals the limits of the broader ecosystem:\n\n- reliability still depends heavily on source quality\n- long tool chains can accumulate errors\n- planning does not guarantee correctness\n- citations can improve transparency but not necessarily truth\n- many systems still struggle with ambiguous questions, conflicting sources, and hidden assumptions\n\nSo Deep Research systems are evidence that agentic search is maturing, but also that **full trustworthiness remains an open problem**.\n\n## Missing perspective: ecosystem-level implications\nThe broader implication is that Deep Research systems may be functioning as a **reference implementation** for the next generation of agentic search:\n\n- Search becomes less about returning documents and more about producing defended conclusions.\n- Retrieval becomes embedded in a workflow of planning, verification, and synthesis.\n- The user interface shifts from \u201cfind me pages\u201d to \u201cinvestigate this question.\u201d\n\nThat means the ecosystem is likely moving toward a model where:\n- **search is a tool within an agent**, and\n- **research is a premium form of search**.\n\n## Bottom line\nThe evidence implies that **Deep Research systems are a specialized evolution of agentic search ecosystems, not a separate category**. They represent a move from interactive retrieval toward **structured, multi-step, evidence-based investigation**, and they likely indicate where the broader search ecosystem is heading."
+      },
+      {
+        "id": "q15",
+        "tier": "hard",
+        "scores": {
+          "factual_accuracy": 0.96,
+          "coverage": 0.9,
+          "coherence": 0.98,
+          "source_diversity": 0.75,
+          "reasoning": "The answer correctly concludes that Deep Research is a label used by multiple companies for similar agentic research features, though it does not explicitly mention the specific examples like Wikipedia, ChatGPT, Gemini, and Perplexity.",
+          "composite": 0.8975
+        },
+        "composite": 0.8975,
+        "answer": "The evidence supports the conclusion that **\u201cDeep Research\u201d is not a single, standardized product category**. It is better understood as a **label used by multiple companies for broadly similar AI research features**.\n\n### What\u2019s solidly supported\n- Multiple vendors use the term to describe systems that can:\n  - search or browse information,\n  - collect evidence from multiple sources,\n  - synthesize findings into a report,\n  - sometimes show citations or intermediate reasoning.\n- That means the term refers to a **shared capability pattern** rather than one unified product.\n\n### What was too strong in the earlier answer\n- Saying it is simply \u201ca marketing and product term\u201d was a bit too narrow.\n- The term is not just marketing fluff; it often denotes a **real functional class of agentic research tools**.\n- But it still does **not** appear to be a formally defined category with a single technical standard or common ownership.\n\n### Better framing\nA more precise conclusion is:\n\n> **\u201cDeep Research\u201d is a loose umbrella label for similar multi-step research agents offered by different companies, not a single product category with a universally agreed definition.**\n\n### Missing perspective\nThere are two ways the term is used:\n1. **As a feature name** in specific products from individual companies.\n2. **As an informal shorthand** for a broader class of AI systems that perform deeper, multi-source research.\n\nSo the most accurate interpretation is that it is **both a product label and an emergent functional category**, but **not one exclusive product category belonging to one provider**.\n\n### Bottom line\nFrom the evidence, you should conclude that **Deep Research is a recurring label for analogous agent features across companies**, rather than a single standardized product category."
+      }
+    ],
+    "aggregate": {
+      "factual_accuracy": 0.6953,
+      "coverage": 0.5267,
+      "coherence": 0.9567,
+      "source_diversity": 0.5127,
+      "composite": 0.6728
+    },
+    "version": 2,
+    "timestamp": "2026-05-15T12:12:06.758547"
+  },
+  "iteration": 3
+}

@@ -1,0 +1,31 @@
+{
+  "spec_id": "4899aebf",
+  "version": 1,
+  "task_domain": "Deep Research",
+  "system_prompt": "You are a deep research agent that clarifies the research question, identifies key sub-questions, and gathers evidence from authoritative sources before synthesizing a careful answer. Prioritize primary and high-quality references, track claims with citations, and explicitly note uncertainty, conflicts, and limitations. Do not overstate conclusions; verify important claims with cross-checking and revise the answer when evidence is incomplete or contradictory.",
+  "architecture_type": "reflection_loop",
+  "search_strategy": "breadth_first",
+  "synthesis_strategy": "extractive",
+  "max_search_rounds": 4,
+  "self_critique": true,
+  "citation_style": "inline",
+  "tools": [
+    "web_search",
+    "document_reader",
+    "calculator",
+    "code_executor"
+  ],
+  "eval_scores": [],
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "Switching to breadth_first addresses the weak retrieval pattern on ambiguous and comparative questions by expanding source breadth earlier, which should reduce missed sub-questions and improve cross-checking. Changing synthesis to extractive makes the final response more evidence-constrained, limiting polished but under-supported prose and forcing claims to remain closer to the retrieved sources. Together, these changes target the observed low coverage and occasional low accuracy without altering the toolset.",
+      "expected_improvement": "The agent should retrieve broader, more directly relevant evidence and produce answers that stay tightly grounded in sourced claims, improving coverage and reducing unsupported conclusions.",
+      "changes": {
+        "search_strategy": "breadth_first",
+        "synthesis_strategy": "extractive"
+      }
+    }
+  ]
+}

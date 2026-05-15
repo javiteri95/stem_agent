@@ -1,0 +1,387 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is Deep Research in the context of AI agents, and what does it do at a high level?",
+    "ground_truth": "Deep Research is an AI agent feature designed to automatically perform multi-step web searches, read sources, reason about them, and generate detailed reports. In the evidence, it is described as a research assistant that synthesizes information into comprehensive results. This makes it an agentic workflow rather than a single-pass search tool.",
+    "key_facts": [
+      "Deep Research is an AI agent feature",
+      "It automatically performs multi-step web searches",
+      "It reads sources, reasons/analyzes them, and generates detailed reports",
+      "It synthesizes findings into comprehensive results"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Deep Research (AI)",
+        "url": "https://grokipedia.com/page/Deep_Research_AI"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "Which major AI products are explicitly described in the evidence as offering a Deep Research feature?",
+    "ground_truth": "The evidence explicitly mentions OpenAI ChatGPT Deep Research, Gemini Deep Research from Google, and Perplexity Deep Research. Wikipedia also notes that \"Deep Research\" may refer to ChatGPT Deep Research and Gemini Deep Research. These are the main named products in the provided sources.",
+    "key_facts": [
+      "OpenAI offers a deep research option",
+      "Google Gemini offers Gemini Deep Research",
+      "Perplexity offers Perplexity Deep Research",
+      "Wikipedia lists ChatGPT Deep Research and Gemini Deep Research as references"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      },
+      {
+        "type": "wikipedia",
+        "title": "Deep Research",
+        "url": "https://en.wikipedia.org/wiki/Deep_Research"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "How does Gemini Deep Research describe its approach to answering complex research tasks?",
+    "ground_truth": "Gemini Deep Research says it tackles complex research tasks by breaking them down and exploring sources across the web, and optionally across a user's Workspace content. It then finds answers and synthesizes the findings into comprehensive results. The emphasis is on decomposition, source exploration, and synthesis.",
+    "key_facts": [
+      "It breaks complex research tasks down",
+      "It explores sources across the web",
+      "It can also use Workspace content if the user chooses it",
+      "It synthesizes findings into comprehensive results"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "What does Perplexity Deep Research claim to do for users?",
+    "ground_truth": "Perplexity Deep Research is described as a free feature that conducts in-depth research and analysis on behalf of the user. It uses search and coding capabilities, synthesizes sources, and delivers comprehensive reports on many topics in minutes. Its stated value is speed and breadth of analysis.",
+    "key_facts": [
+      "It is a free feature",
+      "It conducts in-depth research and analysis on behalf of the user",
+      "It uses search and coding capabilities",
+      "It synthesizes sources and delivers comprehensive reports in minutes"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "What does the OpenAI update say about availability and usage limits for deep research?",
+    "ground_truth": "OpenAI says the original deep research functionality remains available through the \"deep research\" option in the tools menu. The April 24, 2025 update also states that usage has increased for several plans: Plus, Team, Enterprise, and Edu users get 25 queries per month, Pro users get 250, and Free users get 5. This indicates plan-based rate limits rather than unrestricted access.",
+    "key_facts": [
+      "The original deep research functionality remains available via the tools menu",
+      "Plus, Team, Enterprise, and Edu users get 25 queries per month",
+      "Pro users get 250 queries per month",
+      "Free users get 5 queries per month"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "What core workflow steps distinguish Deep Research systems from ordinary search tools?",
+    "ground_truth": "Deep Research systems are characterized by multi-step planning, repeated search across different angles, reading and analyzing sources, and then synthesizing the evidence into a report. The evidence emphasizes that they do not simply retrieve links; they actively organize an investigative workflow. Some sources also mention structured outputs such as comprehensive reports or evidence tables.",
+    "key_facts": [
+      "They perform multi-step or strategic web searches",
+      "They explore multiple angles of a query",
+      "They read and analyze sources",
+      "They synthesize evidence into reports or structured outputs"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Deep Research (AI)",
+        "url": "https://grokipedia.com/page/Deep_Research_AI"
+      },
+      {
+        "type": "web",
+        "title": "Deep Research - Docs",
+        "url": "https://docs.langdock.com/product/chat/deep-research"
+      },
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/html/2506.12594v1"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "How do the descriptions of Deep Research from OpenAI, Google, and Perplexity differ in emphasis?",
+    "ground_truth": "OpenAI emphasizes a tool-menu feature with usage limits and continued availability of the original function. Google emphasizes breaking down complex tasks, exploring the web and optionally Workspace content, and synthesizing results. Perplexity emphasizes free access, use of search and coding, and fast delivery of comprehensive reports in minutes.",
+    "key_facts": [
+      "OpenAI emphasizes continued availability and usage limits",
+      "Google emphasizes task decomposition and optional Workspace content",
+      "Perplexity emphasizes free access",
+      "Perplexity also emphasizes search plus coding and rapid reporting"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "What role does citation support or evidence structuring play in Deep Research outputs according to the evidence?",
+    "ground_truth": "The evidence suggests that Deep Research outputs are intended to be reference-supported and evidence-based, rather than purely generative summaries. One survey source mentions agents delivering comprehensive answers with verifiable citations, and a JMIR example describes a deep research agent producing a structured evidence table and a reference-supported summary. This indicates that citations and structured evidence are important output features.",
+    "key_facts": [
+      "Some deep research agents deliver answers with verifiable citations",
+      "A JMIR example describes a structured evidence table",
+      "The JMIR example describes a reference-supported summary",
+      "Evidence structuring is part of the output format"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594"
+      },
+      {
+        "type": "web",
+        "title": "Journal of Medical Internet Research - Deep Research Agents: Major Breakthrough or Incremental Progress for Medical AI?",
+        "url": "https://www.jmir.org/2026/1/e88195"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "What does the survey evidence suggest about the recent evolution of Deep Research systems?",
+    "ground_truth": "The survey evidence describes Deep Research as a rapidly evolving field and presents a timeline of systems from 2024 onward. It also notes that Anthropic launched agentic search capabilities in April 2025, and that agent frameworks such as OpenManus, Camel-AI/OWL, and TARS extend the ecosystem. Overall, the evidence points to a fast-moving expansion of agentic research tools rather than a static product category.",
+    "key_facts": [
+      "Deep Research is described as a rapidly evolving field",
+      "The survey includes an evolution timeline from 2024 onward",
+      "Anthropic launched agentic search capabilities in April 2025",
+      "OpenManus, Camel-AI/OWL, and TARS are cited as related agent frameworks"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/html/2506.12594v1"
+      },
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "How do Deep Research tools position themselves relative to private or enterprise data sources?",
+    "ground_truth": "The evidence shows that Deep Research can go beyond public web search in some products. Gemini Deep Research may use Workspace content if the user chooses it, and a VentureBeat report says Google Deep Research and Deep Research Max can combine web search with proprietary enterprise data, MCP integrations, and native charts. This suggests an expansion from public-web research toward mixed-source, enterprise-aware research workflows.",
+    "key_facts": [
+      "Gemini Deep Research can use Workspace content if chosen by the user",
+      "Google Deep Research and Deep Research Max can combine web search and proprietary enterprise data",
+      "MCP integrations are mentioned in the VentureBeat report",
+      "Native charts are also mentioned as part of the workflow"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      },
+      {
+        "type": "web",
+        "title": "Google's new Deep Research and Deep Research Max agents can search the ...",
+        "url": "https://venturebeat.com/technology/googles-new-deep-research-and-deep-research-max-agents-can-search-the-web-and-your-private-data"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "What evidence in the sources indicates that Deep Research can support rapid literature synthesis in medical research?",
+    "ground_truth": "The JMIR source provides an example of a deep research agent that autonomously retrieved, synthesized, and formatted recent literature into a reference-supported summary in less than 8 minutes. The example query concerned emerging 2024-2025 biomarkers predictive of immunotherapy response across cancer types. This demonstrates the usefulness of deep research agents for rapid literature review and evidence synthesis in biomedical contexts.",
+    "key_facts": [
+      "The JMIR source describes autonomous retrieval and synthesis",
+      "It formatted recent literature into a reference-supported summary",
+      "The process took less than 8 minutes",
+      "The example was about biomarkers predictive of immunotherapy response across cancer types"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Journal of Medical Internet Research - Deep Research Agents: Major Breakthrough or Incremental Progress for Medical AI?",
+        "url": "https://www.jmir.org/2026/1/e88195"
+      },
+      {
+        "type": "web",
+        "title": "Viewpoint Deep Research Agents: Major Breakthrough or Incremental Progress",
+        "url": "https://www.jmir.org/2026/1/e88195/PDF"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "hard",
+    "question": "What are the main open debates about whether Deep Research represents a major breakthrough or only incremental progress?",
+    "ground_truth": "The evidence explicitly frames this as a viewpoint question in the JMIR source, asking whether deep research agents are a major breakthrough or incremental progress for medical AI. The survey and industry sources suggest both strong capabilities and rapid adoption, but the evidence does not resolve the question definitively. A cautious reading is that the debate centers on whether these systems fundamentally change research workflows or mainly automate and speed up existing ones.",
+    "key_facts": [
+      "JMIR frames the topic as a debate about major breakthrough versus incremental progress",
+      "The evidence does not conclusively settle the question",
+      "Deep Research clearly automates and speeds up research workflows",
+      "[disputed] Whether this constitutes a fundamental transformation of research practice is open"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Journal of Medical Internet Research - Deep Research Agents: Major Breakthrough or Incremental Progress for Medical AI?",
+        "url": "https://www.jmir.org/2026/1/e88195"
+      },
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/html/2506.12594v1"
+      },
+      {
+        "type": "web",
+        "title": "Deep Research (AI)",
+        "url": "https://grokipedia.com/page/Deep_Research_AI"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "How do citations and source synthesis affect the trustworthiness of Deep Research outputs, according to the evidence?",
+    "ground_truth": "The evidence suggests that verifiable citations and structured evidence tables are intended to increase trustworthiness by making outputs traceable to sources. At the same time, the sources do not prove that all deep research outputs are equally reliable or error-free. So the trust argument rests on transparency and evidence support, not on a demonstrated guarantee of correctness.",
+    "key_facts": [
+      "Some systems provide verifiable citations",
+      "Some outputs include structured evidence tables",
+      "Citations improve traceability to sources",
+      "[disputed] Citations do not guarantee correctness or eliminate errors"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594"
+      },
+      {
+        "type": "web",
+        "title": "Journal of Medical Internet Research - Deep Research Agents: Major Breakthrough or Incremental Progress for Medical AI?",
+        "url": "https://www.jmir.org/2026/1/e88195"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "What does the evidence imply about the relationship between Deep Research systems and broader agentic search ecosystems?",
+    "ground_truth": "The evidence implies that Deep Research is part of a broader shift toward agentic search systems that can plan, search, and synthesize across multiple sources. The survey mentions related frameworks such as OpenManus, Camel-AI/OWL, and TARS, while also noting Anthropic's agentic search capabilities and Google's enterprise-oriented Deep Research variants. This suggests an ecosystem of converging approaches rather than a single unified architecture.",
+    "key_facts": [
+      "Deep Research is part of a broader agentic search ecosystem",
+      "Related frameworks include OpenManus, Camel-AI/OWL, and TARS",
+      "Anthropic launched agentic search capabilities in April 2025",
+      "[disputed] The field appears to be converging on similar workflows, but a single unified architecture is not established"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594"
+      },
+      {
+        "type": "web",
+        "title": "Google's new Deep Research and Deep Research Max agents can search the ...",
+        "url": "https://venturebeat.com/technology/googles-new-deep-research-and-deep-research-max-agents-can-search-the-web-and-your-private-data"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "What can be concluded from the evidence about whether Deep Research is a single product category or a label used by multiple companies for similar agent features?",
+    "ground_truth": "The evidence indicates that Deep Research is a label used by multiple companies for related AI agent features rather than a single product. Wikipedia explicitly lists ChatGPT Deep Research and Gemini Deep Research under the same term, and the web evidence adds Perplexity Deep Research plus other agentic search systems. The common pattern is automated multi-step research, but implementations and branding differ across vendors.",
+    "key_facts": [
+      "Deep Research is used as a label by multiple companies",
+      "Wikipedia lists ChatGPT Deep Research and Gemini Deep Research under the term",
+      "Perplexity Deep Research is another named implementation",
+      "The implementations share automated multi-step research but differ in branding and capabilities"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Deep Research",
+        "url": "https://en.wikipedia.org/wiki/Deep_Research"
+      },
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/us/overview/deep-research/?hl=en"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  }
+]
