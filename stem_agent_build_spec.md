@@ -78,6 +78,10 @@ dependencies = [
     "ddgs>=7.0.0",
     "requests>=2.31.0",
     "beautifulsoup4>=4.12.0",
+    "langchain>=1.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-litellm>=0.6.5",
 ]
 
 [project.optional-dependencies]
@@ -116,23 +120,32 @@ Import `PROJECT_ROOT` everywhere a file path is constructed. Never use bare rela
 
 **File:** `stem_agent/core/llm.py`
 
-All LLM calls in the entire codebase go through a single function `call_llm(messages, max_tokens)`. No module may import a provider SDK directly.
+All LLM calls go through two functions: `call_llm(messages, max_tokens) -> str` for plain text and `call_llm_json(messages, max_tokens) -> dict` for structured JSON output. No module may import a provider SDK directly. The underlying engine is **LangChain's `ChatLiteLLM`**, which delegates to `litellm` and therefore supports every provider LiteLLM supports.
+
+Reasoning/thinking models (OpenAI `o1`, `o3`, `o4`, `gpt-5.x` series) use a shared thinking+output token budget. The wrapper automatically detects them and scales up the token request so internal chain-of-thought does not exhaust the quota before the visible answer is written.
 
 ```python
+import json
 import os
-import litellm
-from dotenv import load_dotenv
 
-load_dotenv()
+from langchain_litellm import ChatLiteLLM
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.exceptions import OutputParserException
 
-litellm.success_callback = []
-litellm.failure_callback = []
-
-# Support alternative env var names
+# Alias alternative env var name before any initialisation
 if not os.environ.get("OPENAI_API_KEY") and os.environ.get("OPENAI_KEY"):
     os.environ["OPENAI_API_KEY"] = os.environ["OPENAI_KEY"]
 
 DEFAULT_MODEL = "claude-3-5-sonnet-20241022"
+
+# Substrings that identify reasoning/thinking models
+_REASONING_MODEL_SUBSTRINGS = ("o1", "o3", "o4", "gpt-5", "gpt5")
+_REASONING_MIN_TOKENS = 16_000   # floor for reasoning models
+_REASONING_MULTIPLIER = 4        # scale caller budget × 4
+
+_json_parser = JsonOutputParser()
+
 
 def _get_model() -> str:
     """Priority: STEM_AGENT_MODEL → MODEL → DEFAULT_MODEL."""
@@ -142,13 +155,55 @@ def _get_model() -> str:
         or DEFAULT_MODEL
     )
 
+
+def _is_reasoning_model(model: str) -> bool:
+    return any(s in model.lower() for s in _REASONING_MODEL_SUBSTRINGS)
+
+
+def _to_lc_messages(messages: list[dict]) -> list:
+    """Convert OpenAI-style dicts to LangChain message objects."""
+    mapping = {"system": SystemMessage, "assistant": AIMessage}
+    return [mapping.get(m["role"], HumanMessage)(content=m["content"]) for m in messages]
+
+
+def get_llm(max_tokens: int = 2048) -> ChatLiteLLM:
+    """Return a configured ChatLiteLLM instance, with budget scaling for reasoning models."""
+    model = _get_model()
+    if _is_reasoning_model(model):
+        budget = max(max_tokens * _REASONING_MULTIPLIER, _REASONING_MIN_TOKENS)
+        return ChatLiteLLM(
+            model=model,
+            max_tokens=budget,
+            model_kwargs={"max_completion_tokens": budget},
+        )
+    return ChatLiteLLM(model=model, max_tokens=max_tokens)
+
+
 def call_llm(messages: list[dict], max_tokens: int = 2048) -> str:
-    response = litellm.completion(
-        model=_get_model(),
-        messages=messages,
-        max_tokens=max_tokens,
-    )
-    return response.choices[0].message.content
+    """Call the LLM and return the response as a plain string."""
+    llm = get_llm(max_tokens)
+    response = llm.invoke(_to_lc_messages(messages))
+    return response.content
+
+
+def call_llm_json(messages: list[dict], max_tokens: int = 2048) -> dict:
+    """
+    Call the LLM and parse the response as JSON.
+    Handles markdown fences automatically via JsonOutputParser.
+    Falls back to a manual repair pass (trim truncated trailing text) before raising.
+    """
+    raw = call_llm(messages, max_tokens)
+    try:
+        return _json_parser.parse(raw)
+    except (OutputParserException, Exception):
+        # Repair: find the last closing brace and truncate
+        last_brace = raw.rfind("}")
+        if last_brace != -1:
+            try:
+                return json.loads(raw[: last_brace + 1])
+            except json.JSONDecodeError:
+                pass
+        raise ValueError(f"call_llm_json: could not parse response as JSON.\nRaw:\n{raw[:500]}")
 ```
 
 Supported environment variables (any combination works):
@@ -162,6 +217,8 @@ Supported environment variables (any combination works):
 | `ANTHROPIC_API_KEY` | Required for Claude models |
 | `TAVILY_API_KEY` | Optional; enables live web search in `multi_step_search` |
 | `SEMANTIC_SCHOLAR_API_KEY` | Optional; raises Semantic Scholar rate limits in Phase 0 |
+
+> **Important:** `call_llm` returns plain text. Use `call_llm_json` whenever the response is expected to be a JSON object (Phase 1, 2, 3 introspect/mutate, and the eval judge). Both functions are exported from `core/llm.py`.
 
 ---
 
@@ -322,7 +379,7 @@ def load_or_build(domain: str, domain_slug: str) -> list[dict]:
 **Input:** `task_domain: str`
 **Output:** `primitives: dict`
 
-Single `call_llm` call. Ask the model to act as a research analyst and produce a structured JSON breakdown of how the domain is typically approached.
+Single `call_llm_json` call. Ask the model to act as a research analyst and produce a structured JSON breakdown of how the domain is typically approached.
 
 ```python
 SENSE_PROMPT = """You are analyzing how the task domain '{domain}' is typically approached
@@ -353,7 +410,7 @@ Respond with ONLY the JSON object. No preamble, no markdown fences."""
 **Input:** `primitives: dict`, `task_domain: str`
 **Output:** `AgentSpec` v0
 
-Single `call_llm` call. Inject `primitives` and the domain name. Stamp `spec.task_domain = task_domain`.
+Single `call_llm_json` call. Inject `primitives` and the domain name. Stamp `spec.task_domain = task_domain`.
 
 ```python
 HYPOTHESIZE_PROMPT = """You are designing the initial architecture for a '{domain}' agent.
@@ -523,11 +580,13 @@ def load_best_checkpoint(output_dir: str) -> tuple[AgentSpec, dict] | None:
 **File:** `stem_agent/core/runner.py`
 
 ```python
+from stem_agent.core.llm import call_llm
+
 def run_candidate_agent(spec: AgentSpec, question: str) -> str:
     """Dispatch to the correct execution strategy. Returns the agent's answer."""
 ```
 
-Implement four private functions (no `client` parameter — use `call_llm` directly):
+Implement four private functions — use `call_llm` (plain text) directly:
 
 | Architecture | Implementation |
 |---|---|
@@ -555,7 +614,7 @@ def run_eval(spec: AgentSpec, questions: list[dict]) -> dict:
     """
 ```
 
-Score each answer on four dimensions (0.0–1.0) via a judge `call_llm` call:
+Score each answer on four dimensions (0.0–1.0) via a judge `call_llm_json` call (import it from `core/llm.py`). The judge prompt requests JSON directly so parsing is always structured:
 
 | Dimension | What it measures |
 |---|---|
@@ -679,7 +738,7 @@ Execute in this exact sequence:
 1. Create directory structure and all `__init__.py` files
 2. Create `pyproject.toml`; run `uv sync`
 3. Implement `core/paths.py`
-4. Implement `core/llm.py`; smoke-test: `call_llm([{"role":"user","content":"ping"}])` returns a string
+4. Implement `core/llm.py`; smoke-test: `call_llm([{"role":"user","content":"ping"}])` returns a string and `call_llm_json([{"role":"user","content":"respond with {\"ok\":true}"}])` returns a dict
 5. Implement `core/agent_spec.py`; round-trip test
 6. Implement `core/runner.py` (all four architectures)
 7. Implement `core/checkpointer.py`
