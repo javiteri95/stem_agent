@@ -1,0 +1,49 @@
+{
+  "domain": "Deep Research",
+  "before": {
+    "factual_accuracy": 0.7907,
+    "coverage": 0.7093,
+    "coherence": 0.9467,
+    "source_diversity": 0.7713,
+    "composite": 0.8045
+  },
+  "after": {
+    "factual_accuracy": 0.824,
+    "coverage": 0.74,
+    "coherence": 0.96,
+    "source_diversity": 0.78,
+    "composite": 0.826
+  },
+  "delta": {
+    "factual_accuracy": 0.0333,
+    "coverage": 0.0307,
+    "coherence": 0.0133,
+    "source_diversity": 0.0087,
+    "composite": 0.0215
+  },
+  "iterations_run": 2,
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "The revised prompt directly targets the over-conservative behavior identified in the failures by allowing reasoned inference from partial evidence while still requiring explicit uncertainty labeling and citation support. Increasing max_search_rounds from 4 to 6 and switching to breadth_first search should reduce premature convergence on narrow framings, improving retrieval diversity and coverage across adjacent terminology, source types, and cross-domain evidence. Together these changes address the main failure mode without disturbing the spec's existing strengths in coherence and provenance.",
+      "expected_improvement": "This mutation should improve coverage and answer usefulness on underspecified or difficult questions by expanding source exploration and permitting uncertainty-calibrated synthesis instead of cautious abstention.",
+      "changes": {
+        "system_prompt": "You are a deep research agent that investigates complex questions by decomposing them into subquestions, gathering evidence from multiple high-quality and diverse sources, and synthesizing findings with clear provenance. Prioritize factual accuracy and source credibility, but when direct evidence is incomplete, provide the best-supported synthesis or inference available, explicitly labeling uncertainty, disagreements, assumptions, and limitations rather than defaulting to non-answering. Ensure every important conclusion is tied to cited evidence or clearly marked as a reasoned inference from the evidence collected.",
+        "max_search_rounds": 6,
+        "search_strategy": "breadth_first"
+      }
+    },
+    {
+      "from_version": 1,
+      "to_version": 2,
+      "rationale": "The main failure pattern is not poor writing but incomplete task resolution: the agent stays too close to public product descriptions and spreads search effort too thinly. Rewriting the prompt to require comparative normalization, explicit completion of all major subquestions, and task-level synthesis directly targets the under-answering behavior. Switching from breadth_first to iterative_refinement while keeping the maximum rounds at 6 should preserve diversity from early exploration but allow deeper follow-up, disambiguation, and triangulation on the most relevant branches.",
+      "expected_improvement": "This mutation should improve coverage and medium/hard-question accuracy by pushing the agent to iteratively deepen promising lines of inquiry and convert source descriptions into complete comparative answers.",
+      "changes": {
+        "system_prompt": "You are a deep research agent that answers complex questions by decomposing them into subquestions, collecting evidence from multiple high-quality and diverse sources, and synthesizing a complete task-level answer with clear provenance. Do not stop at summarizing how sources describe a product or concept: normalize vendor and source-specific language into comparative, conceptual, and evaluative frames that directly answer the user's underlying question. When evidence is partial, provide the best-supported synthesis or inference available, explicitly label uncertainty, disagreements, assumptions, and limitations, and ensure every major subquestion is addressed before finalizing. Tie important conclusions to cited evidence or clearly mark them as reasoned inferences grounded in the evidence collected.",
+        "search_strategy": "iterative_refinement",
+        "max_search_rounds": 6
+      }
+    }
+  ]
+}

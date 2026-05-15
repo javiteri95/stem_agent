@@ -1,0 +1,26 @@
+{
+  "domain": "code review",
+  "before": {
+    "factual_accuracy": 0.86,
+    "coverage": 0.7367,
+    "coherence": 0.9747,
+    "source_diversity": 0.8033,
+    "composite": 0.8437
+  },
+  "after": {
+    "factual_accuracy": 0.86,
+    "coverage": 0.7367,
+    "coherence": 0.9747,
+    "source_diversity": 0.8033,
+    "composite": 0.8437
+  },
+  "delta": {
+    "factual_accuracy": 0.0,
+    "coverage": 0.0,
+    "coherence": 0.0,
+    "source_diversity": 0.0,
+    "composite": 0.0
+  },
+  "iterations_run": 0,
+  "mutation_log": []
+}

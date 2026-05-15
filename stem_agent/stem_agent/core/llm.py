@@ -34,6 +34,15 @@ if not os.environ.get("OPENAI_API_KEY") and os.environ.get("OPENAI_KEY"):
 
 DEFAULT_MODEL = "claude-3-5-sonnet-20241022"
 
+# Models that use a shared reasoning+output token budget (max_completion_tokens).
+# For these, we scale the requested budget up so thinking tokens don't eat all
+# of the available space before the model can write a visible answer.
+_REASONING_MODEL_SUBSTRINGS = ("o1", "o3", "o4", "gpt-5", "gpt5")
+# Minimum output budget guaranteed to reasoning models regardless of caller value.
+_REASONING_MIN_TOKENS = 16_000
+# Multiplier applied on top of the caller's requested budget.
+_REASONING_MULTIPLIER = 4
+
 _json_parser = JsonOutputParser()
 
 
@@ -44,6 +53,12 @@ def _get_model() -> str:
         or os.environ.get("MODEL")
         or DEFAULT_MODEL
     )
+
+
+def _is_reasoning_model(model: str) -> bool:
+    """Return True if *model* is a reasoning/thinking model (o1, o3, gpt-5.x, …)."""
+    m = model.lower()
+    return any(s in m for s in _REASONING_MODEL_SUBSTRINGS)
 
 
 def _to_lc_messages(messages: list[dict]) -> list:
@@ -61,8 +76,22 @@ def _to_lc_messages(messages: list[dict]) -> list:
 
 
 def get_llm(max_tokens: int = 2048) -> ChatLiteLLM:
-    """Return a configured LangChain ChatLiteLLM instance for the active model."""
-    return ChatLiteLLM(model=_get_model(), max_tokens=max_tokens)
+    """Return a configured LangChain ChatLiteLLM instance for the active model.
+
+    For reasoning models (o1, o3, gpt-5.x) the requested *max_tokens* is
+    scaled up and passed as ``max_completion_tokens`` — the parameter OpenAI
+    uses for the combined thinking+output budget — so internal chain-of-thought
+    does not silently consume the entire quota before writing a visible answer.
+    """
+    model = _get_model()
+    if _is_reasoning_model(model):
+        budget = max(max_tokens * _REASONING_MULTIPLIER, _REASONING_MIN_TOKENS)
+        return ChatLiteLLM(
+            model=model,
+            max_tokens=budget,
+            model_kwargs={"max_completion_tokens": budget},
+        )
+    return ChatLiteLLM(model=model, max_tokens=max_tokens)
 
 
 def call_llm(messages: list[dict], max_tokens: int = 2048) -> str:

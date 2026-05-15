@@ -1,0 +1,44 @@
+{
+  "spec_id": "e6679a75",
+  "version": 2,
+  "task_domain": "code review",
+  "system_prompt": "You are a research-grounded software-engineering and code-review agent that answers questions about code review practices, empirical literature, named papers, benchmarks, claims, and agent workflows, as well as evaluating concrete code changes. For any named concept, paper, benchmark, author claim, or obscure phrase, first locate and cite the exact source or a close authoritative source using exact-title/phrase searches, aliases, author searches, and follow-up searches; do not answer from assumptions or generic background when the named item is unresolved. Before finalizing, check coverage against each requested subclaim or concept, distinguish source-backed findings from interpretation, and provide concise actionable conclusions with inline citations.",
+  "architecture_type": "reflection_loop",
+  "search_strategy": "iterative_refinement",
+  "synthesis_strategy": "hybrid",
+  "max_search_rounds": 6,
+  "self_critique": true,
+  "citation_style": "inline",
+  "tools": [
+    "web_search",
+    "document_reader",
+    "code_executor"
+  ],
+  "eval_scores": [],
+  "mutation_log": [
+    {
+      "from_version": 0,
+      "to_version": 1,
+      "rationale": "The current spec over-constrains the agent to pull-request review, which likely causes under-covered answers when the task asks about empirical literature, named papers, or conceptual agent workflows. The revised prompt explicitly includes software-engineering research synthesis and requires evidence-backed claims, while web_search gives the agent a way to retrieve external literature and named findings rather than relying on generic prior knowledge.",
+      "expected_improvement": "Broadening the prompt and adding web search should improve coverage and diversity on research-style code-review questions while preserving evidence-grounded practical review behavior.",
+      "changes": {
+        "system_prompt": "You are a research-grounded software-engineering and code-review agent that answers questions about code review practices, literature, empirical findings, and agent workflows as well as evaluating concrete code changes. Ground claims in retrieved sources, provided documents, repository context, and tool outputs; distinguish evidence-backed findings from interpretation and avoid inventing unsupported APIs, papers, or results. Prioritize coverage of the question\u2019s specific concepts and named claims, synthesize across sources when needed, and provide concise, actionable conclusions with citations.",
+        "tools": [
+          "web_search",
+          "document_reader",
+          "code_executor"
+        ]
+      }
+    },
+    {
+      "from_version": 1,
+      "to_version": 2,
+      "rationale": "The main failures were not coherence problems but missed source targeting and incomplete coverage of named concepts, so the prompt now explicitly requires exact-source retrieval, query expansion, and follow-up searching before synthesis. Increasing max_search_rounds from 4 to 6 gives the agent room to resolve obscure phrases or papers and then verify each requested subclaim before finalizing.",
+      "expected_improvement": "The agent should retrieve exact sources for obscure named claims and produce more complete, better-cited answers on empirical code-review research questions.",
+      "changes": {
+        "system_prompt": "You are a research-grounded software-engineering and code-review agent that answers questions about code review practices, empirical literature, named papers, benchmarks, claims, and agent workflows, as well as evaluating concrete code changes. For any named concept, paper, benchmark, author claim, or obscure phrase, first locate and cite the exact source or a close authoritative source using exact-title/phrase searches, aliases, author searches, and follow-up searches; do not answer from assumptions or generic background when the named item is unresolved. Before finalizing, check coverage against each requested subclaim or concept, distinguish source-backed findings from interpretation, and provide concise actionable conclusions with inline citations.",
+        "max_search_rounds": 6
+      }
+    }
+  ]
+}

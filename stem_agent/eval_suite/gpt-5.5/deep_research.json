@@ -1,0 +1,396 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is meant by Deep Research in the context of current AI agents?",
+    "ground_truth": "Deep Research refers to an AI agent capability that performs multi-step research on a user-specified topic by browsing sources, analyzing information, and producing a detailed report. The term is used for product features such as OpenAI's ChatGPT Deep Research and Google's Gemini Deep Research.",
+    "key_facts": [
+      "Deep Research is an AI agent capability",
+      "It performs multi-step web searches or browsing",
+      "It reads, reasons over, and analyzes sources",
+      "It generates detailed or comprehensive reports",
+      "Named examples include ChatGPT Deep Research and Gemini Deep Research"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "ChatGPT Deep Research - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/ChatGPT_Deep_Research"
+      },
+      {
+        "type": "wikipedia",
+        "title": "Deep Research",
+        "url": "https://en.wikipedia.org/wiki/Deep_Research"
+      },
+      {
+        "type": "web",
+        "title": "Deep Research (AI)",
+        "url": "https://grokipedia.com/page/Deep_Research_AI"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "What does ChatGPT Deep Research do for a user?",
+    "ground_truth": "ChatGPT Deep Research is described as an AI agent integrated into ChatGPT that generates cited reports on a user-specified topic. It autonomously browses the web for about 5 to 30 minutes and can interpret and analyze text, images, and PDFs.",
+    "key_facts": [
+      "ChatGPT Deep Research is integrated into ChatGPT",
+      "It generates cited reports",
+      "It works on user-specified topics",
+      "It autonomously browses the web for 5 to 30 minutes",
+      "It can interpret and analyze text, images, and PDFs"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "ChatGPT Deep Research - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/ChatGPT_Deep_Research"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "Which AI products are explicitly listed by Wikipedia under the term Deep Research?",
+    "ground_truth": "Wikipedia's Deep Research disambiguation page says that Deep Research may refer to ChatGPT Deep Research, an intelligent agent by OpenAI, or Gemini Deep Research, an intelligent agent by Google. This indicates that the phrase is used for more than one named AI agent feature.",
+    "key_facts": [
+      "Wikipedia lists ChatGPT Deep Research",
+      "ChatGPT Deep Research is identified as an intelligent agent by OpenAI",
+      "Wikipedia lists Gemini Deep Research",
+      "Gemini Deep Research is identified as an intelligent agent by Google",
+      "The term Deep Research is not limited to only one product"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Deep Research",
+        "url": "https://en.wikipedia.org/wiki/Deep_Research"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "How does Deep Research differ from a basic information lookup?",
+    "ground_truth": "Deep Research is described as an advanced AI-driven method for conducting thorough investigations into intricate topics, rather than a simple lookup. It synthesizes data from diverse sources and produces comprehensive reports with higher-level insights.",
+    "key_facts": [
+      "Deep Research is described as more advanced than basic techniques",
+      "It is aimed at thorough investigations into intricate topics",
+      "It synthesizes data from diverse sources",
+      "It creates comprehensive reports",
+      "It can offer high-level insights"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Understanding what is deep research: a comprehensive guide",
+        "url": "https://minuteslink.com/blog/understanding-what-is-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "Which major AI providers have described Deep Research features in the supplied evidence?",
+    "ground_truth": "The supplied evidence includes Deep Research features from OpenAI, Google, and Perplexity. OpenAI describes ChatGPT deep research, Google describes Gemini Deep Research, and Perplexity describes Perplexity Deep Research.",
+    "key_facts": [
+      "OpenAI describes a deep research feature in ChatGPT",
+      "Google describes Gemini Deep Research",
+      "Perplexity describes Perplexity Deep Research",
+      "All three are presented as AI-assisted research products or features"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research | OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "What workflow does OpenAI describe for using ChatGPT deep research?",
+    "ground_truth": "OpenAI says users select deep research in the ChatGPT message composer, enter a query, and specify what they need. Users can attach files or spreadsheets for context, and once the task starts, a sidebar shows a summary of steps taken and sources used.",
+    "key_facts": [
+      "Users select deep research in the ChatGPT message composer",
+      "Users enter a query or prompt",
+      "Users can specify the kind of report or analysis they need",
+      "Users can attach files or spreadsheets for context",
+      "A sidebar summarizes steps taken and sources used"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "How do OpenAI, Gemini, and Perplexity describe the source-gathering behavior of their Deep Research systems?",
+    "ground_truth": "OpenAI describes deep research as finding, analyzing, and synthesizing hundreds of online sources. Gemini says its feature can automatically browse up to hundreds of websites and, in some contexts, Gmail, Drive, and Chat. Perplexity says its Deep Research performs dozens of searches, reads hundreds of sources, and reasons through the material.",
+    "key_facts": [
+      "OpenAI says its system can synthesize hundreds of online sources",
+      "Gemini says it can browse up to hundreds of websites",
+      "Gemini also mentions Gmail, Drive, and Chat access",
+      "Perplexity says it performs dozens of searches",
+      "Perplexity says it reads hundreds of sources and reasons through them"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research | OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "What timeline of Deep Research product announcements is reported in the supplied evidence?",
+    "ground_truth": "A supplied web result reports that Google unveiled Gemini 1.5 Deep Research in December 2024, OpenAI followed with its Deep Research in February 2025, and Perplexity introduced its own Deep Research afterward. Google's Gemini Deep Research overview in the evidence is dated March 13, 2025.",
+    "key_facts": [
+      "A source reports Google Gemini 1.5 Deep Research in December 2024",
+      "A source reports OpenAI Deep Research in February 2025",
+      "A source reports Perplexity introduced Deep Research after OpenAI",
+      "The Gemini Deep Research overview in the evidence is dated March 13, 2025"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "The Differences between Deep Research, Deep Research, and Deep",
+        "url": "https://leehanchung.github.io/blogs/2025/02/26/deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "What kinds of tasks or use cases are mentioned for Deep Research systems?",
+    "ground_truth": "OpenAI gives examples such as competitive analysis on streaming platforms and a personalized report on the best commuter bike. Gemini frames the feature as a personal research assistant for getting up to speed on almost anything, while Perplexity frames it as saving users hours on in-depth research and analysis.",
+    "key_facts": [
+      "OpenAI mentions competitive analysis on streaming platforms",
+      "OpenAI mentions a personalized commuter-bike report",
+      "Gemini describes Deep Research as a personal research assistant",
+      "Gemini says it helps users get up to speed on almost anything",
+      "Perplexity describes the feature as saving hours on in-depth research and analysis"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "What input and content modalities are associated with Deep Research in the supplied evidence?",
+    "ground_truth": "ChatGPT Deep Research is described as being able to interpret and analyze text, images, and PDFs. OpenAI also says users can attach files or spreadsheets to add context, while Gemini says its Deep Research can browse websites and even Gmail, Drive, and Chat on a user's behalf.",
+    "key_facts": [
+      "ChatGPT Deep Research can analyze text",
+      "ChatGPT Deep Research can analyze images",
+      "ChatGPT Deep Research can analyze PDFs",
+      "OpenAI says users can attach files or spreadsheets",
+      "Gemini says it can browse websites and even Gmail, Drive, and Chat"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "ChatGPT Deep Research - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/ChatGPT_Deep_Research"
+      },
+      {
+        "type": "web",
+        "title": "Introducing deep research - OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "How do recent survey papers frame Deep Research as a technical field?",
+    "ground_truth": "One arXiv survey says it provides a comprehensive and systematic overview of deep research systems, including a roadmap, foundational components, implementation techniques, challenges, and future directions. Another arXiv survey says it organizes Deep Research systems around a technical taxonomy based on four fundamental technological capabilities.",
+    "key_facts": [
+      "A survey presents a systematic overview of deep research systems",
+      "The survey says it formalizes a three-stage roadmap",
+      "The survey discusses foundational components and implementation techniques",
+      "The survey includes challenges and future directions",
+      "Another survey presents a taxonomy organized around four fundamental technological capabilities"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Deep Research: A Systematic Survey",
+        "url": "https://arxiv.org/pdf/2512.02038"
+      },
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594v1"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "hard",
+    "question": "How should a researcher critically interpret vendor claims that Deep Research can produce analyst-level or comprehensive reports?",
+    "ground_truth": "The evidence shows that vendors describe Deep Research as producing comprehensive reports, with OpenAI specifically saying reports can be at the level of a research analyst. However, the supplied evidence consists mainly of product descriptions and high-level summaries, not independent benchmark results proving report quality. A critical interpretation should distinguish the existence of the claimed capability from verified performance across domains.",
+    "key_facts": [
+      "OpenAI claims deep research can create a comprehensive report at the level of a research analyst",
+      "Perplexity claims it autonomously delivers a comprehensive report",
+      "Gemini claims it creates insightful multi-page reports",
+      "[disputed] Vendor descriptions alone do not establish independent benchmark-level performance",
+      "A critical evaluation should separate claimed capability from independently verified quality"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research | OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "Is Deep Research best understood as a single product name or as a broader category of AI agent systems?",
+    "ground_truth": "The evidence supports both interpretations, depending on context. Wikipedia's disambiguation page lists Deep Research as referring to named products such as ChatGPT Deep Research and Gemini Deep Research, while other sources describe Deep Research more generally as an AI agent feature that performs multi-step searches, reads sources, reasons, and generates reports. A careful answer should therefore treat it as a broader category that also appears in specific product names.",
+    "key_facts": [
+      "Wikipedia lists multiple Deep Research referents",
+      "ChatGPT Deep Research is one named product",
+      "Gemini Deep Research is another named product",
+      "Other evidence defines Deep Research generically as an AI agent feature",
+      "The broader category involves multi-step searching, source reading, reasoning, and reporting"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Deep Research",
+        "url": "https://en.wikipedia.org/wiki/Deep_Research"
+      },
+      {
+        "type": "web",
+        "title": "Deep Research (AI)",
+        "url": "https://grokipedia.com/page/Deep_Research_AI"
+      },
+      {
+        "type": "wikipedia",
+        "title": "ChatGPT Deep Research - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/ChatGPT_Deep_Research"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "What open research agenda for Deep Research systems can be inferred from the survey evidence without inventing details?",
+    "ground_truth": "The survey evidence indicates that Deep Research is being organized as a field with roadmaps, foundational components, implementation techniques, challenges, and future directions. It also indicates that at least one survey proposes a technical taxonomy around four fundamental technological capabilities. The supplied snippets do not provide enough detail to responsibly enumerate the stages, capabilities, or specific open challenges.",
+    "key_facts": [
+      "One survey offers a roadmap for deep research systems",
+      "One survey discusses foundational components",
+      "One survey discusses practical implementation techniques",
+      "One survey includes important challenges and future directions",
+      "Another survey organizes the field around four fundamental technological capabilities",
+      "The supplied evidence does not specify the exact stages, capabilities, or challenges"
+    ],
+    "sources": [
+      {
+        "type": "arxiv",
+        "title": "Deep Research: A Systematic Survey",
+        "url": "https://arxiv.org/pdf/2512.02038"
+      },
+      {
+        "type": "arxiv",
+        "title": "A Comprehensive Survey of Deep Research: Systems, Methodologies, and ...",
+        "url": "https://arxiv.org/pdf/2506.12594v1"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "What criteria from the supplied evidence can be used to compare competing Deep Research systems without relying on unsupported quality claims?",
+    "ground_truth": "A researcher can compare systems by observable or explicitly claimed dimensions such as source breadth, search behavior, supported input types, access to user documents or communications, and reporting transparency. For example, OpenAI emphasizes hundreds of online sources, file or spreadsheet attachments, and a sidebar showing steps and sources; Gemini emphasizes browsing up to hundreds of websites plus Gmail, Drive, and Chat; Perplexity emphasizes dozens of searches and hundreds of sources. The evidence does not by itself prove which system produces more accurate or higher-quality research.",
+    "key_facts": [
+      "OpenAI claims synthesis of hundreds of online sources",
+      "OpenAI supports file or spreadsheet attachments and shows steps and sources in a sidebar",
+      "Gemini claims browsing up to hundreds of websites and even Gmail, Drive, and Chat",
+      "Perplexity claims dozens of searches and hundreds of sources read",
+      "[disputed] The supplied evidence does not establish which system is most accurate or highest quality"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Introducing deep research | OpenAI",
+        "url": "https://openai.com/index/introducing-deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Gemini Deep Research \u2014 your personal research assistant",
+        "url": "https://gemini.google/overview/deep-research/"
+      },
+      {
+        "type": "web",
+        "title": "Introducing Perplexity Deep Research",
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research"
+      }
+    ]
+  }
+]

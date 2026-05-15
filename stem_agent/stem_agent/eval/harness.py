@@ -11,7 +11,7 @@ import time
 import datetime
 from stem_agent.core.agent_spec import AgentSpec
 from stem_agent.core.runner import run_candidate_agent
-from stem_agent.core.llm import call_llm
+from stem_agent.core.llm import call_llm_json
 
 JUDGE_PROMPT = """You are a research quality evaluator. Score the following research answer.
 
@@ -41,17 +41,7 @@ def _score_answer(question: dict, answer: str) -> dict:
         answer=answer,
     )
     messages = [{"role": "user", "content": prompt}]
-    raw = call_llm(messages, max_tokens=256)
-
-    # Strip markdown fences if present
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.strip()
-
-    scores = json.loads(raw)
+    scores = call_llm_json(messages, max_tokens=2048)
     dims = ["factual_accuracy", "coverage", "coherence", "source_diversity"]
     composite = sum(float(scores[d]) for d in dims) / len(dims)
     scores["composite"] = round(composite, 4)

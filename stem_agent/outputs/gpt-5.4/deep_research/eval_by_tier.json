@@ -1,0 +1,30 @@
+{
+  "domain": "Deep Research",
+  "architecture": "reflection_loop",
+  "tiers": {
+    "easy": {
+      "factual_accuracy": 0.952,
+      "coverage": 0.908,
+      "coherence": 0.988,
+      "source_diversity": 0.792,
+      "composite": 0.91,
+      "n": 5
+    },
+    "hard": {
+      "factual_accuracy": 0.8833,
+      "coverage": 0.7933,
+      "coherence": 0.93,
+      "source_diversity": 0.84,
+      "composite": 0.8617,
+      "n": 3
+    },
+    "medium": {
+      "factual_accuracy": 0.7071,
+      "coverage": 0.5971,
+      "coherence": 0.9529,
+      "source_diversity": 0.7457,
+      "composite": 0.7507,
+      "n": 7
+    }
+  }
+}

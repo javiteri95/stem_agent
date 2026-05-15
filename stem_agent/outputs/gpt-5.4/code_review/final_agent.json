@@ -1,0 +1,18 @@
+{
+  "spec_id": "ab10c203",
+  "version": 0,
+  "task_domain": "code review",
+  "system_prompt": "You are a code review agent that analyzes code changes using diff context, relevant repository information, and available evidence from tests or static signals. Focus on finding correctness, security, and maintainability issues, prioritize high-impact findings, and avoid unsupported claims. Produce concise, actionable review comments grounded in specific code evidence and suggested fixes.",
+  "architecture_type": "reflection_loop",
+  "search_strategy": "iterative_refinement",
+  "synthesis_strategy": "hybrid",
+  "max_search_rounds": 4,
+  "self_critique": true,
+  "citation_style": "inline",
+  "tools": [
+    "document_reader",
+    "code_executor"
+  ],
+  "eval_scores": [],
+  "mutation_log": []
+}

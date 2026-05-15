@@ -1,0 +1,339 @@
+[
+  {
+    "id": "q01",
+    "tier": "easy",
+    "question": "What is code review in software development, and who performs it?",
+    "ground_truth": "Code review is a software quality assurance activity in which one or more people examine the source code of a computer program. It can happen after implementation or during the development process. The people performing the checking, excluding the author, are called reviewers, and at least one reviewer must not be the code's author.",
+    "key_facts": [
+      "Code review is a software quality assurance activity",
+      "It involves examining source code of a computer program",
+      "It may occur after implementation or during development",
+      "The checkers are called reviewers",
+      "At least one reviewer must not be the code's author"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "tier": "easy",
+    "question": "How does code review differ from static code analysis, self-checks, testing, and pair programming?",
+    "ground_truth": "Code review differs from static code analysis because static analysis relies primarily on automated tools. It differs from self-checks because self-checks involve only the author, and from testing because testing requires code execution. It also differs from pair programming because pair programming is performed continuously during development rather than as a separate step.",
+    "key_facts": [
+      "Static analysis relies primarily on automated tools",
+      "Self-checks involve only the author",
+      "Testing requires code execution",
+      "Pair programming is continuous during development",
+      "Code review is a separate quality assurance activity"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "tier": "easy",
+    "question": "At what stages of software work is code review typically performed?",
+    "ground_truth": "The evidence states that code review may be performed either after implementation or during the development process. Another source describes it as typically happening after implementation but before integration. Together, these sources place code review between coding and later integration or merge steps, while still allowing reviews during development.",
+    "key_facts": [
+      "Code review can happen after implementation",
+      "Code review can also occur during development",
+      "It is typically performed before integration",
+      "It commonly occurs before merging code"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "Code review",
+        "url": "https://grokipedia.com/page/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "What is a code review?",
+        "url": "https://about.gitlab.com/topics/version-control/what-is-code-review/"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "tier": "easy",
+    "question": "What benefits are commonly associated with code reviews before merging code?",
+    "ground_truth": "The provided GitLab source says code reviews improve code quality, security, and collaboration before merging. This frames code review as a peer-review practice that supports both technical outcomes and team interaction. These benefits are presented as common goals of the process.",
+    "key_facts": [
+      "Code reviews improve code quality",
+      "Code reviews improve security",
+      "Code reviews improve collaboration",
+      "These benefits are described in the context of reviewing before merging"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "What is a code review?",
+        "url": "https://about.gitlab.com/topics/version-control/what-is-code-review/"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "tier": "easy",
+    "question": "Why is the author alone not sufficient for a code review according to the definition in the evidence?",
+    "ground_truth": "The definition of code review requires that the checking be performed by reviewers excluding the author. It explicitly states that at least one reviewer must not be the code's author. This distinguishes code review from self-checks, which involve only the author.",
+    "key_facts": [
+      "Reviewers exclude the author",
+      "At least one reviewer must not be the code's author",
+      "Self-checks involve only the author",
+      "Code review is therefore distinct from self-review"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "tier": "medium",
+    "question": "How do modern tool-supported code review systems deliver feedback to developers in practice?",
+    "ground_truth": "The Claude Code documentation says its code review feature analyzes GitHub pull requests and posts findings as inline comments on the lines of code where it found issues. This indicates a workflow centered on pull requests and line-level annotations. The evidence therefore supports describing modern tool-supported review as integrated into repository workflows with localized feedback.",
+    "key_facts": [
+      "A tool can analyze GitHub pull requests",
+      "Findings can be posted as inline comments",
+      "Comments are attached to the lines where issues were found",
+      "Tool-supported review integrates with repository workflows"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Code Review - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/code-review"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "tier": "medium",
+    "question": "What organizational controls and access constraints can shape the use of code review tools in enterprises?",
+    "ground_truth": "The evidence shows that enterprise code review tools may require administrative enablement before use. Augment's documentation says an Enterprise Plan administrator must enable the feature for the organization and that users may need repository-specific or organization-wide access while following custom enterprise policies or guidelines. Claude Code's documentation also notes a specific availability constraint: its code review feature is not available for organizations with Zero Data Retention enabled.",
+    "key_facts": [
+      "Enterprise administrators may need to enable code review features",
+      "Access can be granted to specific repositories or organization-wide",
+      "Custom enterprise policies or guidelines may apply",
+      "Some code review features are unavailable with Zero Data Retention enabled"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Using Augment Code Review - Augment",
+        "url": "https://docs.augmentcode.com/codereview/overview"
+      },
+      {
+        "type": "web",
+        "title": "Code Review - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/code-review"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "tier": "medium",
+    "question": "How does code review fit into the broader sequence of software quality assurance activities?",
+    "ground_truth": "The evidence identifies code review as a software quality assurance activity focused on examining source code. It is distinct from static analysis, testing, self-checks, and pair programming because each of those relies on a different mechanism: automation, author-only inspection, execution, or continuous joint development. Another source places code review typically after implementation but before integration, showing its role as an intermediate quality gate in the development workflow.",
+    "key_facts": [
+      "Code review is a software quality assurance activity",
+      "It focuses on examining source code",
+      "It is distinct from static analysis, testing, self-checks, and pair programming",
+      "It is typically situated after implementation and before integration"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "Code review",
+        "url": "https://grokipedia.com/page/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "tier": "medium",
+    "question": "What tradeoff between review thoroughness and process cost is illustrated by team practices requiring multiple reviewers?",
+    "ground_truth": "The Atlassian source reports that many teams there require two reviews for each code change before it is checked into the codebase. Requiring multiple reviews implies additional review effort and coordination compared with a single-review process. At the same time, this practice reflects an organizational choice to increase scrutiny before integration.",
+    "key_facts": [
+      "Some teams require two reviews for each code change",
+      "This requirement occurs before code is checked into the codebase",
+      "Multiple reviewers imply greater effort and coordination than a single reviewer",
+      "The practice reflects increased scrutiny before integration"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Was sind Code-Reviews und wie sparen sie tats\u00e4chlich Zeit? | Atlassian",
+        "url": "https://www.atlassian.com/de/agile/software-development/code-reviews"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "tier": "medium",
+    "question": "In what ways is code review a collaborative activity rather than a purely individual one?",
+    "ground_truth": "Code review is collaborative because it requires one or more people other than the author to examine the code, and the checkers are defined as reviewers excluding the author. The GitLab source also describes code review as peer review that improves collaboration before merging. Together, these facts show that code review is inherently social and team-oriented rather than an individual self-assessment.",
+    "key_facts": [
+      "One or more people examine the code",
+      "Reviewers exclude the author",
+      "At least one reviewer must not be the code's author",
+      "Code reviews are described as peer reviews",
+      "They are said to improve collaboration"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "What is a code review?",
+        "url": "https://about.gitlab.com/topics/version-control/what-is-code-review/"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "tier": "medium",
+    "question": "How do pull requests serve as a practical unit for code review in contemporary development workflows?",
+    "ground_truth": "The evidence from Claude Code says its review feature analyzes GitHub pull requests and posts inline comments where issues are found. The GitLab source frames code reviews as taking place before merging, which aligns naturally with pull-request-based workflows. This supports the view that pull requests commonly package proposed changes for review and discussion before integration.",
+    "key_facts": [
+      "Code review tools can analyze GitHub pull requests",
+      "They can provide inline comments on specific lines",
+      "Code review is described as occurring before merging",
+      "Pull requests therefore function as a practical review unit before integration"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Code Review - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/code-review"
+      },
+      {
+        "type": "web",
+        "title": "What is a code review?",
+        "url": "https://about.gitlab.com/topics/version-control/what-is-code-review/"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "tier": "hard",
+    "question": "How should researchers critically compare human code review with automated analysis tools when evaluating software quality practices?",
+    "ground_truth": "The evidence supports a comparison based on mechanism rather than assuming one replaces the other. Code review is defined as examination of source code by one or more people other than the author, whereas static analysis relies primarily on automated tools. A sound evaluation should therefore distinguish human peer examination from automation-based checking and avoid conflating them as the same practice.",
+    "key_facts": [
+      "Code review involves one or more people examining source code",
+      "At least one reviewer must not be the code's author",
+      "Static analysis relies primarily on automated tools",
+      "The two practices differ in mechanism and should be evaluated distinctly"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "tier": "hard",
+    "question": "What limitations should be considered when using AI-assisted code review findings as evidence of review quality?",
+    "ground_truth": "The evidence shows that AI-assisted review tools can analyze GitHub pull requests and post inline comments where they detect issues, but it also shows deployment and availability constraints. For example, use may depend on enterprise administrator enablement, repository access, and compliance with enterprise policies, and one tool is unavailable for organizations with Zero Data Retention enabled. These facts imply that evaluations of AI-assisted review quality should account for tooling context and operational constraints, not just the comments produced.",
+    "key_facts": [
+      "AI-assisted code review tools can analyze GitHub pull requests",
+      "They can post inline comments on lines with issues",
+      "Use may require administrator enablement",
+      "Access may depend on repository or organization permissions",
+      "Enterprise policies can affect use",
+      "Some tools are unavailable with Zero Data Retention enabled"
+    ],
+    "sources": [
+      {
+        "type": "web",
+        "title": "Code Review - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/code-review"
+      },
+      {
+        "type": "web",
+        "title": "Using Augment Code Review - Augment",
+        "url": "https://docs.augmentcode.com/codereview/overview"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "tier": "hard",
+    "question": "How can researchers frame the boundary between code review and pair programming when studying collaborative software practices?",
+    "ground_truth": "The evidence draws a clear boundary: pair programming is performed continuously during development, while code review is a separate activity that occurs after implementation or during development. Code review also requires reviewers other than the author, whereas pair programming is characterized by continuous collaboration during coding itself. Researchers should therefore treat them as related but distinct collaborative practices with different timing and structure.",
+    "key_facts": [
+      "Pair programming is performed continuously during development",
+      "Code review is a separate activity",
+      "Code review may happen after implementation or during development",
+      "Code review requires reviewers other than the author",
+      "The two practices differ in timing and structure"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "tier": "hard",
+    "question": "What competing process models for code review are suggested by the evidence, and how might they be evaluated without overgeneralizing?",
+    "ground_truth": "The evidence suggests multiple process models rather than a single universal workflow. One model defines code review broadly as source code examination after implementation or during development; another describes it as typically after implementation but before integration; and an organizational practice requires two reviews before code is checked into the codebase. Researchers should therefore evaluate code review processes as variable along dimensions such as timing and number of reviewers, rather than assuming one standard model fits all settings.",
+    "key_facts": [
+      "Code review may occur after implementation or during development",
+      "It is also described as typically after implementation but before integration",
+      "Some teams require two reviews before code is checked into the codebase",
+      "Code review workflows vary by timing and number of reviewers",
+      "[disputed] There is a single universally standard process model for code review"
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "title": "Code review",
+        "url": "https://en.wikipedia.org/wiki/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "Code review",
+        "url": "https://grokipedia.com/page/Code_review"
+      },
+      {
+        "type": "web",
+        "title": "Was sind Code-Reviews und wie sparen sie tats\u00e4chlich Zeit? | Atlassian",
+        "url": "https://www.atlassian.com/de/agile/software-development/code-reviews"
+      }
+    ]
+  }
+]

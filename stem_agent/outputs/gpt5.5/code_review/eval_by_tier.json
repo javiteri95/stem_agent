@@ -1,0 +1,30 @@
+{
+  "domain": "code review",
+  "architecture": "reflection_loop",
+  "tiers": {
+    "easy": {
+      "factual_accuracy": 0.978,
+      "coverage": 0.992,
+      "coherence": 1.0,
+      "source_diversity": 0.99,
+      "composite": 0.99,
+      "n": 5
+    },
+    "hard": {
+      "factual_accuracy": 0.935,
+      "coverage": 0.8775,
+      "coherence": 0.9875,
+      "source_diversity": 0.9625,
+      "composite": 0.9406,
+      "n": 4
+    },
+    "medium": {
+      "factual_accuracy": 0.8567,
+      "coverage": 0.755,
+      "coherence": 0.9717,
+      "source_diversity": 0.9333,
+      "composite": 0.8792,
+      "n": 6
+    }
+  }
+}

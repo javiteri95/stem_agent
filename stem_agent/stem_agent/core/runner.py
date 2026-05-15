@@ -38,7 +38,7 @@ def _run_linear_chain(spec: AgentSpec, question: str) -> str:
         {"role": "system", "content": spec.system_prompt},
         {"role": "user", "content": question},
     ]
-    return call_llm(messages, max_tokens=1024)
+    return call_llm(messages, max_tokens=4096)
 
 
 def _run_reflection_loop(spec: AgentSpec, question: str) -> str:
@@ -54,7 +54,7 @@ def _run_reflection_loop(spec: AgentSpec, question: str) -> str:
         {"role": "system", "content": spec.system_prompt},
         {"role": "user", "content": question},
     ]
-    initial_answer = call_llm(messages, max_tokens=1024)
+    initial_answer = call_llm(messages, max_tokens=4096)
 
     # Round 2 — critique and revise
     critique_messages = [
@@ -112,7 +112,7 @@ def _run_multi_step_search(spec: AgentSpec, question: str) -> str:
                 ),
             },
         ]
-        round_answer = call_llm(messages, max_tokens=800)
+        round_answer = call_llm(messages, max_tokens=4096)
         rounds_output.append(f"[Round {round_num}] {round_answer}")
 
     # Synthesis call
@@ -140,7 +140,7 @@ def _run_multi_step_search(spec: AgentSpec, question: str) -> str:
             ),
         },
     ]
-    return call_llm(synthesis_messages, max_tokens=1200)
+    return call_llm(synthesis_messages, max_tokens=8192)
 
 
 def _run_adversarial_qa(spec: AgentSpec, question: str) -> str:
@@ -160,7 +160,7 @@ def _run_adversarial_qa(spec: AgentSpec, question: str) -> str:
             ),
         },
     ]
-    for_answer = call_llm(for_messages, max_tokens=800)
+    for_answer = call_llm(for_messages, max_tokens=4096)
 
     # Call 2 — counterpoint / critical angle
     against_messages = [
@@ -174,7 +174,7 @@ def _run_adversarial_qa(spec: AgentSpec, question: str) -> str:
             ),
         },
     ]
-    against_answer = call_llm(against_messages, max_tokens=800)
+    against_answer = call_llm(against_messages, max_tokens=4096)
 
     # Call 3 — balanced synthesis
     synthesis_messages = [
@@ -190,7 +190,7 @@ def _run_adversarial_qa(spec: AgentSpec, question: str) -> str:
             ),
         },
     ]
-    return call_llm(synthesis_messages, max_tokens=1200)
+    return call_llm(synthesis_messages, max_tokens=8192)
 
 
 # ---------------------------------------------------------------------------
